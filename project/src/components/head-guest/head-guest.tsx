@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function FilmCardElement(): JSX.Element {
+export function HeadGuest(): JSX.Element {
   return (
     <section className="film-card">
       <div className="film-card__bg">
