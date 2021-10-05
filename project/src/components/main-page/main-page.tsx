@@ -1,7 +1,13 @@
 import React from 'react';
 import { FilmCardElement } from '../film-card-element/film-card-element';
 
-export function MainPage(): JSX.Element {
+type MainPageCardProps = {
+  filmName: string,
+  genre: string,
+  released: number,
+}
+
+export function MainPage({filmName, genre, released}: MainPageCardProps): JSX.Element {
   return (
     <div>
 
@@ -40,10 +46,10 @@ export function MainPage(): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{filmName}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__year">{released}</span>
               </p>
 
               <div className="film-card__buttons">
