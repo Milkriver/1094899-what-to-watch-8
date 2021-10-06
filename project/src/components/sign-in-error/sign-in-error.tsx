@@ -2,7 +2,7 @@ import React from 'react';
 
 export function SignInError(): JSX.Element {
   return (
-<div className="user-page">
+    <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
           <a href="main.html" className="logo__link">

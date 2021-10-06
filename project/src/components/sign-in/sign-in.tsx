@@ -47,5 +47,5 @@ export function SignInMessage(): JSX.Element {
         </div>
       </footer>
     </div>
-    );
+  );
 }
