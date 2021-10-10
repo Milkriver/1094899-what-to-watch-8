@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function SignInMessage(): JSX.Element {
   return (
     <div className="user-page">

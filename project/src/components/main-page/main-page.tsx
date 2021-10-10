@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilmCardElement } from '../film-card-element/film-card-element';
+import { MovieCardElement } from '../movie-card-element/movie-card-element';
 
 type MainPageCardProps = {
   filmName: string,
@@ -109,14 +109,14 @@ export function MainPage({filmName, genre, released}: MainPageCardProps): JSX.El
           </ul>
 
           <div className="catalog__films-list">
-            <FilmCardElement />
-            <FilmCardElement />
-            <FilmCardElement />
-            <FilmCardElement />
-            <FilmCardElement />
-            <FilmCardElement />
-            <FilmCardElement />
-            <FilmCardElement />
+            <MovieCardElement />
+            <MovieCardElement />
+            <MovieCardElement />
+            <MovieCardElement />
+            <MovieCardElement />
+            <MovieCardElement />
+            <MovieCardElement />
+            <MovieCardElement />
           </div>
 
           <div className="catalog__more">
