@@ -13,14 +13,15 @@ type AppCardProps = {
   filmName: string,
   genre: string,
   released: number,
+  src: string,
 }
 
-function App({ filmName, genre, released }: AppCardProps): JSX.Element {
+function App({ filmName, genre, released, src }: AppCardProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main} >
-          <MainPage filmName={filmName} genre={genre} released={released} />
+          <MainPage filmName={filmName} genre={genre} released={released} src={src}/>
         </Route>
         <Route exact path={AppRoute.SignIn}><SignInMessage /></Route>
         <PrivateRoute

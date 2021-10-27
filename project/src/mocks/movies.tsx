@@ -4,7 +4,7 @@ const movies = [
     'name': 'The Grand Budapest Hotel',
     'poster_image': 'img/the-grand-budapest-hotel-poster.jpg',
     'preview_image': 'img/the-grand-budapest-hotel.jpg',
-    'background_image': 'img/the-grand-budapest-hotel-bg.jpg',
+    'background_image': 'img/bg-the-grand-budapest-hotel.jpg',
     'background_color': '#ffffff',
     'video_link': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     'preview_video_link': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -20,7 +20,7 @@ const movies = [
   },
   {
     'id': 2,
-    'name': 'Фильм 2',
+    'name': 'Aviator',
     'poster_image': 'img/aviator.jpg',
     'preview_image': 'img/aviator.jpg',
     'background_image': 'img/aviator.jpg',
@@ -39,7 +39,7 @@ const movies = [
   },
   {
     'id': 3,
-    'name': 'Фильм 3',
+    'name': 'Bohemian-rhapsody',
     'poster_image': 'img/bohemian-rhapsody.jpg',
     'preview_image': 'img/bohemian-rhapsody.jpg',
     'background_image': 'img/bohemian-rhapsody.jpg',
@@ -58,7 +58,7 @@ const movies = [
   },
   {
     'id': 4,
-    'name': 'Фильм 4',
+    'name': 'Dardjeeling-limited',
     'poster_image': 'img/dardjeeling-limited.jpg',
     'preview_image': 'img/dardjeeling-limited.jpg',
     'background_image': 'img/dardjeeling-limited.jpg',
@@ -77,7 +77,7 @@ const movies = [
   },
   {
     'id': 5,
-    'name': 'Фильм 5',
+    'name': 'Fantastic-beasts-the-crimes-of-grindelwald',
     'poster_image': 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
     'preview_image': 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
     'background_image': 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
@@ -96,7 +96,7 @@ const movies = [
   },
   {
     'id': 6,
-    'name': 'Фильм 6',
+    'name': 'Johnny-english',
     'poster_image': 'img/johnny-english.jpg',
     'preview_image': 'img/johnny-english.jpg',
     'background_image': 'img/johnny-english.jpg',
@@ -115,7 +115,7 @@ const movies = [
   },
   {
     'id': 7,
-    'name': 'Фильм 7',
+    'name': 'Macbeth',
     'poster_image': 'img/Macbeth.jpg',
     'preview_image': 'img/Macbeth.jpg',
     'background_image': 'img/Macbeth.jpg',
@@ -134,7 +134,7 @@ const movies = [
   },
   {
     'id': 8,
-    'name': 'Фильм 8',
+    'name': 'Midnight-special',
     'poster_image': 'img/midnight-special.jpg',
     'preview_image': 'img/midnight-special.jpg',
     'background_image': 'img/midnight-special.jpg',

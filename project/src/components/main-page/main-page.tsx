@@ -1,19 +1,20 @@
 import React from 'react';
-import { MovieCardElement } from '../movie-card-element/movie-card-element';
+import { MoviesList } from '../movies-list/movies-list';
 
 type MainPageCardProps = {
   filmName: string,
   genre: string,
   released: number,
+  src: string,
 }
 
-export function MainPage({filmName, genre, released}: MainPageCardProps): JSX.Element {
+export function MainPage({filmName, genre, released, src}: MainPageCardProps): JSX.Element {
   return (
     <div>
 
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={src} alt="The Grand Budapest Hotel" />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -109,14 +110,7 @@ export function MainPage({filmName, genre, released}: MainPageCardProps): JSX.El
           </ul>
 
           <div className="catalog__films-list">
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
+            <MoviesList filmName={filmName} src={src}/>
           </div>
 
           <div className="catalog__more">
