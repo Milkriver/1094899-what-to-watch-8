@@ -1,6 +1,5 @@
 import { MovieCardElement } from './../movie-card-element/movie-card-element';
 import { movie } from '../../types/common';
-import React from 'react';
 
 interface IProps {
   cards: movie[]
