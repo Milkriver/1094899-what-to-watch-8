@@ -8,20 +8,18 @@ import { Player } from '../player/player';
 import { Error404 } from '../error404/error404';
 import { PrivateRoute } from '../private-route/private-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { movie } from '../../types/common';
 
-type AppCardProps = {
-  filmName: string,
-  genre: string,
-  released: number,
-  src: string,
+type IProps = {
+  cards: movie[]
 }
 
-function App({ filmName, genre, released, src }: AppCardProps): JSX.Element {
+function App({ cards }: IProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main} >
-          <MainPage filmName={filmName} genre={genre} released={released} src={src}/>
+          <MainPage cards={cards}/>
         </Route>
         <Route exact path={AppRoute.SignIn}><SignInMessage /></Route>
         <PrivateRoute

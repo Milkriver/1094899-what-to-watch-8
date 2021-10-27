@@ -1,13 +1,16 @@
 import { MovieCardElement } from './../movie-card-element/movie-card-element';
+import { movie } from '../../types/common';
+import React from 'react';
 
-
-type MoviesListProps = {
-  filmName: string,
-  src: string,
+interface IProps {
+  cards: movie[]
 }
 
-export function MoviesList({filmName, src}: MoviesListProps): JSX.Element {
+export function MoviesList({ cards }: IProps): JSX.Element {
+
   return (
-    MovieCardElement({filmName, src})
+    <>
+      {cards.map((singleCard) => <MovieCardElement key={singleCard.id} filmName={singleCard.name} src={singleCard.poster_image} />)}
+    </>
   );
 }
