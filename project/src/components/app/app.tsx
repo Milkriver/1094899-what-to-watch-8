@@ -19,16 +19,17 @@ function App({ cards }: IProps): JSX.Element {
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main} >
-          <MainPage cards={cards}/>
+          <MainPage cards={cards} />
         </Route>
         <Route exact path={AppRoute.SignIn}><SignInMessage /></Route>
-        <PrivateRoute
+        {/* <PrivateRoute
           exact
           path={AppRoute.MyList}
           render={() => <MyList />}
           authorizationStatus={AuthorizationStatus.NoAuth}
-        >
-        </PrivateRoute>
+        > */}
+        {/* </PrivateRoute> */}
+        <Route exact path={AppRoute.MyList}><MyList cards={cards}/></Route>
         <Route exact path={AppRoute.Film}><MoviePage /></Route>
         <PrivateRoute
           exact
