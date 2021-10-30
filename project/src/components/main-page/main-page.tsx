@@ -1,4 +1,6 @@
 import React from 'react';
+import { useHistory } from 'react-router';
+import { AppRoute } from '../../const';
 import { movie } from '../../types/common';
 import { MoviesList } from '../movies-list/movies-list';
 
@@ -7,6 +9,7 @@ type IProps = {
 }
 
 export function MainPage({cards}: IProps): JSX.Element {
+  const history = useHistory();
   return (
     <div>
 
@@ -52,13 +55,13 @@ export function MainPage({cards}: IProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
+                <button className="btn btn--list film-card__button" type="button" onClick={() => history.push(AppRoute.MyList)}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>

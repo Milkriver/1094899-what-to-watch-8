@@ -1,9 +1,12 @@
 import React from 'react';
-
-export function Player(): JSX.Element {
+import { movie } from '../../types/common';
+interface IProps {
+  cards: movie[],
+}
+export function Player({ cards }: IProps): JSX.Element {
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={cards[0].preview_video_link} className="player__video" poster={cards[0].poster_image}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
