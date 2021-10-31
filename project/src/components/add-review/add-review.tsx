@@ -27,7 +27,7 @@ export function AddReview(): JSX.Element {
                 <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link" > Add review</a>
+                <a className="breadcrumbs__link" > <AddReviewForm />Add review</a>
               </li>
             </ul>
           </nav>
@@ -48,7 +48,9 @@ export function AddReview(): JSX.Element {
           <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
         </div>
       </div>
-      <AddReviewForm />
+      <div className="add-review">
+
+      </div>
     </section >
   );
 }
