@@ -32,14 +32,13 @@ function App({ cards, reviews}: IProps): JSX.Element {
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Film}><MoviePage /></Route>
-        {/* <PrivateRoute
+        <PrivateRoute
           exact
           path={AppRoute.AddReview}
           render={() => <MoviePageReviews reviews={reviews}/>}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
-        </PrivateRoute> */}
-        <Route exact path={AppRoute.AddReview}><MoviePageReviews reviews={reviews} /></Route>
+        </PrivateRoute>
         <Route exact path={AppRoute.Player}><Player cards={cards} /></Route>
         <Route><Error404 /></Route>
       </Switch>
