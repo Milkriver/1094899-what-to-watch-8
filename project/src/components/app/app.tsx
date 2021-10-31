@@ -8,25 +8,26 @@ import { Player } from '../player/player';
 import { Error404 } from '../error404/error404';
 import { PrivateRoute } from '../private-route/private-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { movie } from '../../types/common';
+import { IReview } from '../../types/reviews';
 
-type AppCardProps = {
-  filmName: string,
-  genre: string,
-  released: number,
+interface IProps {
+  cards: movie[],
+  reviews: IReview[],
 }
 
-function App({ filmName, genre, released }: AppCardProps): JSX.Element {
+function App({ cards, reviews}: IProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main} >
-          <MainPage filmName={filmName} genre={genre} released={released} />
+          <MainPage cards={cards} />
         </Route>
         <Route exact path={AppRoute.SignIn}><SignInMessage /></Route>
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyList />}
+          render={() => <MyList cards={cards} />}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
@@ -34,11 +35,11 @@ function App({ filmName, genre, released }: AppCardProps): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.AddReview}
-          render={() => <MoviePageReviews />}
+          render={() => <MoviePageReviews reviews={reviews}/>}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Player}><Player /></Route>
+        <Route exact path={AppRoute.Player}><Player cards={cards} /></Route>
         <Route><Error404 /></Route>
       </Switch>
     </BrowserRouter>

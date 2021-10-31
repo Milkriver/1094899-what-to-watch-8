@@ -1,19 +1,21 @@
 import React from 'react';
-import { MovieCardElement } from '../movie-card-element/movie-card-element';
+import { useHistory } from 'react-router';
+import { AppRoute } from '../../const';
+import { movie } from '../../types/common';
+import { MoviesList } from '../movies-list/movies-list';
 
-type MainPageCardProps = {
-  filmName: string,
-  genre: string,
-  released: number,
+type IProps = {
+  cards: movie[]
 }
 
-export function MainPage({filmName, genre, released}: MainPageCardProps): JSX.Element {
+export function MainPage({cards}: IProps): JSX.Element {
+  const history = useHistory();
   return (
     <div>
 
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={cards[0].background_image} alt="The Grand Budapest Hotel" />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -46,20 +48,20 @@ export function MainPage({filmName, genre, released}: MainPageCardProps): JSX.El
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{filmName}</h2>
+              <h2 className="film-card__title">{cards[0].name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{released}</span>
+                <span className="film-card__genre">{cards[0].genre}</span>
+                <span className="film-card__year">{cards[0].released}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
+                <button className="btn btn--list film-card__button" type="button" onClick={() => history.push(AppRoute.MyList)}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -109,14 +111,7 @@ export function MainPage({filmName, genre, released}: MainPageCardProps): JSX.El
           </ul>
 
           <div className="catalog__films-list">
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
-            <MovieCardElement />
+            <MoviesList cards={cards}/>
           </div>
 
           <div className="catalog__more">
