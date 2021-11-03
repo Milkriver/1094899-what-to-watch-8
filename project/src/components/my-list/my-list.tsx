@@ -8,13 +8,19 @@ interface IProps {
 }
 
 export function MyList({ cards }: IProps): JSX.Element {
-  const [, setActiveMovieCardId] = useState<number | undefined>();
+  const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
 
   const favoriteMovies = cards.filter((x)=>x.is_favorite);
 
   const renderMyMovie = (singleCard: movie): React.ReactNode => (
     <MovieCardElement
-      key={singleCard.id} filmName={singleCard.name} src={singleCard.poster_image} id={singleCard.id} onMouseOver={setActiveMovieCardId}
+      key={singleCard.id}
+      activeCardId={activeCardId}
+      filmName={singleCard.name}
+      videolink={singleCard.poster_image}
+      posterSrc={singleCard.poster_image}
+      id={singleCard.id}
+      onMouseOver={setActiveMovieCardId}
     />);
 
   return (
@@ -37,7 +43,7 @@ export function MyList({ cards }: IProps): JSX.Element {
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <a href="#/" className="user-block__link">Sign out</a>
           </li>
         </ul>
       </header>

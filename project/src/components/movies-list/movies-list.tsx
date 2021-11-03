@@ -7,18 +7,22 @@ interface IProps {
   cards: movie[]
 }
 
-
 export function MoviesList({ cards }: IProps): JSX.Element {
-  const [, setActiveMovieCardId] = useState<number | undefined>();
+  const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
+  const handleActiveCard = (id: number | undefined) => {
+    setActiveMovieCardId(id);
+  };
   return (
     <>
       {cards.map((singleCard) => (
         <MovieCardElement
           key={singleCard.id}
+          activeCardId={activeCardId}
           filmName={singleCard.name}
-          src={singleCard.poster_image}
           id={singleCard.id}
-          onMouseOver={setActiveMovieCardId}
+          onMouseOver={handleActiveCard}
+          videolink={singleCard.preview_video_link}
+          posterSrc={singleCard.preview_image}
         />
       ))}
     </>
