@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { movie } from '../../types/common';
 import { MoviesList } from '../movies-list/movies-list';
@@ -22,11 +23,11 @@ export function MainPage({cards}: IProps): JSX.Element {
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a href="/#" className="logo__link">
+            <Link to={'/'} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <ul className="user-block">
@@ -121,11 +122,11 @@ export function MainPage({cards}: IProps): JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="/#" className="logo__link logo__link--light">
+            <Link to={'/'} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
