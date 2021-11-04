@@ -36,7 +36,7 @@ function VideoPlayer({ posterSrc, videolink, isPlaying }: AudioPlayerProps): JSX
       videoRef.current.play();
       return;
     }
-    videoRef.current.pause();
+    videoRef.current.stop();
   }, [isPlaying, videoRef]);
 
   return (
