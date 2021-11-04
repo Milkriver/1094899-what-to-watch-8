@@ -17,8 +17,8 @@ export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSr
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={() => onMouseOver(id)} onMouseOut={() => onMouseOver(undefined)}>
       <div className="small-film-card__image" >
-        <VideoPlayer isPlaying={activeCardId === id} posterSrc={posterSrc} videolink={videolink} />
-        <img src={posterSrc} alt='' width="280" height="175" />;
+        {activeCardId === id ? <VideoPlayer isPlaying={activeCardId === id} posterSrc={posterSrc} videolink={videolink} /> :
+          <img src={posterSrc} alt='' width="280" height="175" />};
       </div>
       <h3 className="small-film-card__title">
         <a href="#/" className="small-film-card__link" onClick={() => history.push(AppRoute.Film)}>{filmName}</a>
