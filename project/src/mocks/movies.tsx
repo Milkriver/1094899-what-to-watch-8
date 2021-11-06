@@ -14,7 +14,7 @@ const movies = [
     scores_count: 240,
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
-    run_time: 99,
+    run_time: 120,
     genre: 'Comedy',
     released: 2014,
     is_favorite: false,

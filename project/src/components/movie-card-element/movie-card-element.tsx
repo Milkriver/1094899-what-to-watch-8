@@ -21,7 +21,7 @@ export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSr
           <img src={posterSrc} alt='' width="280" height="175" />};
       </div>
       <h3 className="small-film-card__title">
-        <a href="#/" className="small-film-card__link" onClick={() => history.push(AppRoute.Film)}>{filmName}</a>
+        <a href="/films/:id" className="small-film-card__link" onClick={() => history.push(AppRoute.Film)}>{filmName}</a>
       </h3>
       <div>{id}</div>
     </article>
