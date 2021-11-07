@@ -21,6 +21,7 @@ export function MyList({ cards }: IProps): JSX.Element {
       posterSrc={singleCard.poster_image}
       id={singleCard.id}
       onMouseOver={setActiveMovieCardId}
+      genre={singleCard.genre}
     />);
 
   return (

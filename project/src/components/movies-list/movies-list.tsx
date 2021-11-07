@@ -23,6 +23,7 @@ export function MoviesList({ cards }: IProps): JSX.Element {
           onMouseOver={handleActiveCard}
           videolink={singleCard.preview_video_link}
           posterSrc={singleCard.preview_image}
+          genre={singleCard.genre}
         />
       ))}
     </>

@@ -16,7 +16,7 @@ interface IProps {
   reviews: IReview[],
 }
 
-function App({ cards, reviews}: IProps): JSX.Element {
+function App({ cards, reviews }: IProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
@@ -31,11 +31,12 @@ function App({ cards, reviews}: IProps): JSX.Element {
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Film}><MoviePage /></Route>
+        <Route exact path={AppRoute.Film}><MoviePage cards={cards} /></Route>
+
         <PrivateRoute
           exact
           path={AppRoute.AddReview}
-          render={() => <MoviePageReviews reviews={reviews}/>}
+          render={() => <MoviePageReviews reviews={reviews} />}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>

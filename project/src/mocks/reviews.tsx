@@ -5,7 +5,7 @@ const reviews = [
     author: 'Kate Muir',
     date: '2016-12-24',
     rating: 8.9,
-    text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director{&apos;}s funniest and most exquisitely designed films in years.',
+    text: 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed films in years.',
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const reviews = [
     author: 'Bill Goodykoontz',
     date: '2015-11-18',
     rating: 8.0,
-    text: 'Anderson&apos;s films are too precious for some, but for those of us willing to lose ourselves in them, they&apos;re a delight. &quot;The Grand Budapest Hotel&quot; is no different, except that he has added a hint of gravitas to the mix, improving the recipe.',
+    text: 'Andersons films are too precious for some, but for those of us willing to lose ourselves in them, theyre a delight. The Grand Budapest Hotel is no different, except that he has added a hint of gravitas to the mix, improving the recipe.',
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const reviews = [
     author: 'Amanda Greever',
     date: '2015-11-18',
     rating: 8.0,
-    text: 'I didn&apos;t find it amusing, and while I can appreciate the creativity, it&apos;s an hour and 40 minutes I wish I could take back.',
+    text: 'I didnt find it amusing, and while I can appreciate the creativity, its an hour and 40 minutes I wish I could take back.',
   },
   {
     id: 4,

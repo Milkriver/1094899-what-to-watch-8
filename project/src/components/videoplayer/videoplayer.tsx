@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-import React from 'react';
 import { useRef, useEffect, useState } from 'react';
 
 
@@ -34,9 +32,7 @@ function VideoPlayer({ posterSrc, videolink, isPlaying }: AudioPlayerProps): JSX
 
     if (isPlaying) {
       videoRef.current.play();
-      return;
     }
-    videoRef.current.pause();
   }, [isPlaying, videoRef]);
 
   return (
