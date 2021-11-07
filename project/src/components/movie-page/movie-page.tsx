@@ -1,15 +1,13 @@
 // import { useHistory } from 'react-router';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { movie } from '../../types/common';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 // import { AppRoute } from '../../const';
-import { MoviePageOverview } from '../movie-page-overview/movie-page-overview';
+import { Tabs } from '../tabs/tabs';
 interface IProps {
   cards: movie[]
 }
 export function MoviePage({ cards }: IProps): JSX.Element {
-  // const history = useHistory();
   const sameMovie = cards.filter((movieElement) => movieElement.genre === 'Drama').slice(0, 4);
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
   const handleActiveCard = (id: number | undefined) => {
@@ -78,24 +76,7 @@ export function MoviePage({ cards }: IProps): JSX.Element {
             <div className="film-card__poster film-card__poster--big">
               <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
-
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <NavLink to='/overview' className="film-nav__link">Overview</NavLink>
-                    {/* <a href="/films/:id" className="film-nav__link" onClick={() => history.push(AppRoute.Film)}>Overview</a> */}
-                  </li>
-                  <li className="film-nav__item">
-                    <NavLink to='/details' className="film-nav__link">Details</NavLink>
-                    {/* <a href="#/" className="film-nav__link">Details</a> */}
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#/" className="film-nav__link" >Reviews</a>
-                  </li>
-                </ul>
-              </nav>      <MoviePageOverview />
-            </div>
+            <Tabs />
           </div>
         </div>
       </section>

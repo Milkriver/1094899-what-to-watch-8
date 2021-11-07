@@ -1,4 +1,3 @@
-import React from 'react';
 import movies from '../../mocks/movies';
 
 export function MoviePageOverview(): JSX.Element {
@@ -11,14 +10,9 @@ export function MoviePageOverview(): JSX.Element {
           <span className="film-rating__count">240 ratings</span>
         </p>
       </div>
-
       <div className="film-card__text">
-
-
         <p>{movies[0].description}</p>
-
         <p className="film-card__director"><strong>Director: {movies[0].director}</strong></p>
-
         <p className="film-card__starring"><strong>Starring: {movies[0].starring}</strong></p>
       </div>
     </>
