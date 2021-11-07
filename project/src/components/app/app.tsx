@@ -10,6 +10,10 @@ import { PrivateRoute } from '../private-route/private-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { movie } from '../../types/common';
 import { IReview } from '../../types/reviews';
+import { MoviePageOverview } from '../movie-page-overview/movie-page-overview';
+import { MoviePageDetails } from '../movie-page-details/movie-page-details';
+// import { MoviePageDetails } from '../movie-page-details/movie-page-details';
+
 
 interface IProps {
   cards: movie[],
@@ -32,15 +36,20 @@ function App({ cards, reviews}: IProps): JSX.Element {
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Film}><MoviePage /></Route>
-        <PrivateRoute
+        <Route exact path={AppRoute.AddReview}><MoviePageReviews reviews={reviews} /></Route>
+
+        {/* <PrivateRoute
           exact
           path={AppRoute.AddReview}
           render={() => <MoviePageReviews reviews={reviews}/>}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
-        </PrivateRoute>
+        </PrivateRoute> */}
         <Route exact path={AppRoute.Player}><Player cards={cards} /></Route>
         <Route><Error404 /></Route>
+        <Route path='/overview' render={() => <MoviePageOverview />} />
+        <Route path='/reviews' render={() => <MoviePageReviews reviews={reviews}/>} />
+        <Route path='/details' render={() => <MoviePageDetails />} />
       </Switch>
     </BrowserRouter>
   );
