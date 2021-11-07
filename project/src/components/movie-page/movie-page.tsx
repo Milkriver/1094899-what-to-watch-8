@@ -1,8 +1,6 @@
-// import { useHistory } from 'react-router';
 import { useState } from 'react';
 import { movie } from '../../types/common';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
-// import { AppRoute } from '../../const';
 import { Tabs } from '../tabs/tabs';
 interface IProps {
   cards: movie[]

@@ -5,25 +5,25 @@ import { MoviePageOverview } from '../movie-page-overview/movie-page-overview';
 import { MoviePageReviews } from '../movie-page-reviews/movie-page-reviews';
 
 export function Tabs(): JSX.Element {
-  const [activeTab, setActiveTab] = useState('tab1');
-  const handleTab1 = () => {
-    setActiveTab('tab1');
+  const [activeTab, setActiveTab] = useState('Overview');
+  const handleOverview = () => {
+    setActiveTab('Overview');
   };
-  const handleTab2 = () => {
-    setActiveTab('tab2');
+  const handleDetails = () => {
+    setActiveTab('Details');
   };
 
-  const handleTab3 = () => {
-    setActiveTab('tab3');
+  const handleReviews = () => {
+    setActiveTab('Reviews');
   };
 
   const singleActiveTab = () => {
     switch (activeTab) {
-      case 'tab1':
+      case 'Overview':
         return <MoviePageOverview />;
-      case 'tab2':
+      case 'Details':
         return <MoviePageDetails />;
-      case 'tab3':
+      case 'Reviews':
         return <MoviePageReviews reviews={reviews} />;
       default:
         return <MoviePageOverview />;
@@ -34,13 +34,13 @@ export function Tabs(): JSX.Element {
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={activeTab === 'tab1' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'} onClick={handleTab1}>
+          <li className={activeTab === 'Overview' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'} onClick={handleOverview}>
             <div className="film-nav__link">Overview</div>
           </li>
-          <li className={activeTab === 'tab2' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'} onClick={handleTab2}>
+          <li className={activeTab === 'Details' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'} onClick={handleDetails}>
             <div className="film-nav__link">Details</div>
           </li>
-          <li className={activeTab === 'tab3' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'} onClick={handleTab3}>
+          <li className={activeTab === 'Reviews' ? 'film-nav__item film-nav__item--active' : 'film-nav__item'} onClick={handleReviews}>
             <div className="film-nav__link" >Reviews</div>
           </li>
         </ul >
