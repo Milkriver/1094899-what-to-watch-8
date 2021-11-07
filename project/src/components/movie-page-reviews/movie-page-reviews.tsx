@@ -1,4 +1,3 @@
-import React from 'react';
 import { IReview } from '../../types/reviews';
 
 interface IProps {
