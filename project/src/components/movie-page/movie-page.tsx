@@ -1,10 +1,20 @@
 // import { useHistory } from 'react-router';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { movie } from '../../types/common';
+import { MovieCardElement } from '../movie-card-element/movie-card-element';
 // import { AppRoute } from '../../const';
 import { MoviePageOverview } from '../movie-page-overview/movie-page-overview';
-
-export function MoviePage(): JSX.Element {
+interface IProps {
+  cards: movie[]
+}
+export function MoviePage({ cards }: IProps): JSX.Element {
   // const history = useHistory();
+  const sameMovie = cards.filter((movieElement) => movieElement.genre === 'Drama').slice(0, 4);
+  const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
+  const handleActiveCard = (id: number | undefined) => {
+    setActiveMovieCardId(id);
+  };
   return (
     <>
       <section className="film-card film-card--full">
@@ -95,41 +105,22 @@ export function MoviePage(): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
-              </h3>
-            </article>
+            {
+              <>
+                {sameMovie.map((singleCard) => (
+                  <MovieCardElement
+                    key={singleCard.id}
+                    activeCardId={activeCardId}
+                    filmName={singleCard.name}
+                    id={singleCard.id}
+                    onMouseOver={handleActiveCard}
+                    videolink={singleCard.preview_video_link}
+                    posterSrc={singleCard.preview_image}
+                    genre={singleCard.genre}
+                  />
+                ))}
+              </>
+            }
           </div>
         </section>
 

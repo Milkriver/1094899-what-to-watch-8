@@ -35,7 +35,7 @@ function App({ cards, reviews}: IProps): JSX.Element {
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Film}><MoviePage /></Route>
+        <Route exact path={AppRoute.Film}><MoviePage cards={cards} /></Route>
         <Route exact path={AppRoute.AddReview}><MoviePageReviews reviews={reviews} /></Route>
 
         {/* <PrivateRoute

@@ -10,9 +10,10 @@ type MovieCardElementProps = {
   onMouseOver: (id: number | undefined) => void
   posterSrc: string
   activeCardId: number | undefined
+  genre: string
 }
 
-export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSrc, id, videolink }: MovieCardElementProps): JSX.Element {
+export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSrc, id, videolink, genre }: MovieCardElementProps): JSX.Element {
   const history = useHistory();
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={() => onMouseOver(id)} onMouseOut={() => onMouseOver(undefined)}>
@@ -23,7 +24,6 @@ export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSr
       <h3 className="small-film-card__title">
         <a href="/films/:id" className="small-film-card__link" onClick={() => history.push(AppRoute.Film)}>{filmName}</a>
       </h3>
-      <div>{id}</div>
     </article>
   );
 }
