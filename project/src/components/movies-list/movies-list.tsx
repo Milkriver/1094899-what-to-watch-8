@@ -24,9 +24,7 @@ function MoviesList(props: ConnectedComponentProps): JSX.Element {
   const handleActiveCard = (id: number | undefined) => {
     setActiveMovieCardId(id);
   };
-
   const filtredCards = cards.filter((card) => card.genre === currentGenre || currentGenre === 'All genres');
-
   return (
     <>
       {filtredCards.map((singleCard) => (
