@@ -1,5 +1,5 @@
 import React from 'react';
-import movies from '../../mocks/movies';
+import { movies } from '../../mocks/movies';
 
 export function MoviePageDetails(): JSX.Element {
   return (

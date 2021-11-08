@@ -1,4 +1,4 @@
-import movies from '../../mocks/movies';
+import { movies } from '../../mocks/movies';
 
 export function MoviePageOverview(): JSX.Element {
   return (
