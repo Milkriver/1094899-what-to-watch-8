@@ -9,7 +9,7 @@ type IProps = {
   cards: movie[]
 }
 
-export function MainPage({cards}: IProps): JSX.Element {
+export function MainPage({ cards }: IProps): JSX.Element {
   const history = useHistory();
   return (
     <div>
@@ -77,7 +77,6 @@ export function MainPage({cards}: IProps): JSX.Element {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
               <a href="/#" className="catalog__genres-link">All genres</a>
@@ -112,7 +111,7 @@ export function MainPage({cards}: IProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            <MoviesList cards={cards}/>
+            <MoviesList cards={cards} />
           </div>
 
           <div className="catalog__more">
