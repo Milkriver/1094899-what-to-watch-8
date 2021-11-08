@@ -1,8 +1,7 @@
 import { connect, ConnectedProps } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Dispatch } from 'redux';
-import { AppRoute } from '../../const';
 import { ChangeGenre } from '../../store/action';
+import { Actions } from '../../types/actions';
 import { movie } from '../../types/common';
 import { State } from '../../types/state';
 
@@ -11,10 +10,10 @@ interface IGenresListProps {
 }
 
 const mapStateToProps = ({ currentGenre }: State) => ({
-  currentGenre: currentGenre,
+  currentGenre,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onChangeGenre(genre: string) {
     dispatch(ChangeGenre(genre));
   },
@@ -25,22 +24,25 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & IGenresListProps;
 
 
-export function GenresList(GenresListProps: ConnectedComponentProps): JSX.Element {
-  const movies = GenresListProps.movies;
+function GenresList(props: ConnectedComponentProps): JSX.Element {
+  const { movies, currentGenre, onChangeGenre } = props;
   const GenreList = Array.from(new Set(movies.map((movieElement) => movieElement.genre)));
   const GenreListMenu = ['All genres', ...GenreList];
+
   return (
     <ul className="catalog__genres-list">
       {GenreListMenu.map((genre: string) => (
-        <li className="catalog__genres-item" key={genre}>
-          <Link to={AppRoute.Main} className="catalog__genres-link">
+        <li className={currentGenre === genre ? 'catalog__genres-item catalog__genres-item--active' : 'catalog__genres-item'}
+          key={genre}
+        >
+          <div className="catalog__genres-link " onClick={() => onChangeGenre(genre)}>
             {genre}
-          </Link>
+          </div>
         </li>
       ))}
     </ul>
 
   );
 }
-
+export { GenresList };
 export default connector(GenresList);

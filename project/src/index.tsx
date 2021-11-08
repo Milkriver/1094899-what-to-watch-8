@@ -6,7 +6,7 @@ import App from './components/app/app';
 import { movies } from './mocks/movies';
 import reviews from './mocks/reviews';
 import { reducer } from './store/reducer';
-import {composeWithDevTools} from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
   reducer,

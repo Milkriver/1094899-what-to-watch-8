@@ -1,20 +1,35 @@
 import { MovieCardElement } from './../movie-card-element/movie-card-element';
 import { movie } from '../../types/common';
 import { useState } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
+import { State } from '../../types/state';
 
 
 interface IProps {
-  cards: movie[]
+  cards: movie[],
 }
 
-export function MoviesList({ cards }: IProps): JSX.Element {
+const mapStateToProps = ({ currentGenre }: State) => ({
+  currentGenre,
+});
+
+const connector = connect(mapStateToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & IProps;
+
+function MoviesList(props: ConnectedComponentProps): JSX.Element {
+
+  const { cards, currentGenre } = props;
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
   const handleActiveCard = (id: number | undefined) => {
     setActiveMovieCardId(id);
   };
+
+  const filtredCards = cards.filter((card) => card.genre === currentGenre || currentGenre === 'All genres');
+
   return (
     <>
-      {cards.map((singleCard) => (
+      {filtredCards.map((singleCard) => (
         <MovieCardElement
           key={singleCard.id}
           activeCardId={activeCardId}
@@ -29,3 +44,5 @@ export function MoviesList({ cards }: IProps): JSX.Element {
     </>
   );
 }
+export { MoviesList };
+export default connector(MoviesList);
