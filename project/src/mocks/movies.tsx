@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-const movies = [
+export const movies = [
   {
     id: 1,
     name: 'The Grand Budapest Hotel',
@@ -154,4 +154,3 @@ const movies = [
   },
 ];
 
-export default movies;
