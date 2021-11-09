@@ -1,5 +1,3 @@
-
-
 interface IProps {
   isButtonShowen: boolean
   handleShowMoreButton: () => void
