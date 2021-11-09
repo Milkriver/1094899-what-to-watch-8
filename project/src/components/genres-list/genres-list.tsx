@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch } from 'redux';
-import { ChangeGenre } from '../../store/action';
+import { changeGenre } from '../../store/action';
 import { Actions } from '../../types/actions';
 import { movie } from '../../types/common';
 import { State } from '../../types/state';
@@ -15,7 +15,7 @@ const mapStateToProps = ({ currentGenre }: State) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onChangeGenre(genre: string) {
-    dispatch(ChangeGenre(genre));
+    dispatch(changeGenre(genre));
   },
 });
 
@@ -26,12 +26,12 @@ type ConnectedComponentProps = PropsFromRedux & IGenresListProps;
 
 function GenresList(props: ConnectedComponentProps): JSX.Element {
   const { movies, currentGenre, onChangeGenre } = props;
-  const GenreList = Array.from(new Set(movies.map((movieElement) => movieElement.genre)));
-  const GenreListMenu = ['All genres', ...GenreList];
+  const genreList = Array.from(new Set(movies.map((movieElement) => movieElement.genre)));
+  const genreListMenu = ['All genres', ...genreList];
 
   return (
     <ul className="catalog__genres-list">
-      {GenreListMenu.map((genre: string) => (
+      {genreListMenu.map((genre: string) => (
         <li className={currentGenre === genre ? 'catalog__genres-item catalog__genres-item--active' : 'catalog__genres-item'}
           key={genre}
         >
