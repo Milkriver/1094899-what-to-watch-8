@@ -10,3 +10,4 @@ export const getMovies = (): GetMoviesAction => ({
   type: ActionType.GetMovies,
   payload: movies,
 });
+
