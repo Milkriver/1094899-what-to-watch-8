@@ -7,6 +7,8 @@ import { State } from '../../types/state';
 
 interface IProps {
   cards: movie[],
+  changeLimit: (arg: number) => void,
+  moviesShowingLimit: number,
 }
 
 const mapStateToProps = ({ currentGenre }: State) => ({
@@ -19,15 +21,16 @@ type ConnectedComponentProps = PropsFromRedux & IProps;
 
 function MoviesList(props: ConnectedComponentProps): JSX.Element {
 
-  const { cards, currentGenre } = props;
+  const { cards, currentGenre, changeLimit, moviesShowingLimit } = props;
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
   const handleActiveCard = (id: number | undefined) => {
     setActiveMovieCardId(id);
   };
   const filtredCards = cards.filter((card) => card.genre === currentGenre || currentGenre === 'All genres');
+  changeLimit(filtredCards.length);
   return (
     <>
-      {filtredCards.map((singleCard) => (
+      {filtredCards.slice(0, moviesShowingLimit).map((singleCard) => (
         <MovieCardElement
           key={singleCard.id}
           activeCardId={activeCardId}

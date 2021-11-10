@@ -1,10 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { movie } from '../../types/common';
 import GenresList from '../genres-list/genres-list';
 import MoviesList from '../movies-list/movies-list';
+import { ShowMoreButton } from '../show-more-button/show-more-button';
 
 type IProps = {
   cards: movie[]
@@ -12,6 +13,15 @@ type IProps = {
 
 export function MainPage({ cards }: IProps): JSX.Element {
   const history = useHistory();
+
+  const [moviesShowingLimit, changeMoviesShowingLimit] = useState<number>(8);
+  const [limit, changeLimit] = useState<number>(cards.length);
+  const handleShowMoreButton = () => {
+    const limitCondition = moviesShowingLimit + 8 < limit ? moviesShowingLimit + 8 : limit;
+    changeMoviesShowingLimit(limitCondition);
+  };
+  const isButtonShowen = (moviesShowingLimit < limit);
+
   return (
     <div>
 
@@ -83,12 +93,16 @@ export function MainPage({ cards }: IProps): JSX.Element {
           />
 
           <div className="catalog__films-list">
-            <MoviesList cards={cards} />
+            <MoviesList
+              changeLimit={changeLimit}
+              cards={cards}
+              moviesShowingLimit={moviesShowingLimit}
+            />
           </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowMoreButton
+            handleShowMoreButton={handleShowMoreButton}
+            isButtonShowen={isButtonShowen}
+          />
         </section>
 
         <footer className="page-footer">
