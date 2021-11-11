@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { movie } from '../../types/common';
+import { IMovie } from '../../types/common';
 import GenresList from '../genres-list/genres-list';
 import MoviesList from '../movies-list/movies-list';
 import { ShowMoreButton } from '../show-more-button/show-more-button';
 
 type IProps = {
-  cards: movie[]
+  cards: IMovie[]
 }
 
 export function MainPage({ cards }: IProps): JSX.Element {

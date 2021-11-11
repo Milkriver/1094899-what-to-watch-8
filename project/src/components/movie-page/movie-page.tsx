@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { movie } from '../../types/common';
+import { IMovie } from '../../types/common';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 import { Tabs } from '../tabs/tabs';
 interface IProps {
-  cards: movie[]
+  cards: IMovie[]
 }
 export function MoviePage({ cards }: IProps): JSX.Element {
   const sameMovie = cards.filter((movieElement) => movieElement.genre === 'Drama').slice(0, 4);

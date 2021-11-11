@@ -8,11 +8,11 @@ import { Player } from '../player/player';
 import { Error404 } from '../error404/error404';
 import { PrivateRoute } from '../private-route/private-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { movie } from '../../types/common';
+import { IMovie } from '../../types/common';
 import { IReview } from '../../types/reviews';
 
 interface IProps {
-  cards: movie[],
+  cards: IMovie[],
   reviews: IReview[],
 }
 

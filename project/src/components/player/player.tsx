@@ -1,7 +1,7 @@
 import React from 'react';
-import { movie } from '../../types/common';
+import { IMovie } from '../../types/common';
 interface IProps {
-  cards: movie[],
+  cards: IMovie[],
 }
 export function Player({ cards }: IProps): JSX.Element {
   return (

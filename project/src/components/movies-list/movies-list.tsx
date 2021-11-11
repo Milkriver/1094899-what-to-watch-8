@@ -1,17 +1,17 @@
 import { MovieCardElement } from './../movie-card-element/movie-card-element';
-import { movie } from '../../types/common';
+import { IMovie } from '../../types/common';
 import { useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-import { State } from '../../types/state';
+import { IState } from '../../types/state';
 
 
 interface IProps {
-  cards: movie[],
+  cards: IMovie[],
   changeLimit: (arg: number) => void,
   moviesShowingLimit: number,
 }
 
-const mapStateToProps = ({ currentGenre }: State) => ({
+const mapStateToProps = ({ currentGenre }: IState) => ({
   currentGenre,
 });
 

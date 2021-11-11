@@ -2,14 +2,14 @@ import { connect, ConnectedProps } from 'react-redux';
 import { Dispatch } from 'redux';
 import { changeGenre } from '../../store/action';
 import { Actions } from '../../types/actions';
-import { movie } from '../../types/common';
-import { State } from '../../types/state';
+import { IMovie } from '../../types/common';
+import { IState } from '../../types/state';
 
 interface IGenresListProps {
-  movies: movie[],
+  movies: IMovie[],
 }
 
-const mapStateToProps = ({ currentGenre }: State) => ({
+const mapStateToProps = ({ currentGenre }: IState) => ({
   currentGenre,
 });
 

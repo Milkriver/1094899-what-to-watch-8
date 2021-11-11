@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export type movie = {
+export interface IMovie {
   id: number;
   name: string;
   poster_image: string;
