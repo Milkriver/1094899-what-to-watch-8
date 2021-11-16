@@ -1,10 +1,10 @@
-import { movies } from '../mocks/movies';
 import { Actions, ActionType } from '../types/actions';
 import { IState } from '../types/state';
 
 const initialState: IState = {
   currentGenre: 'All genres',
-  movies: movies,
+  movies: [],
+  isDataLoaded: false,
 };
 
 const reducer = (state: IState = initialState, action: Actions): IState => {

@@ -6,7 +6,7 @@ import { IMovie } from '../../types/common';
 import GenresList from '../genres-list/genres-list';
 import MoviesList from '../movies-list/movies-list';
 import { ShowMoreButton } from '../show-more-button/show-more-button';
-import { Spinner } from '../spinner/spinner';
+
 
 type IProps = {
   cards: IMovie[]
@@ -24,9 +24,6 @@ export function MainPage({ cards }: IProps): JSX.Element {
   };
   const isButtonShowen = (moviesShowingLimit < limit);
 
-  if (cards.length === 0) {
-    return < Spinner />;
-  }
 
   return (
     <div>

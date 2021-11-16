@@ -8,43 +8,59 @@ import { Player } from '../player/player';
 import { Error404 } from '../error404/error404';
 import { PrivateRoute } from '../private-route/private-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { IMovie } from '../../types/common';
-import { IReview } from '../../types/reviews';
 
-interface IProps {
-  cards: IMovie[],
-  reviews: IReview[],
-}
+import {connect, ConnectedProps} from 'react-redux';
+import { Spinner } from '../spinner/spinner';
+import { IState } from '../../types/state';
 
-function App({ cards, reviews }: IProps): JSX.Element {
+const mapStateToProps = ({isDataLoaded, movies}: IState) => ({
+  movies,
+  isDataLoaded,
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+
+function App(props: PropsFromRedux): JSX.Element {
+
+  const { isDataLoaded, movies } = props;
+  if ( !isDataLoaded) {
+    return (
+      <Spinner />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Main} >
-          <MainPage cards={cards} />
+          <MainPage cards={movies} />
         </Route>
         <Route exact path={AppRoute.SignIn}><SignInMessage /></Route>
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyList cards={cards} />}
+          render={() => <MyList cards={movies} />}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Film}><MoviePage cards={cards} /></Route>
+        <Route exact path={AppRoute.Film}><MoviePage cards={movies} /></Route>
 
         <PrivateRoute
           exact
           path={AppRoute.AddReview}
-          render={() => <MoviePageReviews reviews={reviews} />}
+          render={() => <MoviePageReviews reviews={[]} />}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Player}><Player cards={cards} /></Route>
+        <Route exact path={AppRoute.Player}><Player cards={movies} /></Route>
         <Route><Error404 /></Route>
       </Switch>
     </BrowserRouter>
   );
 }
 
-export default App;
+export {App};
+export default connector(App);
