@@ -1,6 +1,8 @@
-export function LoadingSpinner(): JSX.Element {
+export function Spinner(): JSX.Element {
+
+
   return (
-    <div>Загрузка...</div>
+    <div style = {{display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>Загрузка...</div>
 
   );
 }

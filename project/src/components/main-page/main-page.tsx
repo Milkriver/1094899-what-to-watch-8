@@ -6,6 +6,7 @@ import { IMovie } from '../../types/common';
 import GenresList from '../genres-list/genres-list';
 import MoviesList from '../movies-list/movies-list';
 import { ShowMoreButton } from '../show-more-button/show-more-button';
+import { Spinner } from '../spinner/spinner';
 
 type IProps = {
   cards: IMovie[]
@@ -15,12 +16,17 @@ export function MainPage({ cards }: IProps): JSX.Element {
   const history = useHistory();
 
   const [moviesShowingLimit, changeMoviesShowingLimit] = useState<number>(8);
+
   const [limit, changeLimit] = useState<number>(cards.length);
   const handleShowMoreButton = () => {
     const limitCondition = moviesShowingLimit + 8 < limit ? moviesShowingLimit + 8 : limit;
     changeMoviesShowingLimit(limitCondition);
   };
   const isButtonShowen = (moviesShowingLimit < limit);
+
+  if (cards.length === 0) {
+    return < Spinner />;
+  }
 
   return (
     <div>
