@@ -24,7 +24,6 @@ export function MainPage({ cards }: IProps): JSX.Element {
   };
   const isButtonShowen = (moviesShowingLimit < limit);
 
-
   return (
     <div>
 
@@ -59,7 +58,7 @@ export function MainPage({ cards }: IProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={cards[0].poster_image} alt={cards[0].name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">

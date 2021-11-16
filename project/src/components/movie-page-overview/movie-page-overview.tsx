@@ -1,19 +1,23 @@
-import { movies } from '../../mocks/movies';
+import { IMovie } from '../../types/common';
 
-export function MoviePageOverview(): JSX.Element {
+interface IProps {
+  movie: IMovie
+}
+
+export function MoviePageOverview({ movie }: IProps): JSX.Element {
   return (
     <>
       <div className="film-rating">
-        <div className="film-rating__score">8,9</div>
+        <div className="film-rating__score">{movie.rating}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">Very good</span>
-          <span className="film-rating__count">240 ratings</span>
+          <span className="film-rating__count">{movie.scores_count}</span>
         </p>
       </div>
       <div className="film-card__text">
-        <p>{movies[0].description}</p>
-        <p className="film-card__director"><strong>Director: {movies[0].director}</strong></p>
-        <p className="film-card__starring"><strong>Starring: {movies[0].starring}</strong></p>
+        <p>{movie.description}</p>
+        <p className="film-card__director"><strong>Director: {movie.director}</strong></p>
+        <p className="film-card__starring"><strong>Starring: {movie.starring}</strong></p>
       </div>
     </>
   );

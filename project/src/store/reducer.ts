@@ -12,7 +12,7 @@ const reducer = (state: IState = initialState, action: Actions): IState => {
     case ActionType.ChangeGenre:
       return { ...state, currentGenre: action.payload };
     case ActionType.LoadMovies:
-      return { ...state, movies: action.payload };
+      return { ...state, movies: action.payload, isDataLoaded: action.payload.length !== 0 };
     default:
       return state;
   }

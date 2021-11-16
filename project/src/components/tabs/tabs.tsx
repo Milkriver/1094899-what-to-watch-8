@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import reviews from '../../mocks/reviews';
+import { IMovie } from '../../types/common';
 import { MoviePageDetails } from '../movie-page-details/movie-page-details';
 import { MoviePageOverview } from '../movie-page-overview/movie-page-overview';
 import { MoviePageReviews } from '../movie-page-reviews/movie-page-reviews';
+interface IProps {
+  movie: IMovie,
+}
 
-export function Tabs(): JSX.Element {
+export function Tabs({ movie }: IProps): JSX.Element {
   const [activeTab, setActiveTab] = useState('Overview');
   const handleOverview = () => {
     setActiveTab('Overview');
@@ -20,13 +23,13 @@ export function Tabs(): JSX.Element {
   const singleActiveTab = () => {
     switch (activeTab) {
       case 'Overview':
-        return <MoviePageOverview />;
+        return <MoviePageOverview movie={movie} />;
       case 'Details':
-        return <MoviePageDetails />;
+        return <MoviePageDetails movie={movie} />;
       case 'Reviews':
-        return <MoviePageReviews reviews={reviews} />;
+        return <MoviePageReviews reviews={[]} />;
       default:
-        return <MoviePageOverview />;
+        return <MoviePageOverview movie={movie} />;
     }
   };
 

@@ -8,12 +8,11 @@ import { Player } from '../player/player';
 import { Error404 } from '../error404/error404';
 import { PrivateRoute } from '../private-route/private-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
-
-import {connect, ConnectedProps} from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { Spinner } from '../spinner/spinner';
 import { IState } from '../../types/state';
 
-const mapStateToProps = ({isDataLoaded, movies}: IState) => ({
+const mapStateToProps = ({ isDataLoaded, movies }: IState) => ({
   movies,
   isDataLoaded,
 });
@@ -26,12 +25,11 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 function App(props: PropsFromRedux): JSX.Element {
 
   const { isDataLoaded, movies } = props;
-  if ( !isDataLoaded) {
+  if (!isDataLoaded) {
     return (
       <Spinner />
     );
   }
-
   return (
     <BrowserRouter>
       <Switch>
@@ -62,5 +60,5 @@ function App(props: PropsFromRedux): JSX.Element {
   );
 }
 
-export {App};
+export { App };
 export default connector(App);
