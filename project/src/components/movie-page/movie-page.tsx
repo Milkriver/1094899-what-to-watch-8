@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { movie } from '../../types/common';
+import { IMovie } from '../../types/common';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 import { Tabs } from '../tabs/tabs';
 interface IProps {
-  cards: movie[]
+  cards: IMovie[]
 }
 export function MoviePage({ cards }: IProps): JSX.Element {
   const sameMovie = cards.filter((movieElement) => movieElement.genre === 'Drama').slice(0, 4);
@@ -11,12 +11,15 @@ export function MoviePage({ cards }: IProps): JSX.Element {
   const handleActiveCard = (id: number | undefined) => {
     setActiveMovieCardId(id);
   };
+
+  // const activeMovie: IMovie = cards.find((card) => card.id === activeCardId)!;
+  const activeMovie: IMovie = cards[0];
   return (
     <>
-      <section className="film-card film-card--full">
+      <section className="film-card film-card--full" style={{backgroundColor: activeMovie.background_color }}>
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={activeMovie.background_image} alt={activeMovie.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -44,10 +47,10 @@ export function MoviePage({ cards }: IProps): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{activeMovie.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{activeMovie.genre}</span>
+                <span className="film-card__year">{activeMovie.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -72,9 +75,9 @@ export function MoviePage({ cards }: IProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={activeMovie.poster_image} alt={activeMovie.name} width="218" height="327" />
             </div>
-            <Tabs />
+            <Tabs movie={activeMovie} />
           </div>
         </div>
       </section>

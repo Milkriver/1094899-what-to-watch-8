@@ -1,10 +1,10 @@
 import { MovieCardElement } from './../movie-card-element/movie-card-element';
-import { movie } from '../../types/common';
+import { IMovie } from '../../types/common';
 import { useState } from 'react';
 
 
 interface IProps {
-  cards: movie[]
+  cards: IMovie[]
 }
 
 export function MyList({ cards }: IProps): JSX.Element {
@@ -12,7 +12,7 @@ export function MyList({ cards }: IProps): JSX.Element {
 
   const favoriteMovies = cards.filter((x)=>x.is_favorite);
 
-  const renderMyMovie = (singleCard: movie): React.ReactNode => (
+  const renderMyMovie = (singleCard: IMovie): React.ReactNode => (
     <MovieCardElement
       key={singleCard.id}
       activeCardId={activeCardId}

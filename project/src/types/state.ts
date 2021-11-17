@@ -1,6 +1,7 @@
-import { movie } from './common';
+import { IMovie } from './common';
 
-export type State = {
+export interface IState {
   currentGenre: string
-  movies: movie[]
+  movies: IMovie[]
+  isDataLoaded: boolean
 }

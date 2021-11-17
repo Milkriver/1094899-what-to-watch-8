@@ -2,19 +2,21 @@ import { useState } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { movie } from '../../types/common';
+import { IMovie } from '../../types/common';
 import GenresList from '../genres-list/genres-list';
 import MoviesList from '../movies-list/movies-list';
 import { ShowMoreButton } from '../show-more-button/show-more-button';
 
+
 type IProps = {
-  cards: movie[]
+  cards: IMovie[]
 }
 
 export function MainPage({ cards }: IProps): JSX.Element {
   const history = useHistory();
 
   const [moviesShowingLimit, changeMoviesShowingLimit] = useState<number>(8);
+
   const [limit, changeLimit] = useState<number>(cards.length);
   const handleShowMoreButton = () => {
     const limitCondition = moviesShowingLimit + 8 < limit ? moviesShowingLimit + 8 : limit;
@@ -56,7 +58,7 @@ export function MainPage({ cards }: IProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={cards[0].poster_image} alt={cards[0].name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">

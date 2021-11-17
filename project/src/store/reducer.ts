@@ -1,19 +1,18 @@
-import { movies } from '../mocks/movies';
 import { Actions, ActionType } from '../types/actions';
-import { State } from '../types/state';
+import { IState } from '../types/state';
 
-const initialState: State = {
+const initialState: IState = {
   currentGenre: 'All genres',
-  movies: movies,
+  movies: [],
+  isDataLoaded: false,
 };
 
-const reducer = (state: State = initialState, action: Actions): State => {
+const reducer = (state: IState = initialState, action: Actions): IState => {
   switch (action.type) {
     case ActionType.ChangeGenre:
       return { ...state, currentGenre: action.payload };
-    case ActionType.GetMovies:
-      return { ...state, movies: action.payload };
-
+    case ActionType.LoadMovies:
+      return { ...state, movies: action.payload, isDataLoaded: action.payload.length !== 0 };
     default:
       return state;
   }

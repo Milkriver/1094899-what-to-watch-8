@@ -12,3 +12,8 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum APIRoute {
+  Movies = '/films',
+  Reviews = '/comments/:id',
+}
