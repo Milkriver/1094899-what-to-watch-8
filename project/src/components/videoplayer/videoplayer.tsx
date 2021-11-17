@@ -2,15 +2,15 @@ import { useRef, useEffect, useState } from 'react';
 
 
 type AudioPlayerProps = {
-  isPlaying: boolean
   posterSrc: string
   videolink: string
 }
 
-function VideoPlayer({ posterSrc, videolink, isPlaying }: AudioPlayerProps): JSX.Element {
-  const [, setIsLoading] = useState(true);
-
+function VideoPlayer({ posterSrc, videolink }: AudioPlayerProps): JSX.Element | null {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const [, setIsLoading] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     if (videoRef.current !== null) {
@@ -22,6 +22,7 @@ function VideoPlayer({ posterSrc, videolink, isPlaying }: AudioPlayerProps): JSX
         videoRef.current.onloadeddata = null;
         videoRef.current = null;
       }
+      setIsPlaying(false);
     };
   }, []);
 
@@ -31,19 +32,21 @@ function VideoPlayer({ posterSrc, videolink, isPlaying }: AudioPlayerProps): JSX
     }
 
     if (isPlaying) {
-      videoRef.current.play();
+      videoRef.current.play().catch(() => setIsPlaying(false));
     }
   }, [isPlaying, videoRef]);
 
   return (
-    <video
-      width='280'
-      height='200'
-      ref={videoRef}
-      muted
-      poster={posterSrc}
-    ><source src={videolink} type="video/mp4" />
-    </video>
+    isPlaying ? (
+      <video
+        width='280'
+        height='200'
+        ref={videoRef}
+        muted
+        poster={posterSrc}
+      ><source src={videolink} type="video/mp4" />
+      </video>
+    ) : null
   );
 }
 

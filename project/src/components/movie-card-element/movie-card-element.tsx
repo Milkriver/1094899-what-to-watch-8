@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useHistory } from 'react-router';
 import { AppRoute } from '../../const';
 import VideoPlayer from '../videoplayer/videoplayer';
@@ -18,7 +17,7 @@ export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSr
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={() => onMouseOver(id)} onMouseOut={() => onMouseOver(undefined)}>
       <div className="small-film-card__image" >
-        {activeCardId === id ? <VideoPlayer isPlaying={activeCardId === id} posterSrc={posterSrc} videolink={videolink} /> :
+        {activeCardId === id ? <VideoPlayer posterSrc={posterSrc} videolink={videolink} /> :
           <img src={posterSrc} alt='' width="280" height="175" />};
       </div>
       <h3 className="small-film-card__title">
