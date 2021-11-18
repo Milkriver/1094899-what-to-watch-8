@@ -16,7 +16,7 @@ const reducer = (state: IState = initialState, action: Actions): IState => {
     case ActionType.LoadMovies:
       return { ...state, movies: action.payload, isDataLoaded: action.payload.length !== 0 };
     case ActionType.RequireAuthorization:
-      return { ...state, authorizationStatus: action.payload };
+      return { ...state, authorizationStatus: action.payload, isDataLoaded: true };
     case ActionType.RequireLogout:
       return { ...state, authorizationStatus: AuthorizationStatus.NoAuth };
     default:

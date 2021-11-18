@@ -1,31 +1,32 @@
 import { MainPage } from '../main-page/main-page';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { SignInMessage } from '../sign-in/sign-in';
+import SignInMessage from '../sign-in/sign-in';
 import { MyList } from '../my-list/my-list';
 import { MoviePage } from '../movie-page/movie-page';
 import { MoviePageReviews } from '../movie-page-reviews/movie-page-reviews';
 import { Player } from '../player/player';
 import { Error404 } from '../error404/error404';
-import { PrivateRoute } from '../private-route/private-route';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import PrivateRoute from '../private-route/private-route';
+import { AppRoute } from '../../const';
 import { connect, ConnectedProps } from 'react-redux';
 import { Spinner } from '../spinner/spinner';
 import { IState } from '../../types/state';
 
-const mapStateToProps = ({ isDataLoaded, movies }: IState) => ({
+
+const mapStateToProps = ({ isDataLoaded, movies, authorizationStatus }: IState) => ({
   movies,
   isDataLoaded,
+  authorizationStatus,
 });
 
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-
 function App(props: PropsFromRedux): JSX.Element {
 
   const { isDataLoaded, movies } = props;
-  if (!isDataLoaded) {
+  if ( !isDataLoaded ) {
     return (
       <Spinner />
     );
@@ -41,7 +42,6 @@ function App(props: PropsFromRedux): JSX.Element {
           exact
           path={AppRoute.MyList}
           render={() => <MyList cards={movies} />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Film}><MoviePage cards={movies} /></Route>
@@ -50,7 +50,6 @@ function App(props: PropsFromRedux): JSX.Element {
           exact
           path={AppRoute.AddReview}
           render={() => <MoviePageReviews reviews={[]} />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Player}><Player cards={movies} /></Route>

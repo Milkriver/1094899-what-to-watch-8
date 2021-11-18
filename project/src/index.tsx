@@ -6,14 +6,14 @@ import App from './components/app/app';
 import { reducer } from './store/reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ThunkAppDispatch } from './types/actions';
-import { fetchMovieAction } from './store/api-actions';
+import { checkAuthAction, fetchMovieAction } from './store/api-actions';
 import { createAPI } from './services/api';
 import thunk from 'redux-thunk';
+import { requireAuthorization } from './store/action';
+import { AuthorizationStatus } from './const';
 
 const api = createAPI(
-  //Авторизация будет в дз 7.2
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  () => { },
+  () => store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth)),
 );
 
 const store = createStore(
@@ -24,6 +24,7 @@ const store = createStore(
 );
 
 (store.dispatch as ThunkAppDispatch)(fetchMovieAction());
+(store.dispatch as ThunkAppDispatch)(checkAuthAction());
 
 ReactDOM.render(
   <React.StrictMode>
