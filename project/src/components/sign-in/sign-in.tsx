@@ -8,7 +8,7 @@ import { AuthData } from '../../types/auth-data';
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onSubmit(authData: AuthData) {
-    dispatch(loginAction(authData));
+    return dispatch(loginAction(authData));
   },
 });
 
@@ -31,7 +31,8 @@ function SignInMessage(props: PropsFromRedux): JSX.Element {
       onSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,
-      });
+      })
+        .then(() => history.push(AppRoute.Main));
     }
   };
   return (
@@ -61,7 +62,7 @@ function SignInMessage(props: PropsFromRedux): JSX.Element {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button onClick={() => history.push(AppRoute.SignIn)} className="sign-in__btn" type="submit">Sign in</button>
+            <button className="sign-in__btn" type="submit">Sign in</button>
           </div>
         </form>
       </div>
@@ -84,5 +85,5 @@ function SignInMessage(props: PropsFromRedux): JSX.Element {
 }
 
 
-export {SignInMessage};
+export { SignInMessage };
 export default connector(SignInMessage);

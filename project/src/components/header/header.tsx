@@ -1,14 +1,26 @@
 import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
+import { logoutAction } from '../../store/api-actions';
+import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
+
 
 const mapStateToProps = ({ authorizationStatus }: IState) => ({
   authorizationStatus,
 });
-const connector = connect(mapStateToProps);
+
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+  onSubmit() {
+    return dispatch(logoutAction());
+  },
+});
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
+
 function Header(props: PropsFromRedux): JSX.Element {
+  const { onSubmit } = props;
   const { authorizationStatus } = props;
   return (
     <header className="page-header film-card__head">
@@ -30,12 +42,12 @@ function Header(props: PropsFromRedux): JSX.Element {
             </li>
             <li className="user-block__item">
               <div>e-mail пользователя</div>
-              <a href="/#" className="user-block__link">Sign out</a>
+              <div onClick={onSubmit} className="user-block__link">Sign out</div>
             </li>
           </ul>
           :
           <div className="user-block">
-            <a href="sign-in.html" className="user-block__link">Sign in</a>
+            <Link to={AppRoute.SignIn} className="user-block__link">Sign in</Link>
           </div>
       }
     </header >
