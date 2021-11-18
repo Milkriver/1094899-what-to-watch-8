@@ -31,7 +31,7 @@ function Header(props: PropsFromRedux): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <div>Mail</div>
+              <div>e-mail пользователя</div>
               <a href="/#" className="user-block__link">Sign out</a>
             </li>
           </ul>

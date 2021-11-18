@@ -23,8 +23,8 @@ const store = createStore(
   ),
 );
 
-(store.dispatch as ThunkAppDispatch)(fetchMovieAction());
 (store.dispatch as ThunkAppDispatch)(checkAuthAction());
+(store.dispatch as ThunkAppDispatch)(fetchMovieAction());
 
 ReactDOM.render(
   <React.StrictMode>

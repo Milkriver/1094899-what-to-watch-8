@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { IMovie } from '../../types/common';
+import { Footer } from '../footer/footer';
 import GenresList from '../genres-list/genres-list';
 import Header from '../header/header';
 import MoviesList from '../movies-list/movies-list';
@@ -86,20 +86,7 @@ export function MainPage({ cards }: IProps): JSX.Element {
             isButtonShowen={isButtonShowen}
           />
         </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to={'/'} className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
