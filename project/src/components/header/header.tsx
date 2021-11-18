@@ -10,8 +10,6 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 function Header(props: PropsFromRedux): JSX.Element {
   const { authorizationStatus } = props;
-  // eslint-disable-next-line no-console
-  console.log(authorizationStatus);
   return (
     <header className="page-header film-card__head">
       <div className="logo">

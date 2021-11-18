@@ -1,6 +1,6 @@
 import { loadMovies, requireAuthorization, requireLogout } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
-import { ThunkActionResult } from '../types/actions';
+import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
 import { IMovie } from '../types/common';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken, Token } from '../services/token';
@@ -14,9 +14,10 @@ export const fetchMovieAction = (): ThunkActionResult =>
 
 export const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    await api.get(APIRoute.Login)
-      .then(() => {
-        dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    await api.get<requireAuthorizationAction>(APIRoute.Login)
+      .then((resp) => {
+        const auth = resp.data.payload;
+        dispatch(requireAuthorization(auth));
       });
   };
 
