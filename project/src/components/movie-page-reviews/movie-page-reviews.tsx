@@ -1,4 +1,5 @@
 import { IReviewResponse } from '../../types/reviews';
+import { getMovieStarRating } from '../../utils';
 
 interface IProps {
   reviews: IReviewResponse[],
@@ -18,7 +19,7 @@ export function MoviePageReviews({ reviews }: IProps): JSX.Element {
                   <time className="review__date" dateTime="2016-12-24">{review.date}</time>
                 </footer>
               </blockquote>
-              <div className="review__rating">{review.rating}</div>
+              <div className="review__rating">{getMovieStarRating(review.rating)}</div>
             </div>),
           )
         }

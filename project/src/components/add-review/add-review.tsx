@@ -27,7 +27,7 @@ export function AddReview(): JSX.Element {
                 <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link" > <AddReviewForm />Add review</a>
+                <div className="breadcrumbs__link" > <AddReviewForm />Add review</div>
               </li>
             </ul>
           </nav>

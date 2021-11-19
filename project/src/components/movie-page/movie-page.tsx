@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-import { AppRoute } from '../../const';
+import { Link } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { fetchReviewsAction, fetchSameGenreMoviesAction, fetchSingleMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
@@ -9,10 +10,11 @@ import Header from '../header/header';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 import { Tabs } from '../tabs/tabs';
 
-const mapStateToProps = ({ movie, sameMovies, reviews }: IState) => ({
+const mapStateToProps = ({ movie, sameMovies, reviews, authorizationStatus }: IState) => ({
   movie,
   sameMovies,
   reviews,
+  authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
@@ -31,7 +33,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
-function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, onFetchReviews, movie: activeMovie }: PropsFromRedux): JSX.Element {
+function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, onFetchReviews, movie: activeMovie, authorizationStatus }: PropsFromRedux): JSX.Element {
   const sameMovie = sameMovies.slice(0, 4);
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
   const handleActiveCard = (id: number | undefined) => { setActiveMovieCardId(id); };
@@ -43,7 +45,9 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
     onFetchReviews(currentPageId);
   }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies]);
 
+  const currentCardId = activeMovie.id.toString();
   return (
+
     <>
       <section className="film-card film-card--full" style={{ backgroundColor: activeMovie.background_color }}>
         <div className="film-card__hero">
@@ -63,18 +67,20 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
 
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
+                  <svg viewBox="0 0 19 19" width="19" height="19"><use xlinkHref="#play-s"></use></svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                {authorizationStatus === AuthorizationStatus.Auth
+                  ?
+                  <button className="btn btn--list film-card__button" type="button">
+                    <svg viewBox="0 0 19 20" width="19" height="20"><use xlinkHref="#add"></use></svg>
+                    <span>My list</span>
+                  </button>
+                  : ''}
+
+                {authorizationStatus === AuthorizationStatus.Auth
+                  ? <Link to={AppRoute.AddReview.replace(':id', currentCardId)} className="btn film-card__button">Add review</Link>
+                  : ''}
               </div>
             </div>
           </div>
@@ -85,7 +91,7 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
             <div className="film-card__poster film-card__poster--big">
               <img src={activeMovie.poster_image} alt={activeMovie.name} width="218" height="327" />
             </div>
-            <Tabs movie={activeMovie} reviews={reviews}/>
+            <Tabs movie={activeMovie} reviews={reviews} />
           </div>
         </div>
       </section>
