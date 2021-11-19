@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { AppRoute } from '../../const';
-import { fetchSameGenreMoviesAction, fetchSingleMovieAction } from '../../store/api-actions';
+import { fetchReviewsAction, fetchSameGenreMoviesAction, fetchSingleMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
 import { Footer } from '../footer/footer';
@@ -9,15 +9,21 @@ import Header from '../header/header';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 import { Tabs } from '../tabs/tabs';
 
-const mapStateToProps = ({ movie, sameMovies }: IState) => ({
+const mapStateToProps = ({ movie, sameMovies, reviews }: IState) => ({
   movie,
   sameMovies,
+  reviews,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onFetchMovie(cardId: string) {
     dispatch(fetchSingleMovieAction(cardId));
+  },
+  onFetchSameGenreMovies(cardId: string) {
     dispatch(fetchSameGenreMoviesAction(cardId));
+  },
+  onFetchReviews(cardId: string) {
+    dispatch(fetchReviewsAction(cardId));
   },
 });
 
@@ -25,7 +31,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
-function MoviePage({ sameMovies, onFetchMovie, movie: activeMovie }: PropsFromRedux): JSX.Element {
+function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, onFetchReviews, movie: activeMovie }: PropsFromRedux): JSX.Element {
   const sameMovie = sameMovies.slice(0, 4);
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
   const handleActiveCard = (id: number | undefined) => { setActiveMovieCardId(id); };
@@ -33,7 +39,9 @@ function MoviePage({ sameMovies, onFetchMovie, movie: activeMovie }: PropsFromRe
   useEffect(() => {
     const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');
     onFetchMovie(currentPageId);
-  });
+    onFetchSameGenreMovies(currentPageId);
+    onFetchReviews(currentPageId);
+  }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies]);
 
   return (
     <>
@@ -77,7 +85,7 @@ function MoviePage({ sameMovies, onFetchMovie, movie: activeMovie }: PropsFromRe
             <div className="film-card__poster film-card__poster--big">
               <img src={activeMovie.poster_image} alt={activeMovie.name} width="218" height="327" />
             </div>
-            <Tabs movie={activeMovie} />
+            <Tabs movie={activeMovie} reviews={reviews}/>
           </div>
         </div>
       </section>

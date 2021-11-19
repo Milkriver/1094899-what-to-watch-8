@@ -1,9 +1,10 @@
-import { loadMovies, loadSameGenreMovies, loadSingleMovie, requireAuthorization, requireLogout } from './action';
+import { loadMovies, loadReviews, loadSameGenreMovies, loadSingleMovie, requireAuthorization, requireLogout } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
 import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
 import { IMovie } from '../types/common';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken, Token } from '../services/token';
+import { IReviewResponse } from '../types/reviews';
 
 
 export const fetchMovieAction = (): ThunkActionResult =>
@@ -24,6 +25,13 @@ export const fetchSameGenreMoviesAction = (filmId: string): ThunkActionResult =>
     const url = APIRoute.SameGenreMovies.replace(':id', filmId);
     const { data } = await api.get<IMovie[]>(url);
     dispatch(loadSameGenreMovies(data));
+  };
+
+export const fetchReviewsAction = (filmId: string): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const url = APIRoute.Reviews.replace(':id', filmId);
+    const { data } = await api.get<IReviewResponse[]>(url);
+    dispatch(loadReviews(data));
   };
 
 export const checkAuthAction = (): ThunkActionResult =>

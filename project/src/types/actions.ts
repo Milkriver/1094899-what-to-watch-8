@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { AuthorizationStatus } from '../const';
 import { IMovie } from './common';
+import { IReviewResponse } from './reviews';
 import { IState } from './state';
 
 export enum ActionType {
@@ -9,6 +10,7 @@ export enum ActionType {
   LoadMovies = 'movieList/LoadMovies',
   LoadSingleMovie = 'movieCard/LoadSingleMovie',
   LoadSameGenreMovies = 'movieCard/LoadSameGenreMovies',
+  LoadReviews = 'movieCard/LoadReviews',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
 }
@@ -33,6 +35,11 @@ export type LoadSameGenreMovies = {
   payload: IMovie[];
 };
 
+export type LoadReviews = {
+  type: ActionType.LoadReviews;
+  payload: IReviewResponse[];
+};
+
 export type requireAuthorizationAction = {
   type: ActionType.RequireAuthorization;
   payload: AuthorizationStatus;
@@ -43,7 +50,7 @@ export type requireLogoutAction = {
 };
 
 
-export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | LoadSameGenreMovies | requireAuthorizationAction | requireLogoutAction;
+export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | LoadSameGenreMovies | LoadReviews | requireAuthorizationAction | requireLogoutAction;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, IState, AxiosInstance, Actions>;
 

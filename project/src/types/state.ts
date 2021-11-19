@@ -1,5 +1,6 @@
 import { AuthorizationStatus } from '../const';
 import { IMovie } from './common';
+import { IReviewResponse } from './reviews';
 
 export interface IState {
   currentGenre: string
@@ -8,4 +9,5 @@ export interface IState {
   authorizationStatus: AuthorizationStatus,
   movie: IMovie,
   sameMovies: IMovie[],
+  reviews: IReviewResponse[],
 }
