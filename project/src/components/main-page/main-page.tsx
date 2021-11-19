@@ -4,7 +4,7 @@ import { AppRoute } from '../../const';
 import { IMovie } from '../../types/common';
 import { Footer } from '../footer/footer';
 import GenresList from '../genres-list/genres-list';
-import Header from '../header/header';
+import { Header } from '../header/header';
 import MoviesList from '../movies-list/movies-list';
 import { ShowMoreButton } from '../show-more-button/show-more-button';
 
