@@ -1,4 +1,4 @@
-import { loadMovies, loadSingleMovie, requireAuthorization, requireLogout } from './action';
+import { loadMovies, loadSameGenreMovies, loadSingleMovie, requireAuthorization, requireLogout } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
 import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
 import { IMovie } from '../types/common';
@@ -17,6 +17,13 @@ export const fetchSingleMovieAction = (filmId: string): ThunkActionResult =>
     const url = APIRoute.SingleMovie.replace(':id', filmId);
     const { data } = await api.get<IMovie>(url);
     dispatch(loadSingleMovie(data));
+  };
+
+export const fetchSameGenreMoviesAction = (filmId: string): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const url = APIRoute.SameGenreMovies.replace(':id', filmId);
+    const { data } = await api.get<IMovie[]>(url);
+    dispatch(loadSameGenreMovies(data));
   };
 
 export const checkAuthAction = (): ThunkActionResult =>

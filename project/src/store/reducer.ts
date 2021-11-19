@@ -27,6 +27,7 @@ const initialState: IState = {
     released: 1,
     is_favorite: false,
   },
+  sameMovies: [],
 };
 
 const reducer = (state: IState = initialState, action: Actions): IState => {
@@ -37,6 +38,8 @@ const reducer = (state: IState = initialState, action: Actions): IState => {
       return { ...state, movies: action.payload, isDataLoaded: action.payload.length !== 0 };
     case ActionType.LoadSingleMovie:
       return { ...state, movie: action.payload };
+    case ActionType.LoadSameGenreMovies:
+      return { ...state, sameMovies: action.payload };
     case ActionType.RequireAuthorization:
       return { ...state, authorizationStatus: action.payload };
     case ActionType.RequireLogout:

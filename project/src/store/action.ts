@@ -1,5 +1,5 @@
 import { AuthorizationStatus } from '../const';
-import { ActionType, ChangeGenreAction, LoadMoviesAction, LoadSingleMovieAction } from '../types/actions';
+import { ActionType, ChangeGenreAction, LoadMoviesAction, LoadSameGenreMovies, LoadSingleMovieAction } from '../types/actions';
 import { IMovie } from '../types/common';
 
 export const changeGenre = (genre: string): ChangeGenreAction => ({
@@ -10,6 +10,11 @@ export const changeGenre = (genre: string): ChangeGenreAction => ({
 export const loadMovies = (movies: IMovie[]): LoadMoviesAction => ({
   type: ActionType.LoadMovies,
   payload: movies,
+} as const);
+
+export const loadSameGenreMovies = (sameMovies: IMovie[]): LoadSameGenreMovies => ({
+  type: ActionType.LoadSameGenreMovies,
+  payload: sameMovies,
 } as const);
 
 export const loadSingleMovie = (movie: IMovie): LoadSingleMovieAction => ({

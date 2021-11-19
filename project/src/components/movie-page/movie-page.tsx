@@ -1,38 +1,34 @@
 import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { AppRoute } from '../../const';
-import { fetchSingleMovieAction } from '../../store/api-actions';
+import { fetchSameGenreMoviesAction, fetchSingleMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
-import { IMovie } from '../../types/common';
 import { IState } from '../../types/state';
 import { Footer } from '../footer/footer';
 import Header from '../header/header';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 import { Tabs } from '../tabs/tabs';
-interface IProps {
-  cards: IMovie[]
-}
 
-const mapStateToProps = ({ movie }: IState) => ({
+const mapStateToProps = ({ movie, sameMovies }: IState) => ({
   movie,
+  sameMovies,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onFetchMovie(cardId: string) {
     dispatch(fetchSingleMovieAction(cardId));
+    dispatch(fetchSameGenreMoviesAction(cardId));
   },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & IProps;
 
-function MoviePage({ cards, onFetchMovie, movie: activeMovie }: ConnectedComponentProps): JSX.Element {
-  const sameMovie = cards.filter((movieElement) => movieElement.genre === activeMovie.genre).slice(0, 4);
+
+function MoviePage({ sameMovies, onFetchMovie, movie: activeMovie }: PropsFromRedux): JSX.Element {
+  const sameMovie = sameMovies.slice(0, 4);
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
-  const handleActiveCard = (id: number | undefined) => {
-    setActiveMovieCardId(id);
-  };
+  const handleActiveCard = (id: number | undefined) => { setActiveMovieCardId(id); };
 
   useEffect(() => {
     const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');

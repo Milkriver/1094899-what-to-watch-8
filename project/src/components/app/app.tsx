@@ -44,7 +44,7 @@ function App(props: PropsFromRedux): JSX.Element {
           render={() => <MyList cards={movies} />}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Film}><MoviePage cards={movies} /></Route>
+        <Route exact path={AppRoute.Film}><MoviePage/></Route>
 
         <PrivateRoute
           exact
