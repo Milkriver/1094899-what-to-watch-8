@@ -11,6 +11,7 @@ export enum ActionType {
   LoadSingleMovie = 'movieCard/LoadSingleMovie',
   LoadSameGenreMovies = 'movieCard/LoadSameGenreMovies',
   LoadReviews = 'movieCard/LoadReviews',
+  // AddReview = 'movieCard/AddReview',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
 }
@@ -39,6 +40,11 @@ export type LoadReviews = {
   type: ActionType.LoadReviews;
   payload: IReviewResponse[];
 };
+
+// export type AddReview = {
+//   type: ActionType.AddReview;
+//   payload: IReviewResponse;
+// };
 
 export type requireAuthorizationAction = {
   type: ActionType.RequireAuthorization;

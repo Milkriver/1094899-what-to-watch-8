@@ -43,6 +43,12 @@ export const checkAuthAction = (): ThunkActionResult =>
       });
   };
 
+// export const AddReviewAction = ({ rating, comment }: IReviewRequest): ThunkActionResult =>
+//   async (dispatch, _getState, api) => {
+//     const { data } = await api.post(APIRoute.Reviews, { rating, comment });
+//     dispatch(addReview(data));
+//   };
+
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     const { data: { token } } = await api.post<{ token: Token }>(APIRoute.Login, { email, password });

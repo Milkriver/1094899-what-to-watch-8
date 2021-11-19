@@ -6,7 +6,7 @@ import { fetchReviewsAction, fetchSameGenreMoviesAction, fetchSingleMovieAction 
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
 import { Footer } from '../footer/footer';
-import Header from '../header/header';
+import { Header } from '../header/header';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 import { Tabs } from '../tabs/tabs';
 
@@ -45,7 +45,6 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
     onFetchReviews(currentPageId);
   }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies]);
 
-  const currentCardId = activeMovie.id.toString();
   return (
 
     <>
@@ -54,7 +53,6 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
           <div className="film-card__bg">
             <img src={activeMovie.background_image} alt={activeMovie.name} />
           </div>
-
           <h1 className="visually-hidden">WTW</h1>
           <Header />
           <div className="film-card__wrap">
@@ -79,7 +77,7 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
                   : ''}
 
                 {authorizationStatus === AuthorizationStatus.Auth
-                  ? <Link to={AppRoute.AddReview.replace(':id', currentCardId)} className="btn film-card__button">Add review</Link>
+                  ? <Link to={AppRoute.AddReview.replace(':id', activeMovie.id.toString())} className="btn film-card__button">Add review</Link>
                   : ''}
               </div>
             </div>
