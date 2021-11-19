@@ -7,6 +7,7 @@ import { IState } from './state';
 export enum ActionType {
   ChangeGenre = 'movieList/ChangeGenre',
   LoadMovies = 'movieList/LoadMovies',
+  LoadSingleMovie = 'movieCard/LoadSingleMovie',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
 }
@@ -21,6 +22,11 @@ export type LoadMoviesAction = {
   payload: IMovie[];
 };
 
+export type LoadSingleMovieAction = {
+  type: ActionType.LoadSingleMovie;
+  payload: IMovie;
+};
+
 export type requireAuthorizationAction = {
   type: ActionType.RequireAuthorization;
   payload: AuthorizationStatus;
@@ -30,7 +36,8 @@ export type requireLogoutAction = {
   type: ActionType.RequireLogout;
 };
 
-export type Actions = ChangeGenreAction | LoadMoviesAction | requireAuthorizationAction | requireLogoutAction;
+
+export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | requireAuthorizationAction | requireLogoutAction;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, IState, AxiosInstance, Actions>;
 

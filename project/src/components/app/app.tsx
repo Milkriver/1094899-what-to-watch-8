@@ -2,7 +2,7 @@ import { MainPage } from '../main-page/main-page';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignInMessage from '../sign-in/sign-in';
 import { MyList } from '../my-list/my-list';
-import { MoviePage } from '../movie-page/movie-page';
+import MoviePage from '../movie-page/movie-page';
 import { MoviePageReviews } from '../movie-page-reviews/movie-page-reviews';
 import { Player } from '../player/player';
 import { Error404 } from '../error404/error404';
@@ -26,7 +26,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 function App(props: PropsFromRedux): JSX.Element {
 
   const { isDataLoaded, movies } = props;
-  if ( !isDataLoaded ) {
+  if (!isDataLoaded) {
     return (
       <Spinner />
     );

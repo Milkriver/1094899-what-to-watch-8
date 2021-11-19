@@ -1,5 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
+import { AppRoute } from '../../const';
+import { fetchSingleMovieAction } from '../../store/api-actions';
+import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
+import { IState } from '../../types/state';
 import { Footer } from '../footer/footer';
 import Header from '../header/header';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
@@ -7,15 +12,33 @@ import { Tabs } from '../tabs/tabs';
 interface IProps {
   cards: IMovie[]
 }
-export function MoviePage({ cards }: IProps): JSX.Element {
-  const sameMovie = cards.filter((movieElement) => movieElement.genre === 'Drama').slice(0, 4);
+
+const mapStateToProps = ({ movie }: IState) => ({
+  movie,
+});
+
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+  onFetchMovie(cardId: string) {
+    dispatch(fetchSingleMovieAction(cardId));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & IProps;
+
+function MoviePage({ cards, onFetchMovie, movie: activeMovie }: ConnectedComponentProps): JSX.Element {
+  const sameMovie = cards.filter((movieElement) => movieElement.genre === activeMovie.genre).slice(0, 4);
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
   const handleActiveCard = (id: number | undefined) => {
     setActiveMovieCardId(id);
   };
 
-  // const activeMovie: IMovie = cards.find((card) => card.id === activeCardId)!;
-  const activeMovie: IMovie = cards[0];
+  useEffect(() => {
+    const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');
+    onFetchMovie(currentPageId);
+  });
+
   return (
     <>
       <section className="film-card film-card--full" style={{ backgroundColor: activeMovie.background_color }}>
@@ -92,3 +115,6 @@ export function MoviePage({ cards }: IProps): JSX.Element {
 
   );
 }
+
+export { MoviePage };
+export default connector(MoviePage);

@@ -6,4 +6,5 @@ export interface IState {
   movies: IMovie[]
   isDataLoaded: boolean
   authorizationStatus: AuthorizationStatus,
+  movie: IMovie,
 }
