@@ -1,4 +1,4 @@
-import { MainPage } from '../main-page/main-page';
+import MainPage from '../main-page/main-page';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignInMessage from '../sign-in/sign-in';
 import { MyList } from '../my-list/my-list';
@@ -24,13 +24,13 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function App(props: PropsFromRedux): JSX.Element {
-
   const { isDataLoaded, movies } = props;
   if (!isDataLoaded) {
     return (
       <Spinner />
     );
   }
+
   return (
     <BrowserRouter>
       <Switch>

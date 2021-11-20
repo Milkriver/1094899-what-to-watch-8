@@ -1,10 +1,10 @@
-import { loadMovies, loadReviews, loadSameGenreMovies, loadSingleMovie, requireAuthorization, requireLogout } from './action';
+import { addReview, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, requireAuthorization, requireLogout } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
 import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
 import { IMovie } from '../types/common';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken, Token } from '../services/token';
-import { IReviewResponse } from '../types/reviews';
+import { IReviewRequest, IReviewResponse } from '../types/reviews';
 
 
 export const fetchMovieAction = (): ThunkActionResult =>
@@ -27,6 +27,12 @@ export const fetchSameGenreMoviesAction = (filmId: string): ThunkActionResult =>
     dispatch(loadSameGenreMovies(data));
   };
 
+export const fetchPromoMovieAction = (): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const { data } = await api.get<IMovie>(APIRoute.PromoMovie);
+    dispatch(loadPromoMovie(data));
+  };
+
 export const fetchReviewsAction = (filmId: string): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const url = APIRoute.Reviews.replace(':id', filmId);
@@ -43,11 +49,11 @@ export const checkAuthAction = (): ThunkActionResult =>
       });
   };
 
-// export const AddReviewAction = ({ rating, comment }: IReviewRequest): ThunkActionResult =>
-//   async (dispatch, _getState, api) => {
-//     const { data } = await api.post(APIRoute.Reviews, { rating, comment });
-//     dispatch(addReview(data));
-//   };
+export const AddReviewAction = ({ rating, comment }: IReviewRequest): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    const { data } = await api.post(APIRoute.Reviews, { rating, comment });
+    dispatch(addReview(data));
+  };
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
