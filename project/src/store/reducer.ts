@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { AuthorizationStatus, initialMovieCard } from '../const';
 import { Actions, ActionType } from '../types/actions';
 import { IState } from '../types/state';
@@ -12,6 +11,13 @@ const initialState: IState = {
   sameMovies: [],
   reviews: [],
   promoMovie: initialMovieCard,
+  review: {
+    id: 1,
+    user: { id: 1, name: ''},
+    rating: 1,
+    comment: '',
+    date: '',
+  },
 };
 
 const reducer = (state: IState = initialState, action: Actions): IState => {
@@ -28,6 +34,8 @@ const reducer = (state: IState = initialState, action: Actions): IState => {
       return { ...state, promoMovie: action.payload };
     case ActionType.LoadReviews:
       return { ...state, reviews: action.payload };
+    case ActionType.AddReview:
+      return { ...state, review: action.payload };
     case ActionType.RequireAuthorization:
       return { ...state, authorizationStatus: action.payload };
     case ActionType.RequireLogout:

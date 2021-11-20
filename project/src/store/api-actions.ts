@@ -1,10 +1,10 @@
-import { loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, requireAuthorization, requireLogout } from './action';
+import { addReview, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, requireAuthorization, requireLogout } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
 import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
 import { IMovie } from '../types/common';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken, Token } from '../services/token';
-import { IReviewResponse } from '../types/reviews';
+import { IReviewRequest, IReviewResponse } from '../types/reviews';
 
 
 export const fetchMovieAction = (): ThunkActionResult =>
@@ -49,11 +49,11 @@ export const checkAuthAction = (): ThunkActionResult =>
       });
   };
 
-// export const AddReviewAction = ({ rating, comment }: IReviewRequest): ThunkActionResult =>
-//   async (dispatch, _getState, api) => {
-//     const { data } = await api.post(APIRoute.Reviews, { rating, comment });
-//     dispatch(addReview(data));
-//   };
+export const AddReviewAction = ({ rating, comment }: IReviewRequest): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    const { data } = await api.post(APIRoute.Reviews, { rating, comment });
+    dispatch(addReview(data));
+  };
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {

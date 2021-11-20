@@ -24,15 +24,13 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function App(props: PropsFromRedux): JSX.Element {
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { isDataLoaded, movies} = props;
+  const { isDataLoaded, movies } = props;
   if (!isDataLoaded) {
     return (
       <Spinner />
     );
   }
-  // onFetchPromoMovie();
+
   return (
     <BrowserRouter>
       <Switch>

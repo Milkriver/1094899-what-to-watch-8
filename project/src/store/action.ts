@@ -33,10 +33,10 @@ export const loadReviews = (reviews: IReviewResponse[]): LoadReviews => ({
   payload: reviews,
 } as const);
 
-// export const addReview = (review: IReviewResponse) => ({
-//   type: ActionType.AddReview,
-//   payload: review,
-// } as const);
+export const addReview = (review: IReviewResponse) => ({
+  type: ActionType.AddReview,
+  payload: review,
+} as const);
 
 export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
   type: ActionType.RequireAuthorization,

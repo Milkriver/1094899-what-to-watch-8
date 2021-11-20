@@ -12,7 +12,7 @@ export enum ActionType {
   LoadSameGenreMovies = 'movieCard/LoadSameGenreMovies',
   LoadPromoMovie = 'movieCard/LoadPromoMovie',
   LoadReviews = 'movieCard/LoadReviews',
-  // AddReview = 'movieCard/AddReview',
+  AddReview = 'movieCard/AddReview',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
 }
@@ -48,10 +48,10 @@ export type LoadReviews = {
   payload: IReviewResponse[];
 };
 
-// export type AddReview = {
-//   type: ActionType.AddReview;
-//   payload: IReviewResponse;
-// };
+export type AddReview = {
+  type: ActionType.AddReview;
+  payload: IReviewResponse;
+};
 
 export type requireAuthorizationAction = {
   type: ActionType.RequireAuthorization;
@@ -63,7 +63,7 @@ export type requireLogoutAction = {
 };
 
 
-export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | LoadSameGenreMovies | LoadPromoMovieAction | LoadReviews | requireAuthorizationAction | requireLogoutAction;
+export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | AddReview | LoadSameGenreMovies | LoadPromoMovieAction | LoadReviews | requireAuthorizationAction | requireLogoutAction;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, IState, AxiosInstance, Actions>;
 
