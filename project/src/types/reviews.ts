@@ -1,8 +1,16 @@
-export interface IReview {
+export interface IReviewResponse {
+  id: number,
+  user: {
     id: number,
-    movieId: number,
-    author: string,
-    date: string,
-    rating: number,
-    text: string,
-  }
+    name: string
+  },
+  rating: number,
+  comment: string,
+  date: string,
+}
+
+export interface IReviewRequest {
+  rating: number,
+  comment: string,
+}
+
