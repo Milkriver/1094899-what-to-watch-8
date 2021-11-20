@@ -38,8 +38,6 @@ function AddReviewForm({ onSubmitAddReviewButton, currentPageId }: ConnectedComp
     setReviewText(event.currentTarget.value);
   }
 
-  // eslint-disable-next-line no-console
-  console.log(rating, reviewText);
   const history = useHistory();
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -76,10 +74,6 @@ function AddReviewForm({ onSubmitAddReviewButton, currentPageId }: ConnectedComp
     </form >
   );
 }
-
-// eslint-disable-next-line no-console
-// () => {console.log({ rating, reviewText }); }
-// }
 
 export { AddReviewForm };
 export default connector(AddReviewForm);
