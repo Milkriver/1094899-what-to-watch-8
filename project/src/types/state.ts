@@ -10,4 +10,5 @@ export interface IState {
   movie: IMovie,
   sameMovies: IMovie[],
   reviews: IReviewResponse[],
+  promoMovie: IMovie,
 }

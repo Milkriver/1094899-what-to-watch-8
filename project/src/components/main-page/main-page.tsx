@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoute } from '../../const';
+import { fetchPromoMovieAction } from '../../store/api-actions';
+import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
+import { IState } from '../../types/state';
 import { Footer } from '../footer/footer';
 import GenresList from '../genres-list/genres-list';
 import { Header } from '../header/header';
@@ -10,11 +14,35 @@ import { ShowMoreButton } from '../show-more-button/show-more-button';
 
 
 type IProps = {
-  cards: IMovie[]
+  cards: IMovie[],
+  promoMovie: IMovie,
 }
 
-export function MainPage({ cards }: IProps): JSX.Element {
+
+const mapStateToProps = ({ promoMovie }: IState) => ({
+  promoMovie,
+});
+
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+  onFetchPromoMovie() {
+    dispatch(fetchPromoMovieAction());
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & IProps;
+
+
+function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentProps): JSX.Element {
   const history = useHistory();
+  // eslint-disable-next-line no-console
+  console.log(promoMovie);
+  // onFetchPromoMovie();
+
+  useEffect(() => {
+    onFetchPromoMovie();
+  }, [onFetchPromoMovie]);
 
   const [moviesShowingLimit, changeMoviesShowingLimit] = useState<number>(8);
 
@@ -30,7 +58,7 @@ export function MainPage({ cards }: IProps): JSX.Element {
 
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={cards[0].background_image} alt={cards[0].name} />
+          <img src={promoMovie.background_image} alt={promoMovie.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -38,14 +66,14 @@ export function MainPage({ cards }: IProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={cards[0].poster_image} alt={cards[0].name} width="218" height="327" />
+              <img src={promoMovie.poster_image} alt={promoMovie.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{cards[0].name}</h2>
+              <h2 className="film-card__title">{promoMovie.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{cards[0].genre}</span>
-                <span className="film-card__year">{cards[0].released}</span>
+                <span className="film-card__genre">{promoMovie.genre}</span>
+                <span className="film-card__year">{promoMovie.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -91,3 +119,6 @@ export function MainPage({ cards }: IProps): JSX.Element {
     </div>
   );
 }
+
+export { MainPage };
+export default connector(MainPage);

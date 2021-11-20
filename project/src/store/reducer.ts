@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { AuthorizationStatus } from '../const';
+import { AuthorizationStatus, initialMovieCard } from '../const';
 import { Actions, ActionType } from '../types/actions';
 import { IState } from '../types/state';
 
@@ -8,27 +8,10 @@ const initialState: IState = {
   movies: [],
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
-  movie: {
-    id: 1,
-    name: '',
-    poster_image: '',
-    preview_image: '',
-    background_image: '',
-    background_color: '',
-    video_link: '',
-    preview_video_link: '',
-    description: '',
-    rating: 1,
-    scores_count: 1,
-    director: '',
-    starring: [],
-    run_time: 1,
-    genre: '',
-    released: 1,
-    is_favorite: false,
-  },
+  movie: initialMovieCard,
   sameMovies: [],
   reviews: [],
+  promoMovie: initialMovieCard,
 };
 
 const reducer = (state: IState = initialState, action: Actions): IState => {
@@ -41,8 +24,10 @@ const reducer = (state: IState = initialState, action: Actions): IState => {
       return { ...state, movie: action.payload };
     case ActionType.LoadSameGenreMovies:
       return { ...state, sameMovies: action.payload };
+    case ActionType.LoadPromoMovie:
+      return { ...state, promoMovie: action.payload };
     case ActionType.LoadReviews:
-      return {...state, reviews: action.payload};
+      return { ...state, reviews: action.payload };
     case ActionType.RequireAuthorization:
       return { ...state, authorizationStatus: action.payload };
     case ActionType.RequireLogout:

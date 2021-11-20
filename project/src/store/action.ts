@@ -1,5 +1,5 @@
 import { AuthorizationStatus } from '../const';
-import { ActionType, ChangeGenreAction, LoadMoviesAction, LoadReviews, LoadSameGenreMovies, LoadSingleMovieAction } from '../types/actions';
+import { ActionType, ChangeGenreAction, LoadMoviesAction, LoadPromoMovieAction, LoadReviews, LoadSameGenreMovies, LoadSingleMovieAction } from '../types/actions';
 import { IMovie } from '../types/common';
 import { IReviewResponse } from '../types/reviews';
 
@@ -21,6 +21,11 @@ export const loadSameGenreMovies = (sameMovies: IMovie[]): LoadSameGenreMovies =
 export const loadSingleMovie = (movie: IMovie): LoadSingleMovieAction => ({
   type: ActionType.LoadSingleMovie,
   payload: movie,
+} as const);
+
+export const loadPromoMovie = (promoMovie: IMovie): LoadPromoMovieAction => ({
+  type: ActionType.LoadPromoMovie,
+  payload: promoMovie,
 } as const);
 
 export const loadReviews = (reviews: IReviewResponse[]): LoadReviews => ({
