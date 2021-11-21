@@ -74,12 +74,15 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentPr
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player)}>
+
+                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player.replace(':id', promoMovie.id.toString()))}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
+
+
                 <button className="btn btn--list film-card__button" type="button" onClick={() => history.push(AppRoute.MyList)}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>

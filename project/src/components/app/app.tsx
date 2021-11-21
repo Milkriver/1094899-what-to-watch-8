@@ -52,7 +52,7 @@ function App(props: PropsFromRedux): JSX.Element {
           render={() => <AddReviewPage />}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Player}><Player cards={movies} /></Route>
+        <Route exact path={AppRoute.Player}><Player cards={movies} activeCard={movies[0]}/></Route>
         <Route><Error404 /></Route>
       </Switch>
     </BrowserRouter>
