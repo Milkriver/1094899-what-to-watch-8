@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+import { IMovie } from './types/common';
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
@@ -24,3 +26,23 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
 }
+
+export const initialMovieCard: IMovie = {
+  id: 1,
+  name: '',
+  poster_image: '',
+  preview_image: '',
+  background_image: '',
+  background_color: '',
+  video_link: '',
+  preview_video_link: '',
+  description: '',
+  rating: 1,
+  scores_count: 1,
+  director: '',
+  starring: [],
+  run_time: 1,
+  genre: '',
+  released: 1,
+  is_favorite: false,
+};

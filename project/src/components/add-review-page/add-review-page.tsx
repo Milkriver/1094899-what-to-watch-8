@@ -5,7 +5,7 @@ import { AppRoute } from '../../const';
 import { fetchSingleMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
-import { AddReviewForm } from '../add-review-form/add-review-form';
+import AddReviewForm from '../add-review-form/add-review-form';
 import { HeaderLogo } from '../header-logo/header-logo';
 import HeaderUserBlock from '../header-user-block/header-user-block';
 
@@ -53,7 +53,7 @@ function AddReviewPage({ onFetchMovie, movie: activeMovie }: PropsFromRedux): JS
           <img src={activeMovie.poster_image} alt={activeMovie.name} width="218" height="327" />
         </div>
       </div>
-      <div className="add-review"><AddReviewForm/>
+      <div className="add-review"><AddReviewForm currentPageId={Number(currentPageId)} />
       </div>
     </section >
   );
