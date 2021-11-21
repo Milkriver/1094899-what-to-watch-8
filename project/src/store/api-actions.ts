@@ -49,9 +49,9 @@ export const checkAuthAction = (): ThunkActionResult =>
       });
   };
 
-export const AddReviewAction = ({ rating, comment }: IReviewRequest): ThunkActionResult =>
+export const addReviewAction = ({ rating, comment }: IReviewRequest, id: string): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    const { data } = await api.post(APIRoute.Reviews, { rating, comment });
+    const { data } = await api.post(APIRoute.Reviews.replace(':id', id), { rating, comment });
     dispatch(addReview(data));
   };
 

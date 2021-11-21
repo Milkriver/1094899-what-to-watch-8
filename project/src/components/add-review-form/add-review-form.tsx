@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoute } from '../../const';
-import { AddReviewAction } from '../../store/api-actions';
+import { addReviewAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IReviewRequest } from '../../types/reviews';
 import { IState } from '../../types/state';
@@ -16,8 +16,8 @@ const mapStateToProps = ({ review }: IState) => ({
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  onSubmitAddReviewButton({ rating, comment }: IReviewRequest) {
-    return dispatch(AddReviewAction({ rating, comment }));
+  onSubmitAddReviewButton({ rating, comment }: IReviewRequest, id: string) {
+    return dispatch(addReviewAction({ rating, comment }, id));
   },
 });
 
@@ -41,17 +41,17 @@ function AddReviewForm({ onSubmitAddReviewButton, currentPageId }: ConnectedComp
   const history = useHistory();
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
+    const id = currentPageId.toString();
     if (rating !== null && reviewText !== null) {
       onSubmitAddReviewButton({
         rating: Number(rating),
         comment: reviewText,
-      })
+      }, id)
         .then(() => history.push(AppRoute.Film.replace(':id', currentPageId.toString())));
     }
   };
   return (
-    <form action="#" className="add-review__form" onClick={() => handleSubmit}>
+    <form action="#" className="add-review__form" onSubmit={() => handleSubmit}>
       <div className="rating">
         <div className="rating__stars">
           {ratingStar.map((star) => (
