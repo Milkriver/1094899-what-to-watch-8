@@ -36,9 +36,6 @@ type ConnectedComponentProps = PropsFromRedux & IProps;
 
 function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentProps): JSX.Element {
   const history = useHistory();
-  // eslint-disable-next-line no-console
-  console.log(promoMovie);
-  // onFetchPromoMovie();
 
   useEffect(() => {
     onFetchPromoMovie();
