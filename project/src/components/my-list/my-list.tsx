@@ -1,52 +1,53 @@
 import { MovieCardElement } from './../movie-card-element/movie-card-element';
 import { IMovie } from '../../types/common';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { HeaderLogo } from '../header-logo/header-logo';
+import HeaderUserBlock from '../header-user-block/header-user-block';
+import { Footer } from '../footer/footer';
+import { IState } from '../../types/state';
+import { ThunkAppDispatch } from '../../types/actions';
+import { fetchFavoriteMovies } from '../../store/api-actions';
+import { connect, ConnectedProps } from 'react-redux';
 
 
-interface IProps {
-  cards: IMovie[]
-}
+const mapStateToProps = ({ favouriteMovies }: IState) => ({
+  favouriteMovies,
+});
 
-export function MyList({ cards }: IProps): JSX.Element {
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+  onFetchFavouriteMovies() {
+    dispatch(fetchFavoriteMovies());
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function MyList({ favouriteMovies, onFetchFavouriteMovies }: PropsFromRedux): JSX.Element {
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
 
-  const favoriteMovies = cards.filter((x)=>x.is_favorite);
+  useEffect(() => {
+    onFetchFavouriteMovies();
+  }, [onFetchFavouriteMovies]);
 
-  const renderMyMovie = (singleCard: IMovie): React.ReactNode => (
+
+  const renderMyMovie = (favouriteSingleCard: IMovie): React.ReactNode => (
     <MovieCardElement
-      key={singleCard.id}
+      key={favouriteSingleCard.id}
       activeCardId={activeCardId}
-      filmName={singleCard.name}
-      videolink={singleCard.poster_image}
-      posterSrc={singleCard.poster_image}
-      id={singleCard.id}
+      filmName={favouriteSingleCard.name}
+      videolink={favouriteSingleCard.poster_image}
+      posterSrc={favouriteSingleCard.poster_image}
+      id={favouriteSingleCard.id}
       onMouseOver={setActiveMovieCardId}
-      genre={singleCard.genre}
     />);
 
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <div className="logo">
-          <a href="main.html" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
+        <HeaderLogo />
         <h1 className="page-title user-page__title">My list</h1>
-
-        <ul className="user-block">
-          <li className="user-block__item">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </li>
-          <li className="user-block__item">
-            <a href="#/" className="user-block__link">Sign out</a>
-          </li>
-        </ul>
+        <HeaderUserBlock />
       </header>
 
       <section className="catalog">
@@ -54,23 +55,13 @@ export function MyList({ cards }: IProps): JSX.Element {
 
         <div className="catalog__films-list">
 
-          {favoriteMovies.map(renderMyMovie)}
+          {favouriteMovies.map(renderMyMovie)}
         </div>
       </section>
-
-      <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
+
+export { MyList };
+export default connector(MyList);

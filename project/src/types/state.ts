@@ -9,6 +9,7 @@ export interface IState {
   authorizationStatus: AuthorizationStatus,
   movie: IMovie,
   sameMovies: IMovie[],
+  favouriteMovies: IMovie[],
   reviews: IReviewResponse[],
   promoMovie: IMovie,
   review: IReviewResponse,

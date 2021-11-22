@@ -33,7 +33,6 @@ function HeaderUserBlock(props: PropsFromRedux): JSX.Element {
           </div>
         </li>
         <li className="user-block__item">
-          <div>e-mail пользователя</div>
           <div onClick={onSubmit} className="user-block__link">Sign out</div>
         </li>
       </ul>

@@ -1,7 +1,7 @@
 import MainPage from '../main-page/main-page';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignInMessage from '../sign-in/sign-in';
-import { MyList } from '../my-list/my-list';
+import MyList from '../my-list/my-list';
 import MoviePage from '../movie-page/movie-page';
 import { Player } from '../player/player';
 import { Error404 } from '../error404/error404';
@@ -41,7 +41,7 @@ function App(props: PropsFromRedux): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyList cards={movies} />}
+          render={() => <MyList />}
         >
         </PrivateRoute>
         <Route exact path={AppRoute.Film}><MoviePage /></Route>

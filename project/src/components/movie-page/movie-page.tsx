@@ -111,7 +111,6 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
                     onMouseOver={handleActiveCard}
                     videolink={singleCard.preview_video_link}
                     posterSrc={singleCard.preview_image}
-                    genre={singleCard.genre}
                   />
                 ))}
               </>

@@ -11,6 +11,9 @@ export enum ActionType {
   LoadSingleMovie = 'movieCard/LoadSingleMovie',
   LoadSameGenreMovies = 'movieCard/LoadSameGenreMovies',
   LoadPromoMovie = 'movieCard/LoadPromoMovie',
+  LoadFavouriteMovies = 'userlist/LoadFavouriteMovies',
+  AddFavoriteMovie = 'userlist/AddFavoriteMovie',
+  RemoveFavoriteMovie = 'userlist/RemoveFavoriteMovie',
   LoadReviews = 'movieCard/LoadReviews',
   AddReview = 'movieCard/AddReview',
   RequireAuthorization = 'user/requireAuthorization',
@@ -42,13 +45,25 @@ export type LoadPromoMovieAction = {
   payload: IMovie;
 };
 
+export type LoadFavouriteMoviesAction = {
+  type: ActionType.LoadFavouriteMovies,
+  payload: IMovie[],
+};
 
-export type LoadReviews = {
+export type AddFavoriteMovieAction = {
+  type: ActionType.AddFavoriteMovie,
+};
+
+export type RemoveFavoriteMovieAction = {
+  type: ActionType.RemoveFavoriteMovie,
+};
+
+export type LoadReviewsAction = {
   type: ActionType.LoadReviews;
   payload: IReviewResponse[];
 };
 
-export type AddReview = {
+export type AddReviewAction = {
   type: ActionType.AddReview;
   payload: IReviewResponse;
 };
@@ -63,7 +78,7 @@ export type requireLogoutAction = {
 };
 
 
-export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | AddReview | LoadSameGenreMovies | LoadPromoMovieAction | LoadReviews | requireAuthorizationAction | requireLogoutAction;
+export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | LoadFavouriteMoviesAction | AddFavoriteMovieAction |  RemoveFavoriteMovieAction | AddReviewAction | LoadSameGenreMovies | LoadPromoMovieAction | LoadReviewsAction | requireAuthorizationAction | requireLogoutAction;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, IState, AxiosInstance, Actions>;
 

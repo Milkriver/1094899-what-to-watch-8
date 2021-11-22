@@ -1,7 +1,7 @@
-import { addReview, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, requireAuthorization, requireLogout } from './action';
-import { APIRoute, AuthorizationStatus } from '../const';
+import { IMovie } from './../types/common';
+import { addFavoriteMovie, addReview, loadFavouriteMovies, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, removeFavoriteMovie, requireAuthorization, requireLogout } from './action';
+import { APIRoute, AuthorizationStatus, FavoriteMoviesStatus } from '../const';
 import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
-import { IMovie } from '../types/common';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken, Token } from '../services/token';
 import { IReviewRequest, IReviewResponse } from '../types/reviews';
@@ -25,6 +25,19 @@ export const fetchSameGenreMoviesAction = (filmId: string): ThunkActionResult =>
     const url = APIRoute.SameGenreMovies.replace(':id', filmId);
     const { data } = await api.get<IMovie[]>(url);
     dispatch(loadSameGenreMovies(data));
+  };
+
+export const fetchFavoriteMovies = (): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const { data } = await api.get<IMovie[]>(APIRoute.FavouriteMovies);
+    dispatch(loadFavouriteMovies(data));
+  };
+
+export const changeFavoriteMovies = (filmId: number, status: FavoriteMoviesStatus): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    await api.post<IMovie>(`${APIRoute.StatusFavouriteMovie}/${filmId}/${status}`);
+    if (status === FavoriteMoviesStatus.Add) { dispatch(addFavoriteMovie()); }
+    if (status === FavoriteMoviesStatus.Remove) { dispatch(removeFavoriteMovie()); }
   };
 
 export const fetchPromoMovieAction = (): ThunkActionResult =>

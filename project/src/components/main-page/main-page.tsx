@@ -10,12 +10,12 @@ import { Footer } from '../footer/footer';
 import GenresList from '../genres-list/genres-list';
 import { Header } from '../header/header';
 import MoviesList from '../movies-list/movies-list';
+import MyListButton from '../my-list-button/my-list-button';
 import { ShowMoreButton } from '../show-more-button/show-more-button';
 
 
 type IProps = {
   cards: IMovie[],
-  promoMovie: IMovie,
 }
 
 
@@ -82,13 +82,7 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentPr
                   <span>Play</span>
                 </button>
 
-
-                <button className="btn btn--list film-card__button" type="button" onClick={() => history.push(AppRoute.MyList)}>
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <MyListButton currentMovie={promoMovie}/>
               </div>
             </div>
           </div>

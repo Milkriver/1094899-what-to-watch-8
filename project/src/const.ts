@@ -27,6 +27,11 @@ export enum APIRoute {
   Logout = '/logout',
 }
 
+export enum FavoriteMoviesStatus {
+  Add = 1,
+  Remove = 0,
+}
+
 export const initialMovieCard: IMovie = {
   id: 1,
   name: '',
@@ -46,3 +51,4 @@ export const initialMovieCard: IMovie = {
   released: 1,
   is_favorite: false,
 };
+

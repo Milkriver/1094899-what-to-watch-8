@@ -9,10 +9,9 @@ interface IProps {
   onMouseOver: (id: number | undefined) => void
   posterSrc: string
   activeCardId: number | undefined
-  genre: string
 }
 
-export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSrc, id, videolink, genre }: IProps): JSX.Element {
+export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSrc, id, videolink }: IProps): JSX.Element {
   const history = useHistory();
 
   const onClick = () => {
