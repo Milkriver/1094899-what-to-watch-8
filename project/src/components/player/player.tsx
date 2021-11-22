@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { IMovie } from '../../types/common';
+import { getMovieTime } from '../../utils';
+import { Spinner } from '../spinner/spinner';
 interface IProps {
   cards: IMovie[],
   activeCard: IMovie;
@@ -37,11 +39,12 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
 
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const timeElapsed = duration - currentTime;
+  const timeElapsed = getMovieTime(duration - currentTime);
   const getToggler = () => (currentTime / duration * 100);
   return (
 
     < div className="player" >
+      {videoRef.current ? ' ': <Spinner/>}
       <video
         src={activeCard.video_link}
         ref={videoRef}
