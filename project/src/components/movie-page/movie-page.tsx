@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { fetchReviewsAction, fetchSameGenreMoviesAction, fetchSingleMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
@@ -37,7 +38,7 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
   const sameMovie = sameMovies.slice(0, 4);
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
   const handleActiveCard = (id: number | undefined) => { setActiveMovieCardId(id); };
-
+  const history = useHistory();
   useEffect(() => {
     const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');
     onFetchMovie(currentPageId);
@@ -64,7 +65,7 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player.replace(':id', activeMovie.id.toString()))}>
                   <svg viewBox="0 0 19 19" width="19" height="19"><use xlinkHref="#play-s"></use></svg>
                   <span>Play</span>
                 </button>

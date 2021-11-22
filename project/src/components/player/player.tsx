@@ -38,8 +38,10 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const timeElapsed = duration - currentTime;
+  const getToggler = () => (currentTime / duration * 100);
   return (
-    <div className="player">
+
+    < div className="player" >
       <video
         src={activeCard.video_link}
         ref={videoRef}
@@ -58,7 +60,7 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
               value={currentTime}
               max={duration}
             />
-            <div className="player__toggler" style={{ left: '30%' }}>Toggler</div>
+            <div className="player__toggler" style={{ left: `${getToggler()}%` }}>Toggler</div>
           </div>
           <div className="player__time-value">{timeElapsed}</div>
         </div>
@@ -89,6 +91,6 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
           </button>
         </div>
       </div>
-    </div >
+    </ div>
   );
 }
