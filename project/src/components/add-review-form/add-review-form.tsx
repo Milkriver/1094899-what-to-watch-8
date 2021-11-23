@@ -26,7 +26,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & IProps;
 
 function AddReviewForm({ onSubmitAddReviewButton, currentPageId }: ConnectedComponentProps): JSX.Element {
-  const id=currentPageId.replace('/review', '');
+  const id = currentPageId.replace('/review', '');
   const [rating, setRating] = useState('8');
   const [reviewText, setReviewText] = useState('');
   const ratingStar = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
@@ -64,7 +64,7 @@ function AddReviewForm({ onSubmitAddReviewButton, currentPageId }: ConnectedComp
       </div>
 
       <div className="add-review__text">
-        <textarea className="add-review__textarea" name="review-text" id="review-text"  placeholder="Review text" value={reviewText} onChange={handleReviewFormChange}></textarea>
+        <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" value={reviewText} onChange={handleReviewFormChange}></textarea>
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post
           </button>
