@@ -53,7 +53,7 @@ function AddReviewPage({ onFetchMovie, movie: activeMovie }: PropsFromRedux): JS
           <img src={activeMovie.posterImage} alt={activeMovie.name} width="218" height="327" />
         </div>
       </div>
-      <div className="add-review"><AddReviewForm currentPageId={Number(currentPageId)} />
+      <div className="add-review"><AddReviewForm currentPageId={currentPageId} />
       </div>
     </section >
   );
