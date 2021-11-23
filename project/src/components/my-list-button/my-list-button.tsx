@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { connect, ConnectedProps, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoute, AuthorizationStatus, FavoriteMoviesStatus } from '../../const';
-import { changeFavoriteMovies } from '../../store/api-actions';
+import { changeFavoriteMovies, fetchFavoriteMovies } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
 import { IState } from '../../types/state';
@@ -19,6 +19,7 @@ const mapStateToProps = ({ authorizationStatus }: IState) => ({
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onChangeFavoriteMovies(cardId: number, status: FavoriteMoviesStatus) {
     dispatch(changeFavoriteMovies(cardId, status));
+    dispatch(fetchFavoriteMovies());
   },
 });
 
@@ -27,15 +28,15 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & IProps;
 
 function MyListButton({ currentMovie, authorizationStatus }: ConnectedComponentProps): JSX.Element {
-  const [isMovieInFavoriteList, setIsMovieInFavoriteList] = useState(false);
+  const [favouriteMovieStatus, setfavouriteMovieStatus] = useState(currentMovie.is_favorite);
   const currentMovieId = currentMovie.id;
   const history = useHistory();
   const dispatch = useDispatch();
-  useEffect(() => setIsMovieInFavoriteList(currentMovie?.is_favorite), [currentMovie]);
+  useEffect(() => setfavouriteMovieStatus(currentMovie?.is_favorite), [currentMovie]);
   const onHandleFavoriteMovieClick = () => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
-      dispatch(changeFavoriteMovies(currentMovieId, isMovieInFavoriteList ? FavoriteMoviesStatus.Remove : FavoriteMoviesStatus.Add));
-      setIsMovieInFavoriteList(isMovieInFavoriteList);
+      dispatch(changeFavoriteMovies(currentMovieId, favouriteMovieStatus ? FavoriteMoviesStatus.Remove : FavoriteMoviesStatus.Add));
+      setfavouriteMovieStatus(!favouriteMovieStatus);
       history.push(AppRoute.MyList);
     } else {
       history.push(AppRoute.SignIn);
@@ -49,7 +50,7 @@ function MyListButton({ currentMovie, authorizationStatus }: ConnectedComponentP
       onClick={onHandleFavoriteMovieClick}
     >
       <svg viewBox="0 0 19 20" width="19" height="20">
-        <use xlinkHref={isMovieInFavoriteList ? '#in-list' : '#add'}></use>
+        <use xlinkHref={favouriteMovieStatus ? '#in-list' : '#add'}></use>
       </svg>
       <span>My list</span>
     </button>

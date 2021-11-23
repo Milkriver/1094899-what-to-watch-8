@@ -35,7 +35,7 @@ export const fetchFavoriteMovies = (): ThunkActionResult =>
 
 export const changeFavoriteMovies = (filmId: number, status: FavoriteMoviesStatus): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    await api.post<IMovie>(`${APIRoute.StatusFavouriteMovie}/${filmId}/${status}`);
+    await api.post<IMovie>(`${APIRoute.FavouriteMovies}/${filmId}/${status}`);
     if (status === FavoriteMoviesStatus.Add) { dispatch(addFavoriteMovie()); }
     if (status === FavoriteMoviesStatus.Remove) { dispatch(removeFavoriteMovie()); }
   };

@@ -10,6 +10,7 @@ import { Footer } from '../footer/footer';
 import { Header } from '../header/header';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 import { Tabs } from '../tabs/tabs';
+import MyListButton from '../my-list-button/my-list-button';
 
 const mapStateToProps = ({ movie, sameMovies, reviews, authorizationStatus }: IState) => ({
   movie,
@@ -71,10 +72,8 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
                 </button>
                 {authorizationStatus === AuthorizationStatus.Auth
                   ?
-                  <button className="btn btn--list film-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20"><use xlinkHref="#add"></use></svg>
-                    <span>My list</span>
-                  </button>
+
+                  <MyListButton currentMovie={activeMovie}/>
                   : ''}
 
                 {authorizationStatus === AuthorizationStatus.Auth
