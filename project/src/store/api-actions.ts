@@ -1,37 +1,42 @@
 import { AuthInfo } from './../types/auth-data';
-import { IMovie } from './../types/common';
+import { IMovie, IMovieResponse } from './../types/common';
 import { addFavoriteMovie, addReview, loadFavouriteMovies, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, loadUserData, removeFavoriteMovie, requireAuthorization, requireLogout } from './action';
 import { APIRoute, AuthorizationStatus, FavoriteMoviesStatus } from '../const';
 import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken } from '../services/token';
 import { IReviewRequest, IReviewResponse } from '../types/reviews';
+import { adaptMovie } from '../components/adaptor';
 
 
 export const fetchMovieAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get<IMovie[]>(APIRoute.Movies);
-    dispatch(loadMovies(data));
+    const { data } = await api.get<IMovieResponse[]>(APIRoute.Movies);
+    const movies = data.map((movieElement)=> adaptMovie(movieElement));
+    dispatch(loadMovies(movies));
   };
 
 export const fetchSingleMovieAction = (filmId: string): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const url = APIRoute.SingleMovie.replace(':id', filmId);
-    const { data } = await api.get<IMovie>(url);
-    dispatch(loadSingleMovie(data));
+    const { data } = await api.get<IMovieResponse>(url);
+    const movie = adaptMovie(data);
+    dispatch(loadSingleMovie(movie));
   };
 
 export const fetchSameGenreMoviesAction = (filmId: string): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     const url = APIRoute.SameGenreMovies.replace(':id', filmId);
-    const { data } = await api.get<IMovie[]>(url);
-    dispatch(loadSameGenreMovies(data));
+    const { data } = await api.get<IMovieResponse[]>(url);
+    const movies = data.map((movieElement)=> adaptMovie(movieElement));
+    dispatch(loadSameGenreMovies(movies));
   };
 
 export const fetchFavoriteMovies = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get<IMovie[]>(APIRoute.FavouriteMovies);
-    dispatch(loadFavouriteMovies(data));
+    const { data } = await api.get<IMovieResponse[]>(APIRoute.FavouriteMovies);
+    const movies = data.map((movieElement)=> adaptMovie(movieElement));
+    dispatch(loadFavouriteMovies(movies));
   };
 
 export const changeFavoriteMovies = (filmId: number, status: FavoriteMoviesStatus): ThunkActionResult =>
@@ -43,8 +48,9 @@ export const changeFavoriteMovies = (filmId: number, status: FavoriteMoviesStatu
 
 export const fetchPromoMovieAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.get<IMovie>(APIRoute.PromoMovie);
-    dispatch(loadPromoMovie(data));
+    const { data } = await api.get<IMovieResponse>(APIRoute.PromoMovie);
+    const movie = adaptMovie(data);
+    dispatch(loadPromoMovie(movie));
   };
 
 export const fetchReviewsAction = (filmId: string): ThunkActionResult =>

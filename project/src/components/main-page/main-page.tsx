@@ -56,7 +56,7 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie, authorizationStatus }:
 
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoMovie.background_image} alt={promoMovie.name} />
+          <img src={promoMovie.backgroundImage} alt={promoMovie.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -64,7 +64,7 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie, authorizationStatus }:
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoMovie.poster_image} alt={promoMovie.name} width="218" height="327" />
+              <img src={promoMovie.posterImage} alt={promoMovie.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">

@@ -28,11 +28,11 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & IProps;
 
 function MyListButton({ currentMovie, authorizationStatus }: ConnectedComponentProps): JSX.Element {
-  const [favouriteMovieStatus, setfavouriteMovieStatus] = useState(currentMovie.is_favorite);
+  const [favouriteMovieStatus, setfavouriteMovieStatus] = useState(currentMovie.isFavorite);
   const currentMovieId = currentMovie.id;
   const history = useHistory();
   const dispatch = useDispatch();
-  useEffect(() => setfavouriteMovieStatus(currentMovie?.is_favorite), [currentMovie]);
+  useEffect(() => setfavouriteMovieStatus(currentMovie?.isFavorite), [currentMovie]);
   const onHandleFavoriteMovieClick = () => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
       dispatch(changeFavoriteMovies(currentMovieId, favouriteMovieStatus ? FavoriteMoviesStatus.Remove : FavoriteMoviesStatus.Add));

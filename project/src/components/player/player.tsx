@@ -24,7 +24,7 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
         videoRef.current = null;
       }
     };
-  }, [activeCard.video_link]);
+  }, [activeCard.videoLink]);
 
   useEffect(() => {
     if (videoRef.current === null) {
@@ -46,7 +46,7 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
     < div className="player" >
       {videoRef.current ? ' ': <Spinner/>}
       <video
-        src={activeCard.video_link}
+        src={activeCard.videoLink}
         ref={videoRef}
         className="player__video"
         onDurationChange={(evt) => setDuration(Math.round(evt.currentTarget.duration))}

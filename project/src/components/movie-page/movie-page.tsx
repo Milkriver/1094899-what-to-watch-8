@@ -50,10 +50,10 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
   return (
 
     <>
-      <section className="film-card film-card--full" style={{ backgroundColor: activeMovie.background_color }}>
+      <section className="film-card film-card--full" style={{ backgroundColor: activeMovie.backgroundColor }}>
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={activeMovie.background_image} alt={activeMovie.name} />
+            <img src={activeMovie.backgroundImage} alt={activeMovie.name} />
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <Header />
@@ -87,7 +87,7 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={activeMovie.poster_image} alt={activeMovie.name} width="218" height="327" />
+              <img src={activeMovie.posterImage} alt={activeMovie.name} width="218" height="327" />
             </div>
             <Tabs movie={activeMovie} reviews={reviews} />
           </div>
@@ -108,8 +108,8 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
                     filmName={singleCard.name}
                     id={singleCard.id}
                     onMouseOver={handleActiveCard}
-                    videolink={singleCard.preview_video_link}
-                    posterSrc={singleCard.preview_image}
+                    videolink={singleCard.previewVideoLink}
+                    posterSrc={singleCard.previewImage}
                   />
                 ))}
               </>

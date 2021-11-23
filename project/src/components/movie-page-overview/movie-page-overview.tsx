@@ -11,7 +11,7 @@ export function MoviePageOverview({ movie }: IProps): JSX.Element {
         <div className="film-rating__score">{movie.rating}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">Very good</span>
-          <span className="film-rating__count">{movie.scores_count}</span>
+          <span className="film-rating__count">{movie.scoresCount}</span>
         </p>
       </div>
       <div className="film-card__text">

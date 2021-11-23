@@ -22,7 +22,7 @@ export function MoviePageDetails({ movie }: IProps): JSX.Element {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value"> {movie.run_time}</span>
+          <span className="film-card__details-value"> {movie.runTime}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>

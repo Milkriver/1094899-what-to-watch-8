@@ -26,10 +26,10 @@ function AddReviewPage({ onFetchMovie, movie: activeMovie }: PropsFromRedux): JS
   const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');
   onFetchMovie(currentPageId);
   return (
-    <section className="film-card film-card--full" style={{ backgroundColor: activeMovie.background_color }}>
+    <section className="film-card film-card--full" style={{ backgroundColor: activeMovie.backgroundColor }}>
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={activeMovie.background_image} alt={activeMovie.name} />
+          <img src={activeMovie.backgroundImage} alt={activeMovie.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -50,7 +50,7 @@ function AddReviewPage({ onFetchMovie, movie: activeMovie }: PropsFromRedux): JS
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={activeMovie.poster_image} alt={activeMovie.name} width="218" height="327" />
+          <img src={activeMovie.posterImage} alt={activeMovie.name} width="218" height="327" />
         </div>
       </div>
       <div className="add-review"><AddReviewForm currentPageId={Number(currentPageId)} />
