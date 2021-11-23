@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { fetchPromoMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
@@ -19,8 +19,9 @@ type IProps = {
 }
 
 
-const mapStateToProps = ({ promoMovie }: IState) => ({
+const mapStateToProps = ({ promoMovie, authorizationStatus }: IState) => ({
   promoMovie,
+  authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
@@ -34,7 +35,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & IProps;
 
 
-function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentProps): JSX.Element {
+function MainPage({ cards, promoMovie, onFetchPromoMovie, authorizationStatus }: ConnectedComponentProps): JSX.Element {
   const history = useHistory();
 
   useEffect(() => {
@@ -81,8 +82,10 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentPr
                   </svg>
                   <span>Play</span>
                 </button>
-
-                <MyListButton currentMovie={promoMovie}/>
+                {authorizationStatus === AuthorizationStatus.Auth
+                  ?
+                  <MyListButton currentMovie={promoMovie} />
+                  : ''}
               </div>
             </div>
           </div>
