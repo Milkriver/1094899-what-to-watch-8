@@ -7,8 +7,9 @@ import { IState } from '../../types/state';
 import { useHistory } from 'react-router';
 
 
-const mapStateToProps = ({ authorizationStatus }: IState) => ({
+const mapStateToProps = ({ authorizationStatus, userData }: IState) => ({
   authorizationStatus,
+  userData,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
@@ -22,7 +23,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function HeaderUserBlock(props: PropsFromRedux): JSX.Element {
   const { onSubmit } = props;
-  const { authorizationStatus } = props;
+  const { authorizationStatus, userData } = props;
   const history = useHistory();
   return (
 
@@ -31,10 +32,15 @@ function HeaderUserBlock(props: PropsFromRedux): JSX.Element {
       < ul className="user-block">
         <li className="user-block__item">
           <div className="user-block__avatar" >
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" onClick={() => history.push(AppRoute.MyList)}/>
+            <img
+              onClick={() => history.push(AppRoute.MyList)}
+              src={(userData.avatarUrl) ? userData.avatarUrl : 'img/avatar.jpg'}
+              alt="User avatar" width="63" height="63"
+            />
           </div>
         </li>
         <li className="user-block__item">
+          <div>{userData.email}</div>
           <div onClick={onSubmit} className="user-block__link">Sign out</div>
         </li>
       </ul>

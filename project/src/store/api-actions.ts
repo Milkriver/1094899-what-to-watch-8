@@ -1,6 +1,6 @@
 import { AuthInfo } from './../types/auth-data';
 import { IMovie } from './../types/common';
-import { addFavoriteMovie, addReview, loadFavouriteMovies, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, removeFavoriteMovie, requireAuthorization, requireLogout } from './action';
+import { addFavoriteMovie, addReview, loadFavouriteMovies, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, loadUserData, removeFavoriteMovie, requireAuthorization, requireLogout } from './action';
 import { APIRoute, AuthorizationStatus, FavoriteMoviesStatus } from '../const';
 import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
 import { AuthData } from '../types/auth-data';
@@ -65,15 +65,16 @@ export const checkAuthAction = (): ThunkActionResult =>
 
 export const addReviewAction = ({ rating, comment }: IReviewRequest, id: string): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    const { data } = await api.post(APIRoute.Reviews.replace(':id', id), { rating, comment });
-    dispatch(addReview(data));
+    const { data: review } = await api.post<IReviewResponse>(APIRoute.Reviews.replace(':id', id), { rating, comment });
+    dispatch(addReview(review));
   };
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    const { data } = await api.post<AuthInfo>(APIRoute.Login, { email, password });
-    saveToken(data.token);
+    const { data: authInfo } = await api.post<AuthInfo>(APIRoute.Login, { email, password });
+    saveToken(authInfo.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(loadUserData(authInfo));
   };
 
 export const logoutAction = (): ThunkActionResult =>

@@ -1,6 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../const';
-import { ActionType, ChangeGenreAction, LoadFavouriteMoviesAction, LoadMoviesAction, LoadPromoMovieAction, LoadReviewsAction, LoadSameGenreMovies, LoadSingleMovieAction } from '../types/actions';
+import { ActionType, ChangeGenreAction, LoadFavouriteMoviesAction, LoadMoviesAction, LoadPromoMovieAction, LoadReviewsAction, LoadSameGenreMovies, LoadSingleMovieAction, LoadUserDataAction } from '../types/actions';
+import { AuthInfo } from '../types/auth-data';
 import { IMovie } from '../types/common';
 import { IReviewResponse } from '../types/reviews';
 
@@ -27,6 +28,11 @@ export const loadSingleMovie = (movie: IMovie): LoadSingleMovieAction => ({
 export const loadPromoMovie = (promoMovie: IMovie): LoadPromoMovieAction => ({
   type: ActionType.LoadPromoMovie,
   payload: promoMovie,
+} as const);
+
+export const loadUserData = (userData: AuthInfo): LoadUserDataAction => ({
+  type: ActionType.LoadUserData,
+  payload: userData,
 } as const);
 
 export const loadFavouriteMovies = (favouriteMovies: IMovie[]): LoadFavouriteMoviesAction => ({

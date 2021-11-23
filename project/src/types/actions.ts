@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { AuthorizationStatus } from '../const';
+import { AuthInfo } from './auth-data';
 import { IMovie } from './common';
 import { IReviewResponse } from './reviews';
 import { IState } from './state';
@@ -18,6 +19,7 @@ export enum ActionType {
   AddReview = 'movieCard/AddReview',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
+  LoadUserData = 'user/loadUserData',
 }
 
 export type ChangeGenreAction = {
@@ -43,6 +45,11 @@ export type LoadSameGenreMovies = {
 export type LoadPromoMovieAction = {
   type: ActionType.LoadPromoMovie;
   payload: IMovie;
+};
+
+export type LoadUserDataAction = {
+  type: ActionType.LoadUserData;
+  payload: AuthInfo;
 };
 
 export type LoadFavouriteMoviesAction = {
@@ -78,7 +85,7 @@ export type requireLogoutAction = {
 };
 
 
-export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | LoadFavouriteMoviesAction | AddFavoriteMovieAction |  RemoveFavoriteMovieAction | AddReviewAction | LoadSameGenreMovies | LoadPromoMovieAction | LoadReviewsAction | requireAuthorizationAction | requireLogoutAction;
+export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | LoadUserDataAction | LoadFavouriteMoviesAction | AddFavoriteMovieAction |  RemoveFavoriteMovieAction | AddReviewAction | LoadSameGenreMovies | LoadPromoMovieAction | LoadReviewsAction | requireAuthorizationAction | requireLogoutAction;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, IState, AxiosInstance, Actions>;
 
