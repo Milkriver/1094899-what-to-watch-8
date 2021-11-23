@@ -5,6 +5,8 @@ import { AppRoute } from '../../const';
 import { loginAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { AuthData } from '../../types/auth-data';
+import { Footer } from '../footer/footer';
+import { HeaderLogo } from '../header-logo/header-logo';
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onSubmit(authData: AuthData) {
@@ -16,7 +18,7 @@ const connector = connect(null, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function SignInMessage(props: PropsFromRedux): JSX.Element {
+function SignIn(props: PropsFromRedux): JSX.Element {
   const { onSubmit } = props;
 
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -38,17 +40,10 @@ function SignInMessage(props: PropsFromRedux): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <div className="logo">
-          <a href="main.html" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+        <HeaderLogo />
 
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
-
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
           <div className="sign-in__fields">
@@ -67,23 +62,11 @@ function SignInMessage(props: PropsFromRedux): JSX.Element {
         </form>
       </div>
 
-      <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
 
 
-export { SignInMessage };
-export default connector(SignInMessage);
+export { SignIn };
+export default connector(SignIn);
