@@ -18,7 +18,6 @@ export function MoviePageReviews({ reviews }: IProps): JSX.Element {
                   <cite className="review__author">{review.user.name}</cite>
                   <time className="review__date" dateTime="2016-12-24">
                     {getReviewDate(review.date)}
-                    {/* {review.date} */}
                   </time>
                 </footer>
               </blockquote>
