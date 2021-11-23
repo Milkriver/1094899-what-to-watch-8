@@ -4,6 +4,7 @@ import { AppRoute } from '../../const';
 import { logoutAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
+import { useHistory } from 'react-router';
 
 
 const mapStateToProps = ({ authorizationStatus }: IState) => ({
@@ -22,14 +23,15 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 function HeaderUserBlock(props: PropsFromRedux): JSX.Element {
   const { onSubmit } = props;
   const { authorizationStatus } = props;
+  const history = useHistory();
   return (
 
     (authorizationStatus === 'AUTH') ?
 
       < ul className="user-block">
         <li className="user-block__item">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          <div className="user-block__avatar" >
+            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" onClick={() => history.push(AppRoute.MyList)}/>
           </div>
         </li>
         <li className="user-block__item">

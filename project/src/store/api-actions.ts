@@ -1,9 +1,10 @@
+import { AuthInfo } from './../types/auth-data';
 import { IMovie } from './../types/common';
 import { addFavoriteMovie, addReview, loadFavouriteMovies, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, removeFavoriteMovie, requireAuthorization, requireLogout } from './action';
 import { APIRoute, AuthorizationStatus, FavoriteMoviesStatus } from '../const';
 import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
 import { AuthData } from '../types/auth-data';
-import { dropToken, saveToken, Token } from '../services/token';
+import { dropToken, saveToken } from '../services/token';
 import { IReviewRequest, IReviewResponse } from '../types/reviews';
 
 
@@ -70,8 +71,8 @@ export const addReviewAction = ({ rating, comment }: IReviewRequest, id: string)
 
 export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    const { data: { token } } = await api.post<{ token: Token }>(APIRoute.Login, { email, password });
-    saveToken(token);
+    const { data } = await api.post<AuthInfo>(APIRoute.Login, { email, password });
+    saveToken(data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
   };
 
