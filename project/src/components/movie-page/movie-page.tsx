@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { fetchReviewsAction, fetchSameGenreMoviesAction, fetchSingleMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
@@ -9,6 +10,7 @@ import { Footer } from '../footer/footer';
 import { Header } from '../header/header';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 import { Tabs } from '../tabs/tabs';
+import MyListButton from '../my-list-button/my-list-button';
 
 const mapStateToProps = ({ movie, sameMovies, reviews, authorizationStatus }: IState) => ({
   movie,
@@ -34,24 +36,24 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
 function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, onFetchReviews, movie: activeMovie, authorizationStatus }: PropsFromRedux): JSX.Element {
+  const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');
   const sameMovie = sameMovies.slice(0, 4);
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
   const handleActiveCard = (id: number | undefined) => { setActiveMovieCardId(id); };
+  const history = useHistory();
 
   useEffect(() => {
-    const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');
     onFetchMovie(currentPageId);
     onFetchSameGenreMovies(currentPageId);
     onFetchReviews(currentPageId);
-  }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies]);
-
+  }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies, currentPageId]);
   return (
 
     <>
-      <section className="film-card film-card--full" style={{ backgroundColor: activeMovie.background_color }}>
+      <section className="film-card film-card--full" style={{ backgroundColor: activeMovie.backgroundColor }}>
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={activeMovie.background_image} alt={activeMovie.name} />
+            <img src={activeMovie.backgroundImage} alt={activeMovie.name} />
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <Header />
@@ -64,16 +66,14 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player.replace(':id', activeMovie.id.toString()))}>
                   <svg viewBox="0 0 19 19" width="19" height="19"><use xlinkHref="#play-s"></use></svg>
                   <span>Play</span>
                 </button>
                 {authorizationStatus === AuthorizationStatus.Auth
                   ?
-                  <button className="btn btn--list film-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20"><use xlinkHref="#add"></use></svg>
-                    <span>My list</span>
-                  </button>
+
+                  <MyListButton currentMovie={activeMovie} />
                   : ''}
 
                 {authorizationStatus === AuthorizationStatus.Auth
@@ -87,7 +87,7 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={activeMovie.poster_image} alt={activeMovie.name} width="218" height="327" />
+              <img src={activeMovie.posterImage} alt={activeMovie.name} width="218" height="327" />
             </div>
             <Tabs movie={activeMovie} reviews={reviews} />
           </div>
@@ -108,9 +108,8 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
                     filmName={singleCard.name}
                     id={singleCard.id}
                     onMouseOver={handleActiveCard}
-                    videolink={singleCard.preview_video_link}
-                    posterSrc={singleCard.preview_image}
-                    genre={singleCard.genre}
+                    videolink={singleCard.previewVideoLink}
+                    posterSrc={singleCard.previewImage}
                   />
                 ))}
               </>

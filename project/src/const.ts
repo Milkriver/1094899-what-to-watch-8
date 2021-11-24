@@ -21,28 +21,33 @@ export enum APIRoute {
   SameGenreMovies = '/films/:id/similar',
   PromoMovie = '/promo',
   FavouriteMovies = '/favorite',
-  StatusFavouriteMovie = '/favorite/: film_id/: status',
   Reviews = '/comments/:id',
   Login = '/login',
   Logout = '/logout',
 }
 
+export enum FavoriteMoviesStatus {
+  Add = 1,
+  Remove = 0,
+}
+
 export const initialMovieCard: IMovie = {
   id: 1,
   name: '',
-  poster_image: '',
-  preview_image: '',
-  background_image: '',
-  background_color: '',
-  video_link: '',
-  preview_video_link: '',
+  posterImage: '',
+  previewImage: '',
+  backgroundImage: '',
+  backgroundColor: '',
+  videoLink: '',
+  previewVideoLink: '',
   description: '',
   rating: 1,
-  scores_count: 1,
+  scoresCount: 1,
   director: '',
   starring: [],
-  run_time: 1,
+  runTime: 1,
   genre: '',
   released: 1,
-  is_favorite: false,
+  isFavorite: false,
 };
+

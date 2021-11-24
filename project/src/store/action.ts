@@ -1,5 +1,7 @@
+import { createAction } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../const';
-import { ActionType, ChangeGenreAction, LoadMoviesAction, LoadPromoMovieAction, LoadReviews, LoadSameGenreMovies, LoadSingleMovieAction } from '../types/actions';
+import { ActionType, ChangeGenreAction, LoadFavouriteMoviesAction, LoadMoviesAction, LoadPromoMovieAction, LoadReviewsAction, LoadSameGenreMovies, LoadSingleMovieAction, LoadUserDataAction } from '../types/actions';
+import { AuthInfo } from '../types/auth-data';
 import { IMovie } from '../types/common';
 import { IReviewResponse } from '../types/reviews';
 
@@ -28,7 +30,21 @@ export const loadPromoMovie = (promoMovie: IMovie): LoadPromoMovieAction => ({
   payload: promoMovie,
 } as const);
 
-export const loadReviews = (reviews: IReviewResponse[]): LoadReviews => ({
+export const loadUserData = (userData: AuthInfo): LoadUserDataAction => ({
+  type: ActionType.LoadUserData,
+  payload: userData,
+} as const);
+
+export const loadFavouriteMovies = (favouriteMovies: IMovie[]): LoadFavouriteMoviesAction => ({
+  type: ActionType.LoadFavouriteMovies,
+  payload: favouriteMovies,
+} as const);
+
+export const addFavoriteMovie = createAction(ActionType.AddFavoriteMovie);
+
+export const removeFavoriteMovie = createAction(ActionType.RemoveFavoriteMovie);
+
+export const loadReviews = (reviews: IReviewResponse[]): LoadReviewsAction => ({
   type: ActionType.LoadReviews,
   payload: reviews,
 } as const);

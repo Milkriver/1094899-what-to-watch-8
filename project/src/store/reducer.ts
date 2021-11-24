@@ -11,12 +11,20 @@ const initialState: IState = {
   sameMovies: [],
   reviews: [],
   promoMovie: initialMovieCard,
+  favouriteMovies: [],
   review: {
     id: 1,
-    user: { id: 1, name: ''},
+    user: { id: 1, name: '' },
     rating: 1,
     comment: '',
     date: '',
+  },
+  userData: {
+    id: 1,
+    email: '',
+    name: '',
+    avatarUrl: '',
+    token: '',
   },
 };
 
@@ -28,10 +36,14 @@ const reducer = (state: IState = initialState, action: Actions): IState => {
       return { ...state, movies: action.payload, isDataLoaded: action.payload.length !== 0 };
     case ActionType.LoadSingleMovie:
       return { ...state, movie: action.payload };
+    case ActionType.LoadUserData:
+      return { ...state, userData: action.payload };
     case ActionType.LoadSameGenreMovies:
       return { ...state, sameMovies: action.payload };
     case ActionType.LoadPromoMovie:
       return { ...state, promoMovie: action.payload };
+    case ActionType.LoadFavouriteMovies:
+      return { ...state, favouriteMovies: action.payload };
     case ActionType.LoadReviews:
       return { ...state, reviews: action.payload };
     case ActionType.AddReview:

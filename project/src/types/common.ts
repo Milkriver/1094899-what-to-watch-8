@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-export interface IMovie {
+export interface IMovieResponse {
   id: number;
   name: string;
   poster_image: string;
@@ -17,4 +17,24 @@ export interface IMovie {
   genre: string;
   released: number;
   is_favorite: boolean;
+}
+
+export interface IMovie {
+  id: number;
+  name: string;
+  posterImage: string;
+  previewImage: string;
+  backgroundImage: string;
+  backgroundColor: string;
+  videoLink: string;
+  previewVideoLink: string;
+  description: string;
+  rating: number,
+  scoresCount: number,
+  director: string,
+  starring: string[],
+  runTime: number,
+  genre: string;
+  released: number;
+  isFavorite: boolean;
 }

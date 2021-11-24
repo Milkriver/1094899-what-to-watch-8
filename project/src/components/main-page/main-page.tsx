@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { fetchPromoMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
@@ -10,17 +10,18 @@ import { Footer } from '../footer/footer';
 import GenresList from '../genres-list/genres-list';
 import { Header } from '../header/header';
 import MoviesList from '../movies-list/movies-list';
+import MyListButton from '../my-list-button/my-list-button';
 import { ShowMoreButton } from '../show-more-button/show-more-button';
 
 
 type IProps = {
   cards: IMovie[],
-  promoMovie: IMovie,
 }
 
 
-const mapStateToProps = ({ promoMovie }: IState) => ({
+const mapStateToProps = ({ promoMovie, authorizationStatus }: IState) => ({
   promoMovie,
+  authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
@@ -34,11 +35,8 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & IProps;
 
 
-function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentProps): JSX.Element {
+function MainPage({ cards, promoMovie, onFetchPromoMovie, authorizationStatus }: ConnectedComponentProps): JSX.Element {
   const history = useHistory();
-  // eslint-disable-next-line no-console
-  console.log(promoMovie);
-  // onFetchPromoMovie();
 
   useEffect(() => {
     onFetchPromoMovie();
@@ -58,7 +56,7 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentPr
 
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoMovie.background_image} alt={promoMovie.name} />
+          <img src={promoMovie.backgroundImage} alt={promoMovie.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -66,7 +64,7 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentPr
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoMovie.poster_image} alt={promoMovie.name} width="218" height="327" />
+              <img src={promoMovie.posterImage} alt={promoMovie.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
@@ -77,18 +75,17 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie }: ConnectedComponentPr
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player)}>
+
+                <button className="btn btn--play film-card__button" type="button" onClick={() => history.push(AppRoute.Player.replace(':id', promoMovie.id.toString()))}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button" onClick={() => history.push(AppRoute.MyList)}>
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                {authorizationStatus === AuthorizationStatus.Auth
+                  ?
+                  <MyListButton currentMovie={promoMovie} />
+                  : ''}
               </div>
             </div>
           </div>
