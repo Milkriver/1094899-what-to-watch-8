@@ -36,16 +36,17 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
 function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, onFetchReviews, movie: activeMovie, authorizationStatus }: PropsFromRedux): JSX.Element {
+  const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');
   const sameMovie = sameMovies.slice(0, 4);
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
   const handleActiveCard = (id: number | undefined) => { setActiveMovieCardId(id); };
   const history = useHistory();
+
   useEffect(() => {
-    const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');
     onFetchMovie(currentPageId);
     onFetchSameGenreMovies(currentPageId);
     onFetchReviews(currentPageId);
-  }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies]);
+  }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies, currentPageId]);
   return (
 
     <>
