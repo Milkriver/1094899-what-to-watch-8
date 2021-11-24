@@ -15,7 +15,7 @@ export function MoviePageDetails({ movie }: IProps): JSX.Element {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {movie.starring.map((actor) => <><span>{actor}</span><br /></>)}
+            {movie.starring.map((actor,index) => <><span key={index.toString()}>{actor}</span><br /></>)}
           </span>
         </p>
       </div>
