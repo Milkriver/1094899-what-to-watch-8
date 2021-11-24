@@ -43,11 +43,13 @@ function AddReviewForm({ onSubmitAddReviewButton, currentPageId }: ConnectedComp
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (rating !== null && reviewText !== null) {
-      onSubmitAddReviewButton({
-        rating: Number(rating),
-        comment: reviewText,
-      }, id)
-        .then(() => history.push(AppRoute.Film.replace(':id', id)));
+      if (reviewText.length > 50) {
+        onSubmitAddReviewButton({
+          rating: Number(rating),
+          comment: reviewText,
+        }, id)
+          .then(() => history.push(AppRoute.Film.replace(':id', id)));
+      }
     }
   };
   return (

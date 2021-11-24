@@ -13,7 +13,6 @@ interface IProps {
 
 export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSrc, id, videolink }: IProps): JSX.Element {
   const history = useHistory();
-
   const onClick = () => {
     if (activeCardId === undefined) {
       return;
@@ -21,9 +20,8 @@ export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSr
     const url = AppRoute.Film.replace(':id', activeCardId.toString());
     history.push(url);
   };
-
   return (
-    <article className="small-film-card catalog__films-card" onClick={onClick} onMouseEnter={() => onMouseOver(id)} onMouseOut={() => onMouseOver(undefined)}>
+    <article className="small-film-card catalog__films-card" onClick={onClick} onMouseEnter={() => onMouseOver(id)}>
       <div className="small-film-card__image" >
         {activeCardId === id ? <VideoPlayer posterSrc={posterSrc} videolink={videolink} /> :
           <img src={posterSrc} alt='' width="280" height="175" />};

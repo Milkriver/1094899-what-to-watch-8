@@ -46,7 +46,6 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
     onFetchSameGenreMovies(currentPageId);
     onFetchReviews(currentPageId);
   }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies]);
-
   return (
 
     <>
@@ -73,7 +72,7 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
                 {authorizationStatus === AuthorizationStatus.Auth
                   ?
 
-                  <MyListButton currentMovie={activeMovie}/>
+                  <MyListButton currentMovie={activeMovie} />
                   : ''}
 
                 {authorizationStatus === AuthorizationStatus.Auth
