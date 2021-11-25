@@ -2,7 +2,7 @@ import { FormEvent, useRef } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoute } from '../../const';
-import { loginAction } from '../../store/api-actions';
+import { logInAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { AuthData } from '../../types/auth-data';
 import { Footer } from '../footer/footer';
@@ -10,7 +10,7 @@ import { HeaderLogo } from '../header-logo/header-logo';
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onSubmit(authData: AuthData) {
-    return dispatch(loginAction(authData));
+    return dispatch(logInAction(authData));
   },
 });
 

@@ -80,12 +80,12 @@ export type requireAuthorizationAction = {
   payload: AuthorizationStatus;
 };
 
-export type requireLogoutAction = {
+export type requireLogOutAction = {
   type: ActionType.RequireLogout;
 };
 
 
-export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | LoadUserDataAction | LoadFavouriteMoviesAction | AddFavoriteMovieAction |  RemoveFavoriteMovieAction | AddReviewAction | LoadSameGenreMovies | LoadPromoMovieAction | LoadReviewsAction | requireAuthorizationAction | requireLogoutAction;
+export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | LoadUserDataAction | LoadFavouriteMoviesAction | AddFavoriteMovieAction |  RemoveFavoriteMovieAction | AddReviewAction | LoadSameGenreMovies | LoadPromoMovieAction | LoadReviewsAction | requireAuthorizationAction | requireLogOutAction;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, IState, AxiosInstance, Actions>;
 

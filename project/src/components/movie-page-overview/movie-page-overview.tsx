@@ -1,4 +1,5 @@
 import { IMovie } from '../../types/common';
+import { getMovieStarRating } from '../../utils';
 
 interface IProps {
   movie: IMovie
@@ -10,7 +11,7 @@ export function MoviePageOverview({ movie }: IProps): JSX.Element {
       <div className="film-rating">
         <div className="film-rating__score">{movie.rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">Very good</span>
+          <span className="film-rating__level">{getMovieStarRating(movie.rating)}</span>
           <span className="film-rating__count">{movie.scoresCount}</span>
         </p>
       </div>

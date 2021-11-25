@@ -1,7 +1,7 @@
 import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { logoutAction } from '../../store/api-actions';
+import { logOutAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
 import { useHistory } from 'react-router';
@@ -14,7 +14,7 @@ const mapStateToProps = ({ authorizationStatus, userData }: IState) => ({
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onSubmit() {
-    return dispatch(logoutAction());
+    return dispatch(logOutAction());
   },
 });
 const connector = connect(mapStateToProps, mapDispatchToProps);

@@ -75,7 +75,7 @@ export const addReviewAction = ({ rating, comment }: IReviewRequest, id: string)
     dispatch(addReview(review));
   };
 
-export const loginAction = ({ login: email, password }: AuthData): ThunkActionResult =>
+export const logInAction = ({ login: email, password }: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     const { data: authInfo } = await api.post<AuthInfo>(APIRoute.Login, { email, password });
     saveToken(authInfo.token);
@@ -83,7 +83,7 @@ export const loginAction = ({ login: email, password }: AuthData): ThunkActionRe
     dispatch(loadUserData(authInfo));
   };
 
-export const logoutAction = (): ThunkActionResult =>
+export const logOutAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     api.delete(APIRoute.Logout);
     dropToken();

@@ -22,7 +22,7 @@ export function Tabs({ movie, reviews }: IProps): JSX.Element {
     setActiveTab('Reviews');
   };
 
-  const singleActiveTab = () => {
+  const changeActiveTab = () => {
     switch (activeTab) {
       case 'Overview':
         return <MoviePageOverview movie={movie} />;
@@ -52,7 +52,7 @@ export function Tabs({ movie, reviews }: IProps): JSX.Element {
 
       </nav>
       <div>
-        {singleActiveTab()}
+        {changeActiveTab()}
       </div>
     </div >
   );
