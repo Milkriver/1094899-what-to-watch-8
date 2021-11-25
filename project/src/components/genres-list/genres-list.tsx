@@ -26,12 +26,12 @@ type ConnectedComponentProps = PropsFromRedux & IGenresListProps;
 
 function GenresList(props: ConnectedComponentProps): JSX.Element {
   const { movies, currentGenre, onChangeGenre } = props;
-  const genreList = Array.from(new Set(movies.map((movieElement) => movieElement.genre)));
-  const genreListMenu = ['All genres', ...genreList];
+  const genresList = Array.from(new Set(movies.map((movieElement) => movieElement.genre)));
+  const genresListMenu = ['All genres', ...genresList];
 
   return (
     <ul className="catalog__genres-list">
-      {genreListMenu.map((genre: string) => (
+      {genresListMenu.map((genre: string) => (
         <li className={currentGenre === genre ? 'catalog__genres-item catalog__genres-item--active' : 'catalog__genres-item'}
           key={genre}
         >

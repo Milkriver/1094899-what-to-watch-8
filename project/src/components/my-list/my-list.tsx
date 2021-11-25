@@ -36,7 +36,7 @@ function MyList({ favouriteMovies, onFetchFavouriteMovies }: PropsFromRedux): JS
       key={favouriteSingleCard.id}
       activeCardId={activeCardId}
       filmName={favouriteSingleCard.name}
-      videolink={favouriteSingleCard.videoLink}
+      videoLink={favouriteSingleCard.videoLink}
       posterSrc={favouriteSingleCard.posterImage}
       id={favouriteSingleCard.id}
       onMouseOver={setActiveMovieCardId}

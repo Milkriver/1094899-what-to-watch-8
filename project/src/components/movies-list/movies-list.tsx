@@ -37,7 +37,7 @@ function MoviesList(props: ConnectedComponentProps): JSX.Element {
           filmName={singleCard.name}
           id={singleCard.id}
           onMouseOver={handleActiveCard}
-          videolink={singleCard.previewVideoLink}
+          videoLink={singleCard.previewVideoLink}
           posterSrc={singleCard.previewImage}
         />
       ))}

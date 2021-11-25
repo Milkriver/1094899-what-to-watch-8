@@ -3,10 +3,10 @@ import { useRef, useEffect, useState } from 'react';
 
 type AudioPlayerProps = {
   posterSrc: string
-  videolink: string
+  videoLink: string
 }
 
-function VideoPlayer({ posterSrc, videolink }: AudioPlayerProps): JSX.Element | null {
+function VideoPlayer({ posterSrc, videoLink }: AudioPlayerProps): JSX.Element | null {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const [, setIsLoading] = useState(true);
@@ -44,7 +44,7 @@ function VideoPlayer({ posterSrc, videolink }: AudioPlayerProps): JSX.Element | 
         ref={videoRef}
         muted
         poster={posterSrc}
-      ><source src={videolink} type="video/mp4" />
+      ><source src={videoLink} type="video/mp4" />
       </video>
     ) : null
   );

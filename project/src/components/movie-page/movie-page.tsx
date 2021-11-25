@@ -108,7 +108,7 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
                     filmName={singleCard.name}
                     id={singleCard.id}
                     onMouseOver={handleActiveCard}
-                    videolink={singleCard.previewVideoLink}
+                    videoLink={singleCard.previewVideoLink}
                     posterSrc={singleCard.previewImage}
                   />
                 ))}

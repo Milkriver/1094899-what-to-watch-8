@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import { fetchPromoMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
@@ -49,7 +49,7 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie, authorizationStatus }:
     const limitCondition = moviesShowingLimit + 8 < limit ? moviesShowingLimit + 8 : limit;
     changeMoviesShowingLimit(limitCondition);
   };
-  const isButtonShowen = (moviesShowingLimit < limit);
+  const checkIsButtonShowen = (moviesShowingLimit < limit);
 
   return (
     <div>
@@ -82,10 +82,7 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie, authorizationStatus }:
                   </svg>
                   <span>Play</span>
                 </button>
-                {authorizationStatus === AuthorizationStatus.Auth
-                  ?
-                  <MyListButton currentMovie={promoMovie} />
-                  : ''}
+                <MyListButton currentMovie={promoMovie} />
               </div>
             </div>
           </div>
@@ -108,7 +105,7 @@ function MainPage({ cards, promoMovie, onFetchPromoMovie, authorizationStatus }:
           </div>
           <ShowMoreButton
             handleShowMoreButton={handleShowMoreButton}
-            isButtonShowen={isButtonShowen}
+            checkIsButtonShowen={checkIsButtonShowen}
           />
         </section>
         <Footer />
