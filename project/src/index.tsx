@@ -11,6 +11,8 @@ import { createAPI } from './services/api';
 import thunk from 'redux-thunk';
 import { requireAuthorization } from './store/action';
 import { AuthorizationStatus } from './const';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const api = createAPI(
   () => store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth)),
@@ -29,6 +31,7 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer />
       <App />
     </Provider>
   </React.StrictMode>,

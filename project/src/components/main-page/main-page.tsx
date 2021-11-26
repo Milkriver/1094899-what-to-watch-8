@@ -19,9 +19,8 @@ type IProps = {
 }
 
 
-const mapStateToProps = ({ promoMovie, authorizationStatus }: IState) => ({
+const mapStateToProps = ({ promoMovie }: IState) => ({
   promoMovie,
-  authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
@@ -38,7 +37,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & IProps;
 
 
-function MainPage({ cards, promoMovie, onFetchPromoMovie, onFetchActiveMovie, authorizationStatus }: ConnectedComponentProps): JSX.Element {
+function MainPage({ cards, promoMovie, onFetchPromoMovie, onFetchActiveMovie }: ConnectedComponentProps): JSX.Element {
   const history = useHistory();
 
   useEffect(() => {

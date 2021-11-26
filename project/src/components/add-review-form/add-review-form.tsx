@@ -1,11 +1,13 @@
 import React, { FormEvent, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
+import { toast } from 'react-toastify';
 import { AppRoute } from '../../const';
 import { addReviewAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IReviewRequest } from '../../types/reviews';
 import { IState } from '../../types/state';
+
 
 interface IProps {
   currentPageId: string,
@@ -43,12 +45,17 @@ function AddReviewForm({ onSubmitAddReviewButton, currentPageId }: ConnectedComp
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (rating !== null && reviewText !== null) {
-      if (reviewText.length > 50) {
+      if (reviewText.length >= 50) {
         onSubmitAddReviewButton({
           rating: Number(rating),
           comment: reviewText,
         }, id)
+          .then(() => toast.success('Отзыв отправлен'))
           .then(() => history.push(AppRoute.Film.replace(':id', id)));
+      } else {
+        if (reviewText.length < 50 || reviewText.length === 400) {
+          toast.error('Необходимая длина сообщения от 50 до 400 символов');
+        }
       }
     }
   };
@@ -58,15 +65,37 @@ function AddReviewForm({ onSubmitAddReviewButton, currentPageId }: ConnectedComp
         <div className="rating__stars">
           {ratingStars.map((star) => (
             <React.Fragment key={star}>
-              <input className="rating__input" id={`star-${star}`} type="radio" name="rating" value={star} checked={star === Number(rating)} onChange={handleRatingChange} />
-              <label className="rating__label" htmlFor={`star-${star}`} > Rating {star} </label>
+              <input
+                className="rating__input"
+                id={`star-${star}`}
+                type="radio"
+                name="rating"
+                value={star}
+                required
+                checked={star === Number(rating)}
+                onChange={handleRatingChange}
+              />
+              <label
+                className="rating__label"
+                htmlFor={`star-${star}`}
+              > Rating {star}
+              </label>
             </React.Fragment>
           ))}
         </div>
       </div>
 
       <div className="add-review__text">
-        <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" value={reviewText} maxLength={400} minLength={50} onChange={handleReviewFormChange}></textarea>
+        <textarea
+          className="add-review__textarea"
+          name="review-text" id="review-text"
+          placeholder="Review text"
+          value={reviewText}
+          maxLength={400}
+          required
+          onChange={handleReviewFormChange}
+        >
+        </textarea>
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post
           </button>
