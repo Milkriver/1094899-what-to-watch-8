@@ -1,69 +1,22 @@
 import { createAction } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../const';
-import { ActionType, ChangeGenreAction, LoadActiveMovieAction, LoadFavouriteMoviesAction, LoadMoviesAction, LoadPromoMovieAction, LoadReviewsAction, LoadSameGenreMovies, LoadSingleMovieAction, LoadUserDataAction } from '../types/actions';
+import { ActionType } from '../types/actions';
 import { AuthInfo } from '../types/auth-data';
 import { IMovie } from '../types/common';
 import { IReviewResponse } from '../types/reviews';
 
-export const changeGenre = (genre: string): ChangeGenreAction => ({
-  type: ActionType.ChangeGenre,
-  payload: genre,
-} as const);
-
-export const loadMovies = (movies: IMovie[]): LoadMoviesAction => ({
-  type: ActionType.LoadMovies,
-  payload: movies,
-} as const);
-
-export const loadSameGenreMovies = (sameMovies: IMovie[]): LoadSameGenreMovies => ({
-  type: ActionType.LoadSameGenreMovies,
-  payload: sameMovies,
-} as const);
-
-export const loadSingleMovie = (movie: IMovie): LoadSingleMovieAction => ({
-  type: ActionType.LoadSingleMovie,
-  payload: movie,
-} as const);
-
-export const loadActiveMovie = (activeMovie: IMovie): LoadActiveMovieAction => ({
-  type: ActionType.LoadActiveMovie,
-  payload: activeMovie,
-} as const);
-
-export const loadPromoMovie = (promoMovie: IMovie): LoadPromoMovieAction => ({
-  type: ActionType.LoadPromoMovie,
-  payload: promoMovie,
-} as const);
-
-export const loadUserData = (userData: AuthInfo): LoadUserDataAction => ({
-  type: ActionType.LoadUserData,
-  payload: userData,
-} as const);
-
-export const loadFavouriteMovies = (favouriteMovies: IMovie[]): LoadFavouriteMoviesAction => ({
-  type: ActionType.LoadFavouriteMovies,
-  payload: favouriteMovies,
-} as const);
-
+export const changeGenre = createAction(ActionType.ChangeGenre, (currentGenre: string) => ({ payload: { currentGenre } }));
+export const loadMovies = createAction(ActionType.LoadMovies, (movies: IMovie[]) => ({ payload: { movies } }));
+export const loadSameGenreMovies = createAction(ActionType.LoadSameGenreMovies, (sameMovies: IMovie[]) => ({ payload: { sameMovies } }));
+export const loadSingleMovie = createAction(ActionType.LoadSingleMovie, (movie: IMovie) => ({ payload: { movie } }));
+export const loadActiveMovie = createAction(ActionType.LoadActiveMovie, (activeMovie: IMovie) => ({ payload: { activeMovie } }));
+export const loadPromoMovie = createAction(ActionType.LoadPromoMovie, (promoMovie: IMovie) => ({ payload: { promoMovie } }));
+export const loadUserData = createAction(ActionType.LoadUserData, (userData: AuthInfo) => ({ payload: { userData } }));
+export const loadFavouriteMovies = createAction(ActionType.LoadFavouriteMovies, (favouriteMovies: IMovie[]) => ({ payload: { favouriteMovies } }));
 export const addFavoriteMovie = createAction(ActionType.AddFavoriteMovie);
-
 export const removeFavoriteMovie = createAction(ActionType.RemoveFavoriteMovie);
+export const loadReviews = createAction(ActionType.LoadReviews, (reviews: IReviewResponse[]) => ({ payload: { reviews } }));
+export const addReview = createAction(ActionType.AddReview, (review: IReviewResponse) => ({ payload: { review } }));
+export const requireAuthorization = createAction(ActionType.RequireAuthorization, (authStatus: AuthorizationStatus) => ({ payload: { authStatus } }));
+export const requireLogout = createAction(ActionType.RequireLogout);
 
-export const loadReviews = (reviews: IReviewResponse[]): LoadReviewsAction => ({
-  type: ActionType.LoadReviews,
-  payload: reviews,
-} as const);
-
-export const addReview = (review: IReviewResponse) => ({
-  type: ActionType.AddReview,
-  payload: review,
-} as const);
-
-export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
-  type: ActionType.RequireAuthorization,
-  payload: authStatus,
-} as const);
-
-export const requireLogout = () => ({
-  type: ActionType.RequireLogout,
-} as const);

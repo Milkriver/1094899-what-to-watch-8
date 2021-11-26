@@ -1,19 +1,26 @@
 import { AuthorizationStatus } from '../const';
+import { RootState } from '../store/root-reducer';
 import { AuthInfo } from './auth-data';
 import { IMovie } from './common';
 import { IReviewResponse } from './reviews';
-
-export interface IState {
+export interface MoviesData {
   currentGenre: string
   movies: IMovie[]
   isDataLoaded: boolean
   activeMovie:  IMovie,
-  authorizationStatus: AuthorizationStatus,
   movie: IMovie,
   sameMovies: IMovie[],
   favouriteMovies: IMovie[],
-  reviews: IReviewResponse[],
   promoMovie: IMovie,
+}
+
+export interface ReviewsData {
+  reviews: IReviewResponse[],
   review: IReviewResponse,
+}
+
+export interface UserProcess {
+  authorizationStatus: AuthorizationStatus,
   userData: AuthInfo,
 }
+export type IState = RootState;

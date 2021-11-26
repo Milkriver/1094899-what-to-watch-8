@@ -1,9 +1,6 @@
 import { AxiosInstance } from 'axios';
+import { Action } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { AuthorizationStatus } from '../const';
-import { AuthInfo } from './auth-data';
-import { IMovie } from './common';
-import { IReviewResponse } from './reviews';
 import { IState } from './state';
 
 export enum ActionType {
@@ -23,76 +20,6 @@ export enum ActionType {
   LoadUserData = 'user/loadUserData',
 }
 
-export type ChangeGenreAction = {
-  type: ActionType.ChangeGenre;
-  payload: string;
-};
+export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, IState, AxiosInstance, Action>;
 
-export type LoadMoviesAction = {
-  type: ActionType.LoadMovies;
-  payload: IMovie[];
-};
-
-export type LoadSingleMovieAction = {
-  type: ActionType.LoadSingleMovie;
-  payload: IMovie;
-};
-
-export type LoadActiveMovieAction = {
-  type: ActionType.LoadActiveMovie;
-  payload: IMovie;
-};
-
-export type LoadSameGenreMovies = {
-  type: ActionType.LoadSameGenreMovies;
-  payload: IMovie[];
-};
-
-export type LoadPromoMovieAction = {
-  type: ActionType.LoadPromoMovie;
-  payload: IMovie;
-};
-
-export type LoadUserDataAction = {
-  type: ActionType.LoadUserData;
-  payload: AuthInfo;
-};
-
-export type LoadFavouriteMoviesAction = {
-  type: ActionType.LoadFavouriteMovies,
-  payload: IMovie[],
-};
-
-export type AddFavoriteMovieAction = {
-  type: ActionType.AddFavoriteMovie,
-};
-
-export type RemoveFavoriteMovieAction = {
-  type: ActionType.RemoveFavoriteMovie,
-};
-
-export type LoadReviewsAction = {
-  type: ActionType.LoadReviews;
-  payload: IReviewResponse[];
-};
-
-export type AddReviewAction = {
-  type: ActionType.AddReview;
-  payload: IReviewResponse;
-};
-
-export type requireAuthorizationAction = {
-  type: ActionType.RequireAuthorization;
-  payload: AuthorizationStatus;
-};
-
-export type requireLogOutAction = {
-  type: ActionType.RequireLogout;
-};
-
-
-export type Actions = ChangeGenreAction | LoadMoviesAction | LoadSingleMovieAction | LoadActiveMovieAction | LoadUserDataAction | LoadFavouriteMoviesAction | AddFavoriteMovieAction | RemoveFavoriteMovieAction | AddReviewAction | LoadSameGenreMovies | LoadPromoMovieAction | LoadReviewsAction | requireAuthorizationAction | requireLogOutAction;
-
-export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, IState, AxiosInstance, Actions>;
-
-export type ThunkAppDispatch = ThunkDispatch<IState, AxiosInstance, Actions>;
+export type ThunkAppDispatch = ThunkDispatch<IState, AxiosInstance, Action>;
