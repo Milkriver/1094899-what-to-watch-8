@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoute } from '../../const';
-import { fetchPromoMovieAction } from '../../store/api-actions';
+import { fetchActiveMovieAction, fetchPromoMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
 import { IState } from '../../types/state';
@@ -28,6 +28,9 @@ const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onFetchPromoMovie() {
     dispatch(fetchPromoMovieAction());
   },
+  onFetchActiveMovie(cardId: string) {
+    dispatch(fetchActiveMovieAction(cardId));
+  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -35,12 +38,13 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type ConnectedComponentProps = PropsFromRedux & IProps;
 
 
-function MainPage({ cards, promoMovie, onFetchPromoMovie, authorizationStatus }: ConnectedComponentProps): JSX.Element {
+function MainPage({ cards, promoMovie, onFetchPromoMovie, onFetchActiveMovie, authorizationStatus }: ConnectedComponentProps): JSX.Element {
   const history = useHistory();
 
   useEffect(() => {
     onFetchPromoMovie();
-  }, [onFetchPromoMovie]);
+    onFetchActiveMovie(promoMovie.id.toString());
+  }, [onFetchPromoMovie, onFetchActiveMovie, promoMovie.id]);
 
   const [moviesShowingLimit, changeMoviesShowingLimit] = useState<number>(8);
 

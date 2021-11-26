@@ -1,19 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { IMovie } from '../../types/common';
+import { IState } from '../../types/state';
 import { getMovieTime } from '../../utils';
 import { Spinner } from '../spinner/spinner';
-interface IProps {
-  cards: IMovie[],
-  activeCard: IMovie;
-}
-export function Player({ cards, activeCard }: IProps): JSX.Element {
+
+const mapStateToProps = ({ activeMovie }: IState) => ({
+  activeMovie,
+});
+
+const connector = connect(mapStateToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function Player({ activeMovie }: PropsFromRedux): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const id = activeCard.id.toString();
+  const id = activeMovie.id.toString();
   useEffect(() => {
     if (videoRef.current !== null) {
       videoRef.current.onloadeddata = () => setIsLoading(false);
@@ -24,7 +29,7 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
         videoRef.current = null;
       }
     };
-  }, [activeCard.videoLink]);
+  }, [activeMovie.videoLink]);
 
   useEffect(() => {
     if (videoRef.current === null) {
@@ -44,9 +49,9 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
   return (
 
     < div className="player" >
-      {videoRef.current ? ' ': <Spinner/>}
+      {videoRef.current ? ' ' : <Spinner />}
       <video
-        src={activeCard.videoLink}
+        src={activeMovie.videoLink}
         ref={videoRef}
         className="player__video"
         onDurationChange={(evt) => setDuration(Math.round(evt.currentTarget.duration))}
@@ -84,7 +89,7 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
 
             {isPlaying ? <span>Play</span> : <span>Pause</span>}
           </button>
-          <div className="player__name">{activeCard.name}</div>
+          <div className="player__name">{activeMovie.name}</div>
 
           <button type="button" className="player__full-screen" onClick={() => videoRef.current?.requestFullscreen()}>
             <svg viewBox="0 0 27 27" width="27" height="27">
@@ -97,3 +102,6 @@ export function Player({ cards, activeCard }: IProps): JSX.Element {
     </ div>
   );
 }
+
+export { Player };
+export default connector(Player);

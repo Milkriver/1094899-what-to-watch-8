@@ -7,6 +7,7 @@ export interface IState {
   currentGenre: string
   movies: IMovie[]
   isDataLoaded: boolean
+  activeMovie:  IMovie,
   authorizationStatus: AuthorizationStatus,
   movie: IMovie,
   sameMovies: IMovie[],

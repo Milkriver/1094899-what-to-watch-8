@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignIn from '../sign-in/sign-in';
 import MyList from '../my-list/my-list';
 import MoviePage from '../movie-page/movie-page';
-import { Player } from '../player/player';
+import Player from '../player/player';
 import { Error404 } from '../error404/error404';
 import PrivateRoute from '../private-route/private-route';
 import { AppRoute } from '../../const';
@@ -52,7 +52,7 @@ function App(props: PropsFromRedux): JSX.Element {
           render={() => <AddReviewPage />}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Player}><Player cards={movies} activeCard={movies[0]}/></Route>
+        <Route exact path={AppRoute.Player}><Player/></Route>
         <Route><Error404 /></Route>
       </Switch>
     </BrowserRouter>

@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { fetchReviewsAction, fetchSameGenreMoviesAction, fetchSingleMovieAction } from '../../store/api-actions';
+import { fetchActiveMovieAction, fetchReviewsAction, fetchSameGenreMoviesAction, fetchSingleMovieAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
 import { Footer } from '../footer/footer';
@@ -29,13 +29,16 @@ const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onFetchReviews(cardId: string) {
     dispatch(fetchReviewsAction(cardId));
   },
+  onFetchActiveMovie(cardId: string) {
+    dispatch(fetchActiveMovieAction(cardId));
+  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 
-function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, onFetchReviews, movie: activeMovie, authorizationStatus }: PropsFromRedux): JSX.Element {
+function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, onFetchReviews, onFetchActiveMovie, movie: activeMovie, authorizationStatus }: PropsFromRedux): JSX.Element {
   const currentPageId = window.location.pathname.replace(AppRoute.Film.replace(':id', ''), '');
   const sameMovie = sameMovies.slice(0, 4);
   const [activeCardId, setActiveMovieCardId] = useState<number | undefined>();
@@ -46,7 +49,8 @@ function MoviePage({ sameMovies, reviews, onFetchMovie, onFetchSameGenreMovies, 
     onFetchMovie(currentPageId);
     onFetchSameGenreMovies(currentPageId);
     onFetchReviews(currentPageId);
-  }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies, currentPageId]);
+    onFetchActiveMovie(currentPageId);
+  }, [onFetchMovie, onFetchReviews, onFetchSameGenreMovies, onFetchActiveMovie, currentPageId]);
   return (
 
     <>
