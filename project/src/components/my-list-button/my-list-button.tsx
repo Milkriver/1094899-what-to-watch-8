@@ -37,7 +37,6 @@ function MyListButton({ currentMovie, authorizationStatus }: ConnectedComponentP
     if (authorizationStatus === AuthorizationStatus.Auth) {
       dispatch(changeFavoriteMovies(currentMovieId, favouriteMovieStatus ? FavoriteMoviesStatus.Remove : FavoriteMoviesStatus.Add));
       setFavouriteMovieStatus(!favouriteMovieStatus);
-      history.push(AppRoute.MyList);
     } else {
       history.push(AppRoute.SignIn);
     }
