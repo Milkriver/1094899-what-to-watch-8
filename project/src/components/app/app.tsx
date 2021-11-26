@@ -6,12 +6,12 @@ import MoviePage from '../movie-page/movie-page';
 import Player from '../player/player';
 import { Error404 } from '../error404/error404';
 import PrivateRoute from '../private-route/private-route';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { connect, ConnectedProps } from 'react-redux';
 import { Spinner } from '../spinner/spinner';
 import { IState } from '../../types/state';
 import AddReviewPage from '../add-review-page/add-review-page';
-
+import { Redirect } from 'react-router';
 
 const mapStateToProps = ({ isDataLoaded, movies, authorizationStatus }: IState) => ({
   movies,
@@ -24,7 +24,7 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function App(props: PropsFromRedux): JSX.Element {
-  const { isDataLoaded, movies } = props;
+  const { isDataLoaded, movies, authorizationStatus } = props;
   if (!isDataLoaded) {
     return (
       <Spinner />
@@ -37,7 +37,7 @@ function App(props: PropsFromRedux): JSX.Element {
         <Route exact path={AppRoute.Main} >
           <MainPage cards={movies} />
         </Route>
-        <Route exact path={AppRoute.SignIn}><SignIn /></Route>
+        <Route exact path={AppRoute.SignIn}>  {authorizationStatus === AuthorizationStatus.Auth ? <Redirect to='/main' /> : <SignIn />}</Route>
         <PrivateRoute
           exact
           path={AppRoute.MyList}
@@ -52,7 +52,7 @@ function App(props: PropsFromRedux): JSX.Element {
           render={() => <AddReviewPage />}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Player}><Player/></Route>
+        <Route exact path={AppRoute.Player}><Player /></Route>
         <Route><Error404 /></Route>
       </Switch>
     </BrowserRouter>

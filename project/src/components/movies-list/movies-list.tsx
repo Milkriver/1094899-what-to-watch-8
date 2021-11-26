@@ -1,6 +1,6 @@
 import { MovieCardElement } from './../movie-card-element/movie-card-element';
 import { IMovie } from '../../types/common';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { IState } from '../../types/state';
 
@@ -27,7 +27,10 @@ function MoviesList(props: ConnectedComponentProps): JSX.Element {
     setActiveMovieCardId(id);
   };
   const filtredCards = cards.filter((card) => card.genre === currentGenre || currentGenre === 'All genres');
-  changeLimit(filtredCards.length);
+  useEffect(() => {
+    changeLimit(filtredCards.length);
+  }, [filtredCards.length, changeLimit]);
+
   return (
     <>
       {filtredCards.slice(0, moviesShowingLimit).map((singleCard) => (
