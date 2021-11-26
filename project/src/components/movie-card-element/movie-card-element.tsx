@@ -21,13 +21,13 @@ export function MovieCardElement({ activeCardId, onMouseOver, filmName, posterSr
     history.push(url);
   };
   return (
-    <article className="small-film-card catalog__films-card" onClick={onClick} onMouseEnter={() => onMouseOver(id)} onMouseOut={() => onMouseOver(undefined)}>
-      <div className="small-film-card__image" >
+    <article className="small-film-card catalog__films-card" >
+      <div className="small-film-card__image" onClick={onClick} onMouseEnter={() => onMouseOver(id)} onMouseOut={() => onMouseOver(undefined)}>
         {activeCardId === id ? <VideoPlayer posterSrc={posterSrc} videoLink={videoLink} /> :
           <img src={posterSrc} alt='' width="280" height="175" />};
       </div>
-      <h3 className="small-film-card__title">
-        <div className="small-film-card__link">{filmName}</div>
+      <h3 className="small-film-card__title" >
+        <div className="small-film-card__link" onClick={onClick} onMouseEnter={() => onMouseOver(id)} onMouseOut={() => onMouseOver(undefined)}>{filmName}</div>
       </h3>
     </article>
   );
