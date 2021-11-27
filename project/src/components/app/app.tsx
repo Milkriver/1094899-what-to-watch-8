@@ -12,11 +12,13 @@ import { Spinner } from '../spinner/spinner';
 import { IState } from '../../types/state';
 import AddReviewPage from '../add-review-page/add-review-page';
 import { Redirect } from 'react-router';
+import { getLoadedMovies } from '../../store/movies-data/selectors';
+import { getRequiredAuthorizationData } from '../../store/user-process/selectors';
 
-const mapStateToProps = ({ isDataLoaded, movies, authorizationStatus }: IState) => ({
-  movies,
-  isDataLoaded,
-  authorizationStatus,
+const mapStateToProps = (state: IState) => ({
+  movies:getLoadedMovies(state),
+  isDataLoaded: getLoadedMovies(state),
+  authorizationStatus: getRequiredAuthorizationData(state),
 });
 
 const connector = connect(mapStateToProps);

@@ -3,6 +3,7 @@ import { IMovie } from '../../types/common';
 import { useEffect, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { IState } from '../../types/state';
+import { getCurrentGenre } from '../../store/movies-data/selectors';
 
 
 interface IProps {
@@ -11,8 +12,8 @@ interface IProps {
   moviesShowingLimit: number,
 }
 
-const mapStateToProps = ({ currentGenre }: IState) => ({
-  currentGenre,
+const mapStateToProps = (state: IState) => ({
+  currentGenre: getCurrentGenre(state),
 });
 
 const connector = connect(mapStateToProps);

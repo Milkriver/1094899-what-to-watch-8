@@ -1,7 +1,7 @@
 import { connect, ConnectedProps } from 'react-redux';
-import { Dispatch } from 'redux';
 import { changeGenre } from '../../store/action';
-import { Actions } from '../../types/actions';
+import { getCurrentGenre } from '../../store/movies-data/selectors';
+import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
 import { IState } from '../../types/state';
 
@@ -9,11 +9,11 @@ interface IGenresListProps {
   movies: IMovie[],
 }
 
-const mapStateToProps = ({ currentGenre }: IState) => ({
-  currentGenre,
+const mapStateToProps = (state: IState) => ({
+  currentGenre: getCurrentGenre(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
   onChangeGenre(genre: string) {
     dispatch(changeGenre(genre));
   },

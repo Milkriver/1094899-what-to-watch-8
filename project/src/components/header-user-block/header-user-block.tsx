@@ -5,11 +5,12 @@ import { logOutAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
 import { useHistory } from 'react-router';
+import { getLoadedUserData, getRequiredAuthorizationData } from '../../store/user-process/selectors';
 
 
-const mapStateToProps = ({ authorizationStatus, userData }: IState) => ({
-  authorizationStatus,
-  userData,
+const mapStateToProps = (state: IState) => ({
+  authorizationStatus: getRequiredAuthorizationData(state),
+  userData: getLoadedUserData(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

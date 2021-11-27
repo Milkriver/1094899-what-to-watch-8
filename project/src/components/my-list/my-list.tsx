@@ -8,10 +8,11 @@ import { IState } from '../../types/state';
 import { ThunkAppDispatch } from '../../types/actions';
 import { fetchFavoriteMovies } from '../../store/api-actions';
 import { connect, ConnectedProps } from 'react-redux';
+import { getFavouriteMovies } from '../../store/movies-data/selectors';
 
 
-const mapStateToProps = ({ favouriteMovies }: IState) => ({
-  favouriteMovies,
+const mapStateToProps = (state: IState) => ({
+  favouriteMovies: getFavouriteMovies(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

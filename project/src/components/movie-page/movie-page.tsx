@@ -11,12 +11,15 @@ import { Header } from '../header/header';
 import { MovieCardElement } from '../movie-card-element/movie-card-element';
 import { Tabs } from '../tabs/tabs';
 import MyListButton from '../my-list-button/my-list-button';
+import { getSameGenreMovies, getSingleMovie } from '../../store/movies-data/selectors';
+import { getLoadedReviews } from '../../store/reviews-data/selectors';
+import { getRequiredAuthorizationData } from '../../store/user-process/selectors';
 
-const mapStateToProps = ({ movie, sameMovies, reviews, authorizationStatus }: IState) => ({
-  movie,
-  sameMovies,
-  reviews,
-  authorizationStatus,
+const mapStateToProps = (state: IState) => ({
+  movie: getSingleMovie(state),
+  sameMovies: getSameGenreMovies(state),
+  reviews: getLoadedReviews(state),
+  authorizationStatus: getRequiredAuthorizationData(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

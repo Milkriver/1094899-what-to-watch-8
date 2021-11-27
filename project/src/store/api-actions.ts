@@ -2,7 +2,7 @@ import { AuthInfo } from './../types/auth-data';
 import { IMovie, IMovieResponse } from './../types/common';
 import { addFavoriteMovie, addReview, loadActiveMovie, loadFavouriteMovies, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, loadUserData, removeFavoriteMovie, requireAuthorization, requireLogout } from './action';
 import { APIRoute, AuthorizationStatus, FavoriteMoviesStatus } from '../const';
-import { requireAuthorizationAction, ThunkActionResult } from '../types/actions';
+import { ThunkActionResult } from '../types/actions';
 import { AuthData } from '../types/auth-data';
 import { dropToken, saveToken } from '../services/token';
 import { IReviewRequest, IReviewResponse } from '../types/reviews';
@@ -70,7 +70,7 @@ export const fetchReviewsAction = (filmId: string): ThunkActionResult =>
 
 export const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    await api.get<requireAuthorizationAction>(APIRoute.Login)
+    await api.get(APIRoute.Login)
       .then((resp) => {
         const auth = resp.data.payload;
         dispatch(requireAuthorization(auth));

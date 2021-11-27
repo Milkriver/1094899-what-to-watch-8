@@ -3,6 +3,7 @@ import { connect, ConnectedProps, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoute, AuthorizationStatus, FavoriteMoviesStatus } from '../../const';
 import { changeFavoriteMovies, fetchFavoriteMovies } from '../../store/api-actions';
+import { getRequiredAuthorizationData } from '../../store/user-process/selectors';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
 import { IState } from '../../types/state';
@@ -11,9 +12,8 @@ type IProps = {
   currentMovie: IMovie,
 }
 
-
-const mapStateToProps = ({ authorizationStatus }: IState) => ({
-  authorizationStatus,
+const mapStateToProps = (state: IState) => ({
+  authorizationStatus: getRequiredAuthorizationData(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

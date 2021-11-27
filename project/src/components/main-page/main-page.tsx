@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AppRoute } from '../../const';
 import { fetchActiveMovieAction, fetchPromoMovieAction } from '../../store/api-actions';
+import { getPromoMovie } from '../../store/movies-data/selectors';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IMovie } from '../../types/common';
 import { IState } from '../../types/state';
@@ -19,8 +20,8 @@ type IProps = {
 }
 
 
-const mapStateToProps = ({ promoMovie }: IState) => ({
-  promoMovie,
+const mapStateToProps = (state: IState) => ({
+  promoMovie: getPromoMovie(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

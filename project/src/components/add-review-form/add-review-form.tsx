@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
 import { AppRoute } from '../../const';
 import { addReviewAction } from '../../store/api-actions';
+import { getAddedReview } from '../../store/reviews-data/selectors';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IReviewRequest } from '../../types/reviews';
 import { IState } from '../../types/state';
@@ -13,8 +14,8 @@ interface IProps {
   currentPageId: string,
 }
 
-const mapStateToProps = ({ review }: IState) => ({
-  review,
+const mapStateToProps = (state: IState) => ({
+  review: getAddedReview(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

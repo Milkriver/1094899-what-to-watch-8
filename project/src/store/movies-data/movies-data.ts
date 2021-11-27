@@ -31,19 +31,19 @@ const moviesData = createReducer(initialState, (builder) => {
     })
     .addCase(loadActiveMovie, (state, action) => {
       const { activeMovie } = action.payload;
-      state.movie = activeMovie;
+      state.activeMovie = activeMovie;
     })
     .addCase(loadSameGenreMovies, (state, action) => {
       const { sameMovies } = action.payload;
-      state.movies = sameMovies;
+      state.sameMovies = sameMovies;
     })
     .addCase(loadPromoMovie, (state, action) => {
       const { promoMovie } = action.payload;
-      state.movie = promoMovie;
+      state.promoMovie = promoMovie;
     })
     .addCase(loadFavouriteMovies, (state, action) => {
       const { favouriteMovies } = action.payload;
-      state.movies = favouriteMovies;
+      state.favouriteMovies = favouriteMovies;
     });
 });
 export {moviesData};

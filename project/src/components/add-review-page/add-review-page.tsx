@@ -3,14 +3,15 @@ import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { fetchSingleMovieAction } from '../../store/api-actions';
+import { getSingleMovie } from '../../store/movies-data/selectors';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
 import AddReviewForm from '../add-review-form/add-review-form';
 import { HeaderLogo } from '../header-logo/header-logo';
 import HeaderUserBlock from '../header-user-block/header-user-block';
 
-const mapStateToProps = ({ movie }: IState) => ({
-  movie,
+const mapStateToProps = (state: IState) => ({
+  movie: getSingleMovie(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({

@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { getActiveMovie } from '../../store/movies-data/selectors';
 import { IState } from '../../types/state';
 import { getMovieTime } from '../../utils';
 import { Spinner } from '../spinner/spinner';
 
-const mapStateToProps = ({ activeMovie }: IState) => ({
-  activeMovie,
+const mapStateToProps = (state: IState) => ({
+  activeMovie: getActiveMovie(state),
 });
 
 const connector = connect(mapStateToProps);
