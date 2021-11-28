@@ -68,7 +68,7 @@ exports[`Component: MoviesList should render correctly 1`] = `
             <img
               alt=""
               height="175"
-              src=""
+              src="posterImage2"
               width="280"
             />
             ;
@@ -78,7 +78,9 @@ exports[`Component: MoviesList should render correctly 1`] = `
           >
             <div
               class="small-film-card__link"
-            />
+            >
+              name2
+            </div>
           </h3>
         </article>
         <article
@@ -90,7 +92,7 @@ exports[`Component: MoviesList should render correctly 1`] = `
             <img
               alt=""
               height="175"
-              src=""
+              src="posterImage1"
               width="280"
             />
             ;
@@ -100,7 +102,9 @@ exports[`Component: MoviesList should render correctly 1`] = `
           >
             <div
               class="small-film-card__link"
-            />
+            >
+              name1
+            </div>
           </h3>
         </article>
       </div>
@@ -141,6 +145,5 @@ exports[`Component: MoviesList should render correctly 1`] = `
       </div>
     </footer>
   </div>
-  ;
 </div>
 `;

@@ -3,7 +3,7 @@ import { AuthorizationStatus } from '../../const';
 import { ActionType } from '../../types/actions';
 
 
-const DEFAULT_USER = {
+const mockInitialUser = {
   id: 1, email: '', name: '', avatarUrl: '', token: '',
 };
 describe('Reducer: user', () => {
@@ -12,14 +12,14 @@ describe('Reducer: user', () => {
       .toEqual(
         {
           authorizationStatus: AuthorizationStatus.Unknown,
-          userData: DEFAULT_USER,
+          userData: mockInitialUser,
         });
   });
 
   it('should update authorizationStatus to "AUTH"', () => {
     const state = {
       authorizationStatus: AuthorizationStatus.NoAuth,
-      userData: DEFAULT_USER,
+      userData: mockInitialUser,
     };
     const requiredAuthorizationAction = {
       type: ActionType.RequireAuthorization,
@@ -30,7 +30,7 @@ describe('Reducer: user', () => {
     expect(userProcess(state, requiredAuthorizationAction))
       .toEqual({
         authorizationStatus: AuthorizationStatus.Auth,
-        userData: DEFAULT_USER,
+        userData: mockInitialUser,
       });
 
   });
@@ -38,7 +38,7 @@ describe('Reducer: user', () => {
   it('should update authorizationStatus to "NO_AUTH"', () => {
     const state = {
       authorizationStatus: AuthorizationStatus.NoAuth,
-      userData: DEFAULT_USER,
+      userData: mockInitialUser,
     };
 
     const requiredAuthorizationAction = {
@@ -50,7 +50,7 @@ describe('Reducer: user', () => {
     const actualResult = userProcess(state, requiredAuthorizationAction);
     const expectedResult = {
       authorizationStatus: AuthorizationStatus.NoAuth,
-      userData: DEFAULT_USER,
+      userData: mockInitialUser,
     };
     expect(actualResult).toEqual(expectedResult);
   });
@@ -58,7 +58,7 @@ describe('Reducer: user', () => {
   it('should logout and update authorizationStatus to "NO_AUTH"', () => {
     const state = {
       authorizationStatus: AuthorizationStatus.Auth,
-      userData: DEFAULT_USER,
+      userData: mockInitialUser,
     };
     const requireLogoutAction = {
       type: ActionType.RequireLogout,
@@ -69,7 +69,7 @@ describe('Reducer: user', () => {
     expect(userProcess(state, requireLogoutAction))
       .toEqual({
         authorizationStatus: AuthorizationStatus.NoAuth,
-        userData: DEFAULT_USER,
+        userData: mockInitialUser,
       });
   });
 });

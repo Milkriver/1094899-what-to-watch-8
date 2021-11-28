@@ -19,6 +19,5 @@ exports[`Component: MyListButton should render correctly 1`] = `
       My list
     </span>
   </button>
-  ;
 </div>
 `;

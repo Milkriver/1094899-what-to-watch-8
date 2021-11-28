@@ -18,7 +18,9 @@ exports[`Component: MoviePageDetails should render correctly 1`] = `
         </strong>
         <span
           class="film-card__details-value"
-        />
+        >
+          director1
+        </span>
       </p>
       <p
         class="film-card__details-item"
@@ -33,13 +35,13 @@ exports[`Component: MoviePageDetails should render correctly 1`] = `
         >
           <span>
             <span>
-              1
+              actor1
             </span>
             <br />
           </span>
           <span>
             <span>
-              2
+              actor2
             </span>
             <br />
           </span>
@@ -74,7 +76,9 @@ exports[`Component: MoviePageDetails should render correctly 1`] = `
         </strong>
         <span
           class="film-card__details-value"
-        />
+        >
+          Comedy
+        </span>
       </p>
       <p
         class="film-card__details-item"
@@ -92,6 +96,5 @@ exports[`Component: MoviePageDetails should render correctly 1`] = `
       </p>
     </div>
   </div>
-  ;
 </div>
 `;

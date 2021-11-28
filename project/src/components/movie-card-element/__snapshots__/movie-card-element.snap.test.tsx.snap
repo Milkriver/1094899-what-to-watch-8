@@ -26,6 +26,5 @@ exports[`Component: MovieCardElement should render correctly 1`] = `
       </div>
     </h3>
   </article>
-  ;
 </div>
 `;

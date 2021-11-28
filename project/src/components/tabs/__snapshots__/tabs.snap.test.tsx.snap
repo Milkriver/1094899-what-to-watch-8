@@ -67,13 +67,15 @@ exports[`Component: Tabs should render correctly 1`] = `
       <div
         class="film-card__text"
       >
-        <p />
+        <p>
+          description1
+        </p>
         <p
           class="film-card__director"
         >
           <strong>
             Director: 
-            
+            director1
           </strong>
         </p>
         <p
@@ -81,13 +83,12 @@ exports[`Component: Tabs should render correctly 1`] = `
         >
           <strong>
             Starring: 
-            
-            
+            actor1
+            actor2
           </strong>
         </p>
       </div>
     </div>
   </div>
-  ;
 </div>
 `;

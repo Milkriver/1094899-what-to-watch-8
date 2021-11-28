@@ -1,40 +1,13 @@
 import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router';
-import { Provider } from 'react-redux';
 import { MoviePageReviews } from './movie-page-reviews';
-import { configureMockStore } from '@jedmao/redux-mock-store';
+import { IReviewResponse } from '../../types/reviews';
 
 
-const MOCK_REVIEWS = [{ id: 1, user: { id: 1, name: '' }, rating: 5, comment: '', date: '' }];
+const mockReviews: IReviewResponse[] = [{ id: 1, user: { id: 1, name: 'reviewer' }, rating: 5, comment: 'cool', date: '2021-01-01T23:59:59' }];
+
 describe('Component: MoviePageReviews', () => {
-  const mockStore = configureMockStore();
-
-  const store = mockStore({
-    MOVIES: {
-      movie: {
-        id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '',
-        backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''],
-        runTime: 1, genre: '', released: 1, isFavorite: true,
-      },
-    },
-    USER: {},
-    REVIEWS: {},
-  });
-
-  store.dispatch = jest.fn();
-
   test('should render correctly', () => {
-    const history = createMemoryHistory();
-    const page = (
-      <Provider store={store}>
-        <Router history={history}>
-          <MoviePageReviews
-            reviews={MOCK_REVIEWS}
-          />;
-        </Router>
-      </Provider>
-    );
+    const page = <MoviePageReviews reviews={mockReviews}/>;
     const { container } = render(page);
     expect(container).toMatchSnapshot();
   });

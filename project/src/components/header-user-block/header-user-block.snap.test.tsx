@@ -4,7 +4,7 @@ import { Router } from 'react-router';
 import { AuthorizationStatus } from '../../const';
 import { HeaderUserBlock } from './header-user-block';
 
-const MOCK_AUTH_INFO = {
+const mockAuthInfo = {
   id: 1,
   email: '',
   name: '',
@@ -18,7 +18,7 @@ describe('Component: HeaderUserBlock', () => {
     const history = createMemoryHistory();
     const page = (
       <Router history={history}>
-        <HeaderUserBlock authorizationStatus= {AuthorizationStatus.Auth} userData= {MOCK_AUTH_INFO} onSubmit={mockFn}/>;
+        <HeaderUserBlock authorizationStatus= {AuthorizationStatus.Auth} userData= {mockAuthInfo} onSubmit={mockFn}/>;
       </Router>
     );
     const { container } = render(page);

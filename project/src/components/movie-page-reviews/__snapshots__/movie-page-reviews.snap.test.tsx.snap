@@ -16,18 +16,22 @@ exports[`Component: MoviePageReviews should render correctly 1`] = `
         >
           <p
             class="review__text"
-          />
+          >
+            cool
+          </p>
           <footer
             class="review__details"
           >
             <cite
               class="review__author"
-            />
+            >
+              reviewer
+            </cite>
             <time
               class="review__date"
               datetime="2016-12-24"
             >
-              undefined NaN, NaN
+              January 1, 2021
             </time>
           </footer>
         </blockquote>
@@ -39,6 +43,5 @@ exports[`Component: MoviePageReviews should render correctly 1`] = `
       </div>
     </div>
   </div>
-  ;
 </div>
 `;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { IMovie } from '../../types/common';
 
 interface IProps {

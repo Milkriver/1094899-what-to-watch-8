@@ -12,7 +12,7 @@ exports[`Component: Player should render correctly 1`] = `
     </div>
     <video
       class="player__video"
-      src=""
+      src="videoLink1"
     />
     <a
       href="/films/1"
@@ -73,7 +73,9 @@ exports[`Component: Player should render correctly 1`] = `
         </button>
         <div
           class="player__name"
-        />
+        >
+          name1
+        </div>
         <button
           class="player__full-screen"
           type="button"

@@ -10,8 +10,8 @@ exports[`Component: MainPage should render correctly 1`] = `
         class="film-card__bg"
       >
         <img
-          alt=""
-          src=""
+          alt="name1"
+          src="backgroundImage1"
         />
       </div>
       <h1
@@ -67,9 +67,9 @@ exports[`Component: MainPage should render correctly 1`] = `
             class="film-card__poster"
           >
             <img
-              alt=""
+              alt="name1"
               height="327"
-              src=""
+              src="posterImage1"
               width="218"
             />
           </div>
@@ -78,13 +78,17 @@ exports[`Component: MainPage should render correctly 1`] = `
           >
             <h2
               class="film-card__title"
-            />
+            >
+              name1
+            </h2>
             <p
               class="film-card__meta"
             >
               <span
                 class="film-card__genre"
-              />
+              >
+                Comedy
+              </span>
               <span
                 class="film-card__year"
               >
@@ -161,7 +165,9 @@ exports[`Component: MainPage should render correctly 1`] = `
           >
             <div
               class="catalog__genres-link "
-            />
+            >
+              Comedy
+            </div>
           </li>
         </ul>
         <div

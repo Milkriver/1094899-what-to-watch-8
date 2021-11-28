@@ -1,41 +1,18 @@
 import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router';
-import { Provider } from 'react-redux';
 import { IMovie } from '../../types/common';
 import { MoviePageOverview } from './movie-page-overview';
-import { configureMockStore } from '@jedmao/redux-mock-store';
 
 
-const MOCK_MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['1', '2'], runTime: 1, genre: '', released: 1, isFavorite: true };
+const mockMovie1: IMovie = {
+  id: 1, name: 'name1', posterImage: 'posterImage1', previewImage: 'previewImage1', backgroundImage: 'backgroundImage1',
+  backgroundColor: 'black', videoLink: 'videoLink1', previewVideoLink: 'previewVideoLink1',
+  description: 'description1', rating: 1, scoresCount: 1, director: 'director1',
+  starring: ['actor1', 'actor2'], runTime: 1, genre: 'Comedy', released: 1, isFavorite: true,
+};
+
 describe('Component: MoviePageOverview', () => {
-  const mockStore = configureMockStore();
-
-  const store = mockStore({
-    MOVIES: {
-      movie: {
-        id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '',
-        backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''],
-        runTime: 1, genre: '', released: 1, isFavorite: true,
-      },
-    },
-    USER: {},
-    REVIEWS: {},
-  });
-
-  store.dispatch = jest.fn();
-
   test('should render correctly', () => {
-    const history = createMemoryHistory();
-    const page = (
-      <Provider store={store}>
-        <Router history={history}>
-          <MoviePageOverview
-            movie={MOCK_MOVIE_1}
-          />;
-        </Router>
-      </Provider>
-    );
+    const page = <MoviePageOverview movie={mockMovie1}/>;
     const { container } = render(page);
     expect(container).toMatchSnapshot();
   });

@@ -12,6 +12,5 @@ exports[`Component: ShowMoreButton should render correctly 1`] = `
       Show more
     </button>
   </div>
-  ;
 </div>
 `;

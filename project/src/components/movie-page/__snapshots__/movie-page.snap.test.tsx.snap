@@ -4,6 +4,7 @@ exports[`Component: MoviePage should render correctly 1`] = `
 <div>
   <section
     class="film-card film-card--full"
+    style="background-color: black;"
   >
     <div
       class="film-card__hero"
@@ -12,8 +13,8 @@ exports[`Component: MoviePage should render correctly 1`] = `
         class="film-card__bg"
       >
         <img
-          alt=""
-          src=""
+          alt="name1"
+          src="backgroundImage1"
         />
       </div>
       <h1
@@ -67,13 +68,17 @@ exports[`Component: MoviePage should render correctly 1`] = `
         >
           <h2
             class="film-card__title"
-          />
+          >
+            name1
+          </h2>
           <p
             class="film-card__meta"
           >
             <span
               class="film-card__genre"
-            />
+            >
+              Comedy
+            </span>
             <span
               class="film-card__year"
             >
@@ -137,9 +142,9 @@ exports[`Component: MoviePage should render correctly 1`] = `
           class="film-card__poster film-card__poster--big"
         >
           <img
-            alt=""
+            alt="name1"
             height="327"
-            src=""
+            src="posterImage1"
             width="218"
           />
         </div>
@@ -208,13 +213,15 @@ exports[`Component: MoviePage should render correctly 1`] = `
             <div
               class="film-card__text"
             >
-              <p />
+              <p>
+                description1
+              </p>
               <p
                 class="film-card__director"
               >
                 <strong>
                   Director: 
-                  
+                  director1
                 </strong>
               </p>
               <p
@@ -222,8 +229,8 @@ exports[`Component: MoviePage should render correctly 1`] = `
               >
                 <strong>
                   Starring: 
-                  
-                  
+                  actor1
+                  actor2
                 </strong>
               </p>
             </div>
@@ -255,7 +262,7 @@ exports[`Component: MoviePage should render correctly 1`] = `
             <img
               alt=""
               height="175"
-              src=""
+              src="previewImage2"
               width="280"
             />
             ;
@@ -265,7 +272,9 @@ exports[`Component: MoviePage should render correctly 1`] = `
           >
             <div
               class="small-film-card__link"
-            />
+            >
+              name2
+            </div>
           </h3>
         </article>
         <article
@@ -277,7 +286,7 @@ exports[`Component: MoviePage should render correctly 1`] = `
             <img
               alt=""
               height="175"
-              src=""
+              src="previewImage1"
               width="280"
             />
             ;
@@ -287,7 +296,9 @@ exports[`Component: MoviePage should render correctly 1`] = `
           >
             <div
               class="small-film-card__link"
-            />
+            >
+              name1
+            </div>
           </h3>
         </article>
       </div>

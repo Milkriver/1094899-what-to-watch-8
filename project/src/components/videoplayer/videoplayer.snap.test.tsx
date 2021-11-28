@@ -15,7 +15,6 @@ describe('Component: VideoPlayer', () => {
       <VideoPlayer
         posterSrc='posterSrc'
         videoLink='videoLink'
-
       />
     );
 

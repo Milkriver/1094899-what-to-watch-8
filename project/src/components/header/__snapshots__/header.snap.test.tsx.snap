@@ -40,6 +40,5 @@ exports[`Component: Header should render correctly 1`] = `
       </a>
     </div>
   </header>
-  ;
 </div>
 `;

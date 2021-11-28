@@ -188,6 +188,5 @@ exports[`Component: AddReviewForm should render correctly 1`] = `
       </div>
     </div>
   </form>
-  ;
 </div>
 `;

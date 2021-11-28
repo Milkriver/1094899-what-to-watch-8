@@ -6,21 +6,28 @@ import { MainPage } from './main-page';
 import { IMovie } from '../../types/common';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 
-const MOCK_MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''], runTime: 1, genre: '', released: 1, isFavorite: true };
-const MOCK_MOVIE_2: IMovie = { id: 2, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 2, scoresCount: 2, director: '', starring: ['', ''], runTime: 1, genre: '', released: 2, isFavorite: false };
-const MOCK_MOVIES_ARRAY: IMovie[] = [MOCK_MOVIE_2, MOCK_MOVIE_1];
+const mockMovie1: IMovie = {
+  id: 1, name: 'name1', posterImage: 'posterImage1', previewImage: 'previewImage1', backgroundImage: 'backgroundImage1',
+  backgroundColor: 'black', videoLink: 'videoLink1', previewVideoLink: 'previewVideoLink1',
+  description: 'description1', rating: 1, scoresCount: 1, director: 'director1',
+  starring: ['actor1', 'actor2'], runTime: 1, genre: 'Comedy', released: 1, isFavorite: true,
+};
+
+const mockMovie2: IMovie = {
+  id: 2, name: 'name2', posterImage: 'posterImage2', previewImage: 'previewImage2', backgroundImage: 'backgroundImage2',
+  backgroundColor: 'black', videoLink: 'videoLink2', previewVideoLink: 'previewVideoLink2',
+  description: 'description2', rating: 2, scoresCount: 2, director: 'director2',
+  starring: ['actor1', 'actor2'], runTime: 2, genre: 'Comedy', released: 2, isFavorite: true,
+};
+
+const mockMovies: IMovie[] = [mockMovie2, mockMovie1];
 const mockFn = () => Promise.resolve();
+
 describe('Component: MainPage', () => {
   const mockStore = configureMockStore();
 
   const store = mockStore({
-    MOVIES: {
-      movie: {
-        id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '',
-        backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''],
-        runTime: 1, genre: '', released: 1, isFavorite: true,
-      },
-    },
+    MOVIES: {},
     USER: {},
     REVIEWS: {},
   });
@@ -32,7 +39,7 @@ describe('Component: MainPage', () => {
     const page = (
       <Provider store={store}>
         <Router history={history}>
-          <MainPage cards={MOCK_MOVIES_ARRAY} promoMovie={MOCK_MOVIE_1} onFetchPromoMovie={mockFn} onFetchActiveMovie={mockFn} />;
+          <MainPage cards={mockMovies} promoMovie={mockMovie1} onFetchPromoMovie={mockFn} onFetchActiveMovie={mockFn} />;
         </Router>
       </Provider>
     );
