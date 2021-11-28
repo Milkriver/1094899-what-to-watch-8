@@ -36,8 +36,6 @@ describe('Reducer: user', () => {
   });
 
   it('should update authorizationStatus to "NO_AUTH"', () => {
-    //1 prepare
-    // arrange
     const state = {
       authorizationStatus: AuthorizationStatus.NoAuth,
       userData: DEFAULT_USER,
@@ -49,19 +47,11 @@ describe('Reducer: user', () => {
         authorizationStatus: AuthorizationStatus.NoAuth,
       },
     };
-
-    //2 actual result
-    // act
     const actualResult = userProcess(state, requiredAuthorizationAction);
-
-    // assert
-    //3.1 assert prepare -  expectedResult
     const expectedResult = {
       authorizationStatus: AuthorizationStatus.NoAuth,
       userData: DEFAULT_USER,
     };
-
-    //3.2 assert execute сравнить что получилось с эталоном
     expect(actualResult).toEqual(expectedResult);
   });
 
