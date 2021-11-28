@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { logOutAction } from '../../store/api-actions';
 import { ThunkAppDispatch } from '../../types/actions';
 import { IState } from '../../types/state';
@@ -28,7 +28,7 @@ function HeaderUserBlock(props: PropsFromRedux): JSX.Element {
   const history = useHistory();
   return (
 
-    (authorizationStatus === 'AUTH') ?
+    (authorizationStatus === AuthorizationStatus.Auth) ?
 
       < ul className="user-block">
         <li className="user-block__item">

@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { AuthInfo } from './../types/auth-data';
 import { IMovie, IMovieResponse } from './../types/common';
 import { addFavoriteMovie, addReview, loadActiveMovie, loadFavouriteMovies, loadMovies, loadPromoMovie, loadReviews, loadSameGenreMovies, loadSingleMovie, loadUserData, removeFavoriteMovie, requireAuthorization, requireLogout } from './action';
@@ -8,6 +9,7 @@ import { dropToken, saveToken } from '../services/token';
 import { IReviewRequest, IReviewResponse } from '../types/reviews';
 import { adaptMovie } from '../components/adaptor';
 
+const AUTH_FAIL_MESSAGE = 'Не забудьте авторизоваться';
 
 export const fetchMovieAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
@@ -70,11 +72,13 @@ export const fetchReviewsAction = (filmId: string): ThunkActionResult =>
 
 export const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
-    await api.get(APIRoute.Login)
-      .then((resp) => {
-        const auth = resp.data.payload;
-        dispatch(requireAuthorization(auth));
-      });
+    try {
+      const { data: authInfo } = await api.get<AuthInfo>(APIRoute.Login);
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(loadUserData(authInfo));
+    } catch {
+      toast.info(AUTH_FAIL_MESSAGE);
+    }
   };
 
 export const addReviewAction = ({ rating, comment }: IReviewRequest, id: string): ThunkActionResult =>

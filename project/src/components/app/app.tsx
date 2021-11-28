@@ -39,7 +39,7 @@ function App(props: PropsFromRedux): JSX.Element {
         <Route exact path={AppRoute.Main} >
           <MainPage cards={movies} />
         </Route>
-        <Route exact path={AppRoute.SignIn}>  {authorizationStatus === AuthorizationStatus.Auth ? <Redirect to='/main' /> : <SignIn />}</Route>
+        <Route exact path={AppRoute.SignIn}>  {authorizationStatus === AuthorizationStatus.Auth ? <Redirect to='/' /> : <SignIn />}</Route>
         <PrivateRoute
           exact
           path={AppRoute.MyList}
