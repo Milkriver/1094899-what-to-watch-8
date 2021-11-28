@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: MovieCardElement should render correctly 1`] = `
+<div>
+  <article
+    class="small-film-card catalog__films-card"
+  >
+    <div
+      class="small-film-card__image"
+    >
+      <img
+        alt=""
+        height="175"
+        src="movieUrl"
+        width="280"
+      />
+      ;
+    </div>
+    <h3
+      class="small-film-card__title"
+    >
+      <div
+        class="small-film-card__link"
+      >
+        movieName
+      </div>
+    </h3>
+  </article>
+  ;
+</div>
+`;

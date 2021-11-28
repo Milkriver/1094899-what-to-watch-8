@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Error404 should render correctly 1`] = `
+<div>
+  <div
+    class="error404"
+    style="display: flex; justify-content: center; height: 100vh; align-items: center;"
+  >
+    <div
+      style="margin-right: 10px;"
+    >
+      404 Not Found 
+    </div>
+    <a
+      class="main"
+      href="/"
+    >
+      Вернуться на главную страницу
+    </a>
+  </div>
+  ;
+</div>
+`;

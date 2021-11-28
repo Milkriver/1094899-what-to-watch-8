@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: MoviePageReviews should render correctly 1`] = `
+<div>
+  <div
+    class="film-card__reviews film-card__row"
+  >
+    <div
+      class="film-card__reviews-col"
+    >
+      <div
+        class="review"
+      >
+        <blockquote
+          class="review__quote"
+        >
+          <p
+            class="review__text"
+          />
+          <footer
+            class="review__details"
+          >
+            <cite
+              class="review__author"
+            />
+            <time
+              class="review__date"
+              datetime="2016-12-24"
+            >
+              undefined NaN, NaN
+            </time>
+          </footer>
+        </blockquote>
+        <div
+          class="review__rating"
+        >
+          Good
+        </div>
+      </div>
+    </div>
+  </div>
+  ;
+</div>
+`;
