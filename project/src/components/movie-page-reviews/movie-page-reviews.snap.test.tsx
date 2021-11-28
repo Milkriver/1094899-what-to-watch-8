@@ -2,13 +2,13 @@ import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router';
 import { Provider } from 'react-redux';
-import { makeFakeInfrastructure } from '../../test-utils';
 import { MoviePageReviews } from './movie-page-reviews';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 
 
 const MOCK_REVIEWS = [{ id: 1, user: { id: 1, name: '' }, rating: 5, comment: '', date: '' }];
 describe('Component: MoviePageReviews', () => {
-  const { mockStore } = makeFakeInfrastructure();
+  const mockStore = configureMockStore();
 
   const store = mockStore({
     MOVIES: {
@@ -21,6 +21,8 @@ describe('Component: MoviePageReviews', () => {
     USER: {},
     REVIEWS: {},
   });
+
+  store.dispatch = jest.fn();
 
   test('should render correctly', () => {
     const history = createMemoryHistory();

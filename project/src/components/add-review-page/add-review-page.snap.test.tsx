@@ -3,11 +3,11 @@ import { createMemoryHistory } from 'history';
 import { Router } from 'react-router';
 import AddReviewPage from './add-review-page';
 import { Provider } from 'react-redux';
-import { makeFakeInfrastructure } from '../../test-utils';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 
 
 describe('Component: AddReviewPage', () => {
-  const { mockStore } = makeFakeInfrastructure();
+  const mockStore = configureMockStore();
 
   const store = mockStore({
     MOVIES: {
@@ -20,6 +20,8 @@ describe('Component: AddReviewPage', () => {
     USER: {},
     REVIEWS: {},
   });
+
+  store.dispatch = jest.fn();
 
   test('should render correctly', () => {
     const history = createMemoryHistory();

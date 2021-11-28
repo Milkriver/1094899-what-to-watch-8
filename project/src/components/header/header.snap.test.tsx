@@ -2,12 +2,12 @@ import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router';
 import { Provider } from 'react-redux';
-import { makeFakeInfrastructure } from '../../test-utils';
 import { Header } from './header';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 
 
 describe('Component: Header', () => {
-  const { mockStore } = makeFakeInfrastructure();
+  const mockStore = configureMockStore();
 
   const store = mockStore({
     MOVIES: {
@@ -20,6 +20,8 @@ describe('Component: Header', () => {
     USER: {},
     REVIEWS: {},
   });
+
+  store.dispatch = jest.fn();
 
   test('should render correctly', () => {
     const history = createMemoryHistory();

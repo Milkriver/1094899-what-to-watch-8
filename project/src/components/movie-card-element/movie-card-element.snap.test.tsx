@@ -2,12 +2,12 @@ import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router';
 import { Provider } from 'react-redux';
-import { makeFakeInfrastructure } from '../../test-utils';
 import { MovieCardElement } from './movie-card-element';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 
 const mockFn = () => Promise.resolve();
 describe('Component: MovieCardElement', () => {
-  const { mockStore } = makeFakeInfrastructure();
+  const mockStore = configureMockStore();
 
   const store = mockStore({
     MOVIES: {
@@ -20,6 +20,8 @@ describe('Component: MovieCardElement', () => {
     USER: {},
     REVIEWS: {},
   });
+
+  store.dispatch = jest.fn();
 
   test('should render correctly', () => {
     window.HTMLMediaElement.prototype.play = jest.fn();

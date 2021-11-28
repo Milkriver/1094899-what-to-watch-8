@@ -6,9 +6,9 @@ import { IMovie } from '../../types/common';
 import MoviesList from './movies-list';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 
-const MOCK__MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''], runTime: 1, genre: '', released: 1, isFavorite: true };
-const MOCK__MOVIE_2: IMovie = { id: 2, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 2, scoresCount: 2, director: '', starring: ['', ''], runTime: 1, genre: '', released: 2, isFavorite: false };
-const MOCK__MOVIES_ARRAY: IMovie[] = [MOCK__MOVIE_2, MOCK__MOVIE_1];
+const MOCK_MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''], runTime: 1, genre: '', released: 1, isFavorite: true };
+const MOCK_MOVIE_2: IMovie = { id: 2, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 2, scoresCount: 2, director: '', starring: ['', ''], runTime: 1, genre: '', released: 2, isFavorite: false };
+const MOCK_MOVIES_ARRAY: IMovie[] = [MOCK_MOVIE_2, MOCK_MOVIE_1];
 const mockFn = () => Promise.resolve();
 describe('Component: MoviesList', () => {
 
@@ -33,7 +33,7 @@ describe('Component: MoviesList', () => {
       <Provider store={store}>
         <Router history={history}>
           <MoviesList
-            cards={MOCK__MOVIES_ARRAY}
+            cards={MOCK_MOVIES_ARRAY}
             changeLimit={mockFn}
             moviesShowingLimit={2}
           />;

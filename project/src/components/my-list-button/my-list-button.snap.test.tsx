@@ -8,8 +8,9 @@ import { MyListButton } from './my-list-button';
 import { AuthorizationStatus } from '../../const';
 
 
-const MOCK__MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''], runTime: 1, genre: '', released: 1, isFavorite: true };
+const MOCK_MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''], runTime: 1, genre: '', released: 1, isFavorite: true };
 const mockFn = () => Promise.resolve();
+
 describe('Component: MyListButton', () => {
   const mockStore = configureMockStore();
   const store = mockStore({
@@ -32,7 +33,7 @@ describe('Component: MyListButton', () => {
       <Provider store={store}>
         <Router history={history}>
           <MyListButton
-            currentMovie={MOCK__MOVIE_1}
+            currentMovie={MOCK_MOVIE_1}
             authorizationStatus={AuthorizationStatus.Auth}
             onChangeFavoriteMovies={mockFn}
 

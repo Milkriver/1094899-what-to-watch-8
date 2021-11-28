@@ -6,7 +6,7 @@ import { IMovie } from '../../types/common';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Tabs } from './tabs';
 
-const MOCK__MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''], runTime: 1, genre: '', released: 1, isFavorite: true };
+const MOCK_MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''], runTime: 1, genre: '', released: 1, isFavorite: true };
 const MOCK_REVIEWS = [{ id: 1, user: { id: 1, name: '' }, rating: 5, comment: '', date: '' }];
 describe('Component: Tabs', () => {
 
@@ -31,7 +31,7 @@ describe('Component: Tabs', () => {
       <Provider store={store}>
         <Router history={history}>
           <Tabs
-            movie={MOCK__MOVIE_1}
+            movie={MOCK_MOVIE_1}
             reviews={MOCK_REVIEWS}
           />;
         </Router>

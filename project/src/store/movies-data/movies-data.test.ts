@@ -4,11 +4,11 @@ import { ActionType } from '../../types/actions';
 import { IMoviesData } from '../../types/state';
 import { moviesData } from './movies-data';
 
-const MOCK__CURRENT_GENRE = 'Comedy';
-const MOCK__EMPTY_MOVIES_ARRAY: IMovie[] = [];
-const MOCK__MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''], runTime: 1, genre: '', released: 1, isFavorite: true };
-const MOCK__MOVIE_2: IMovie = { id: 2, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 2, scoresCount: 2, director: '', starring: ['', ''], runTime: 1, genre: '', released: 2, isFavorite: false };
-const MOCK__MOVIES_ARRAY: IMovie[] = [MOCK__MOVIE_2, MOCK__MOVIE_1];
+const MOCK_CURRENT_GENRE = 'Comedy';
+const MOCK_EMPTY_MOVIES_ARRAY: IMovie[] = [];
+const MOCK_MOVIE_1: IMovie = { id: 1, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 1, scoresCount: 1, director: '', starring: ['', ''], runTime: 1, genre: '', released: 1, isFavorite: true };
+const MOCK_MOVIE_2: IMovie = { id: 2, name: '', posterImage: '', previewImage: '', backgroundImage: '', backgroundColor: '', videoLink: '', previewVideoLink: '', description: '', rating: 2, scoresCount: 2, director: '', starring: ['', ''], runTime: 1, genre: '', released: 2, isFavorite: false };
+const MOCK_MOVIES_ARRAY: IMovie[] = [MOCK_MOVIE_2, MOCK_MOVIE_1];
 const INITIAL_STATE: IMoviesData = {
   currentGenre: 'All genres',
   movies: [],
@@ -26,11 +26,11 @@ describe('Reducer: moviesData', () => {
 
     const changeGenre = {
       type: ActionType.ChangeGenre,
-      payload: { currentGenre: MOCK__CURRENT_GENRE },
+      payload: { currentGenre: MOCK_CURRENT_GENRE },
     };
     expect(moviesData(state, changeGenre))
       .toEqual({
-        currentGenre: MOCK__CURRENT_GENRE,
+        currentGenre: MOCK_CURRENT_GENRE,
         movies: [],
         isDataLoaded: false,
         movie: initialMovieCard,
@@ -44,7 +44,7 @@ describe('Reducer: moviesData', () => {
     const state = INITIAL_STATE;
     const loadMovies = {
       type: ActionType.LoadMovies,
-      payload: { movies: MOCK__EMPTY_MOVIES_ARRAY },
+      payload: { movies: MOCK_EMPTY_MOVIES_ARRAY },
     };
     expect(moviesData(state, loadMovies))
       .toEqual({
@@ -62,12 +62,12 @@ describe('Reducer: moviesData', () => {
     const state = INITIAL_STATE;
     const loadMovies = {
       type: ActionType.LoadMovies,
-      payload: { movies: MOCK__MOVIES_ARRAY },
+      payload: { movies: MOCK_MOVIES_ARRAY },
     };
     expect(moviesData(state, loadMovies))
       .toEqual({
         currentGenre: 'All genres',
-        movies: MOCK__MOVIES_ARRAY,
+        movies: MOCK_MOVIES_ARRAY,
         isDataLoaded: true,
         movie: initialMovieCard,
         sameMovies: [],
@@ -80,14 +80,14 @@ describe('Reducer: moviesData', () => {
     const state = INITIAL_STATE;
     const loadSingleMovieAction = {
       type: ActionType.LoadSingleMovie,
-      payload: { movie: MOCK__MOVIE_1 },
+      payload: { movie: MOCK_MOVIE_1 },
     };
     expect(moviesData(state, loadSingleMovieAction))
       .toEqual({
         currentGenre: 'All genres',
         movies: [],
         isDataLoaded: false,
-        movie: MOCK__MOVIE_1,
+        movie: MOCK_MOVIE_1,
         sameMovies: [],
         activeMovie: initialMovieCard,
         promoMovie: initialMovieCard,
@@ -98,7 +98,7 @@ describe('Reducer: moviesData', () => {
     const state = INITIAL_STATE;
     const loadActiveMovieAction = {
       type: ActionType.LoadActiveMovie,
-      payload: { activeMovie: MOCK__MOVIE_1 },
+      payload: { activeMovie: MOCK_MOVIE_1 },
     };
     expect(moviesData(state, loadActiveMovieAction))
       .toEqual({
@@ -107,7 +107,7 @@ describe('Reducer: moviesData', () => {
         isDataLoaded: false,
         movie: initialMovieCard,
         sameMovies: [],
-        activeMovie: MOCK__MOVIE_1,
+        activeMovie: MOCK_MOVIE_1,
         promoMovie: initialMovieCard,
         favouriteMovies: [],
       });
@@ -116,7 +116,7 @@ describe('Reducer: moviesData', () => {
     const state = INITIAL_STATE;
     const loadSameGenreMoviesAction = {
       type: ActionType.LoadSameGenreMovies,
-      payload: { sameMovies: MOCK__MOVIES_ARRAY },
+      payload: { sameMovies: MOCK_MOVIES_ARRAY },
     };
     expect(moviesData(state, loadSameGenreMoviesAction))
       .toEqual({
@@ -124,7 +124,7 @@ describe('Reducer: moviesData', () => {
         movies: [],
         isDataLoaded: false,
         movie: initialMovieCard,
-        sameMovies: MOCK__MOVIES_ARRAY,
+        sameMovies: MOCK_MOVIES_ARRAY,
         activeMovie: initialMovieCard,
         promoMovie: initialMovieCard,
         favouriteMovies: [],
@@ -134,7 +134,7 @@ describe('Reducer: moviesData', () => {
     const state = INITIAL_STATE;
     const loadPromoMovieAction = {
       type: ActionType.LoadPromoMovie,
-      payload: { promoMovie: MOCK__MOVIE_1 },
+      payload: { promoMovie: MOCK_MOVIE_1 },
     };
     expect(moviesData(state, loadPromoMovieAction))
       .toEqual({
@@ -144,7 +144,7 @@ describe('Reducer: moviesData', () => {
         movie: initialMovieCard,
         sameMovies: [],
         activeMovie: initialMovieCard,
-        promoMovie: MOCK__MOVIE_1,
+        promoMovie: MOCK_MOVIE_1,
         favouriteMovies: [],
       });
   });
@@ -152,7 +152,7 @@ describe('Reducer: moviesData', () => {
     const state = INITIAL_STATE;
     const loadFavouriteMoviesAction = {
       type: ActionType.LoadFavouriteMovies,
-      payload: { favouriteMovies: MOCK__MOVIES_ARRAY },
+      payload: { favouriteMovies: MOCK_MOVIES_ARRAY },
     };
     expect(moviesData(state, loadFavouriteMoviesAction))
       .toEqual({
@@ -163,7 +163,7 @@ describe('Reducer: moviesData', () => {
         sameMovies: [],
         activeMovie: initialMovieCard,
         promoMovie: initialMovieCard,
-        favouriteMovies: MOCK__MOVIES_ARRAY,
+        favouriteMovies: MOCK_MOVIES_ARRAY,
       });
   });
 });
