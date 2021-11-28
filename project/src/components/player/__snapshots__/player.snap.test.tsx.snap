@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Player should render correctly 1`] = `
+<div>
+  <div
+    class="player"
+  >
+    <div
+      style="display: flex; justify-content: center; height: 100vh; align-items: center;"
+    >
+      Загрузка...
+    </div>
+    <video
+      class="player__video"
+      src=""
+    />
+    <a
+      href="/films/1"
+    >
+      <button
+        class="player__exit"
+        type="button"
+      >
+        Exit
+      </button>
+    </a>
+    <div
+      class="player__controls"
+    >
+      <div
+        class="player__controls-row"
+      >
+        <div
+          class="player__time"
+        >
+          <progress
+            class="player__progress"
+            max="0"
+            value="0"
+          />
+          <div
+            class="player__toggler"
+          >
+            Toggler
+          </div>
+        </div>
+        <div
+          class="player__time-value"
+        >
+          - 00:00
+        </div>
+      </div>
+      <div
+        class="player__controls-row"
+      >
+        <button
+          class="player__play"
+          disabled=""
+          type="button"
+        >
+          <svg
+            height="21"
+            viewBox="0 0 14 21"
+            width="14"
+          >
+            <use
+              xlink:href="#pause"
+            />
+          </svg>
+          <span>
+            Play
+          </span>
+        </button>
+        <div
+          class="player__name"
+        />
+        <button
+          class="player__full-screen"
+          type="button"
+        >
+          <svg
+            height="27"
+            viewBox="0 0 27 27"
+            width="27"
+          >
+            <use
+              xlink:href="#full-screen"
+            />
+          </svg>
+          <span>
+            Full screen
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: VideoPlayer should render correctly 1`] = `
+<div>
+  <video
+    height="200"
+    poster="posterSrc"
+    width="280"
+  >
+    <source
+      src="videoLink"
+      type="video/mp4"
+    />
+  </video>
+</div>
+`;

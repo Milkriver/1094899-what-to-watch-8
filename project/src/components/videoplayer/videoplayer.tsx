@@ -32,8 +32,15 @@ function VideoPlayer({ posterSrc, videoLink }: AudioPlayerProps): JSX.Element | 
     }
 
     if (isPlaying) {
-      videoRef.current.play().catch(() => setIsPlaying(false));
+      try {
+        videoRef.current.play();
+        return;
+      } catch {
+        setIsPlaying(false);
+      }
     }
+
+    videoRef.current.pause();
   }, [isPlaying, videoRef]);
 
   return (
