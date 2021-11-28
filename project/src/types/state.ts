@@ -3,7 +3,7 @@ import { RootState } from '../store/root-reducer';
 import { AuthInfo } from './auth-data';
 import { IMovie } from './common';
 import { IReviewResponse } from './reviews';
-export interface MoviesData {
+export interface IMoviesData {
   currentGenre: string
   movies: IMovie[]
   isDataLoaded: boolean
@@ -14,12 +14,12 @@ export interface MoviesData {
   promoMovie: IMovie,
 }
 
-export interface ReviewsData {
+export interface IReviewsData {
   reviews: IReviewResponse[],
   review: IReviewResponse,
 }
 
-export interface UserProcess {
+export interface IUserProcess {
   authorizationStatus: AuthorizationStatus,
   userData: AuthInfo,
 }

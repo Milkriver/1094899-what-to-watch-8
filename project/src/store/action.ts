@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { AuthorizationStatus } from '../const';
+import { AppRoute, AuthorizationStatus } from '../const';
 import { ActionType } from '../types/actions';
 import { AuthInfo } from '../types/auth-data';
 import { IMovie } from '../types/common';
@@ -17,6 +17,9 @@ export const addFavoriteMovie = createAction(ActionType.AddFavoriteMovie);
 export const removeFavoriteMovie = createAction(ActionType.RemoveFavoriteMovie);
 export const loadReviews = createAction(ActionType.LoadReviews, (reviews: IReviewResponse[]) => ({ payload: { reviews } }));
 export const addReview = createAction(ActionType.AddReview, (review: IReviewResponse) => ({ payload: { review } }));
-export const requireAuthorization = createAction(ActionType.RequireAuthorization, (authStatus: AuthorizationStatus) => ({ payload: { authStatus } }));
+export const requireAuthorization = createAction(ActionType.RequireAuthorization, (authorizationStatus: AuthorizationStatus) => ({ payload: { authorizationStatus } }));
 export const requireLogout = createAction(ActionType.RequireLogout);
+export const redirectToRoute = createAction(ActionType.RedirectToRoute, (url: AppRoute) => ({ payload: url }),
+);
+
 

@@ -1,9 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { initialMovieCard } from '../../const';
-import { MoviesData } from '../../types/state';
+import { IMoviesData } from '../../types/state';
 import {loadMovies, changeGenre, loadSingleMovie, loadActiveMovie, loadSameGenreMovies, loadPromoMovie, loadFavouriteMovies} from '../action';
 
-const initialState: MoviesData = {
+const initialState: IMoviesData = {
   currentGenre: 'All genres',
   movies: [],
   isDataLoaded: false,

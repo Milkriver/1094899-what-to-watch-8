@@ -1,8 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { ReviewsData } from '../../types/state';
+import { IReviewsData } from '../../types/state';
 import { loadReviews, addReview } from '../action';
 
-const initialState: ReviewsData = {
+const initialState: IReviewsData = {
   reviews: [],
   review: {
     id: 1,
