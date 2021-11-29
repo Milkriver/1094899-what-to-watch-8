@@ -9,6 +9,7 @@ describe('Component: VideoPlayer', () => {
   });
 
   HTMLMediaElement.prototype.play = jest.fn();
+  HTMLMediaElement.prototype.pause = jest.fn();
 
   test('should render correctly', () => {
     const page = (
